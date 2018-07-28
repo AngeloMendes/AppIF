@@ -31,6 +31,7 @@ class Licao extends CI_Controller{
         {   
             $params = array(
 				'titulo' => $this->input->post('titulo'),
+                'imagem' => $this->input->post('imagem'),
 				'video' => $this->input->post('video'),
 				'descricao' => $this->input->post('descricao'),
             );
@@ -59,6 +60,7 @@ class Licao extends CI_Controller{
             {   
                 $params = array(
 					'titulo' => $this->input->post('titulo'),
+                    'imagem' => $this->input->post('imagem'),
 					'video' => $this->input->post('video'),
 					'descricao' => $this->input->post('descricao'),
                 );

@@ -6,6 +6,12 @@
 			<input type="text" name="titulo" value="<?php echo ($this->input->post('titulo') ? $this->input->post('titulo') : $licao['titulo']); ?>" class="form-control" id="titulo" />
 		</div>
 	</div>
+    <div class="form-group">
+        <label for="imagem" class="col-md-4 control-label">Imagem</label>
+        <div class="col-md-8">
+            <input type="text" name="imagem" value="<?php echo ($this->input->post('imagem') ? $this->input->post('video') : $licao['imagem']); ?>" class="form-control" id="imagem" />
+        </div>
+    </div>
 	<div class="form-group">
 		<label for="video" class="col-md-4 control-label">Video</label>
 		<div class="col-md-8">
