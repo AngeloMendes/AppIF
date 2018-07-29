@@ -2,26 +2,34 @@
 	<a href="<?php echo site_url('licao/add'); ?>" class="btn btn-success">Add</a> 
 </div>
 
-<table class="table table-striped table-bordered">
+<!--<table class="table table-striped table-bordered">
     <tr>
-		<th>IdLicao</th>
+
 		<th>Titulo</th>
         <th>Imagem</th>
-		<th>Video</th>
+
 		<th>Descricao</th>
 		<th>Actions</th>
-    </tr>
+    </tr>-->
 	<?php foreach($licao as $L){ ?>
-    <tr>
-		<td><?php echo $L['idLicao']; ?></td>
-		<td><?php echo $L['titulo']; ?></td>
-        <td><?php echo $L['imagem']; ?></td>
-		<td><?php echo $L['video']; ?></td>
-		<td><?php echo $L['descricao']; ?></td>
-		<td>
-            <a href="<?php echo site_url('licao/edit/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Edit</a> 
-            <a href="<?php echo site_url('licao/remove/'.$L['idLicao']); ?>" class="btn btn-danger btn-xs">Delete</a>
-        </td>
-    </tr>
+        <a href="#=<?php echo $L['idLicao']; ?>">
+            <div class="licao">
+                <span>
+                    <?php echo $L['imagem']; ?>
+                </span>
+                <span>
+                    <?php echo $L['titulo']; ?>
+                </span>
+                <span>
+                    <?php echo $L['descricao']; ?>
+                </span>
+            </div>
+        </a>
+
 	<?php } ?>
-</table>
+
+<style>
+    .licao{
+        margin: 50px 0 0 0;
+    }
+</style>
