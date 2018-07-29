@@ -1,7 +1,7 @@
 <?php echo form_open('licao/add', array("class" => "form-horizontal")); ?>
 <div class="form-add">
     <div class="form-group">
-        <div class="col-md-8  form-inputs" >
+        <div class="col-md-8  form-inputs">
             <label for="titulo">Título</label>
             <input type="text" name="titulo" value="<?php echo $this->input->post('titulo'); ?>" class="form-control"
                    id="titulo"/>
@@ -30,8 +30,9 @@
 
     <div class="form-group">
         <div class="col-md-8 form-inputs">
-            <label for="descricao" >Descricao</label>
-            <textarea class="form-control" rows="9" id="descricao"name="descricao" value="<?php echo $this->input->post('descricao'); ?>"></textarea>
+            <label for="descricao">Descricao</label>
+            <textarea class="form-control" rows="9" id="descricao" name="descricao"
+                      value="<?php echo $this->input->post('descricao'); ?>"></textarea>
         </div>
     </div>
 
@@ -45,7 +46,7 @@
 
 <style>
 
-    label{
+    label {
         overflow: auto;
         left: 0%;
         margin: auto;
@@ -54,16 +55,20 @@
     }
 
     .form-add {
-        position: absolute;!important;
+        position: absolute;
+    !important;
         top: 60px;
         left: 15%;
         width: 70%;
         right: 15%;
         height: 56px;
     }
-    .form-inputs{
-        width: 100%; !important;
+
+    .form-inputs {
+        width: 100%;
+    !important;
     }
+
     .files input {
         outline: 2px dashed #92b0b3;
         outline-offset: -10px;
@@ -86,6 +91,7 @@
     .files {
         position: relative;
     }
+
     .files:after {
         pointer-events: none;
         position: absolute;
