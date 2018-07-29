@@ -6,6 +6,7 @@
     <tr>
 		<th>IdLicao</th>
 		<th>Titulo</th>
+        <th>Imagem</th>
 		<th>Video</th>
 		<th>Descricao</th>
 		<th>Actions</th>
@@ -14,6 +15,7 @@
     <tr>
 		<td><?php echo $L['idLicao']; ?></td>
 		<td><?php echo $L['titulo']; ?></td>
+        <td><?php echo $L['imagem']; ?></td>
 		<td><?php echo $L['video']; ?></td>
 		<td><?php echo $L['descricao']; ?></td>
 		<td>
