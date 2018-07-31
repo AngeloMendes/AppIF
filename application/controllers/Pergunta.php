@@ -108,5 +108,9 @@ class Pergunta extends CI_Controller{
         else
             show_error('The pergunta you are trying to delete does not exist.');
     }
-    
+    function iniciarLicao(){
+        $data['_view'] = 'pergunta/iniciarLicao';
+        $this->load->view('layouts/main',$data);
+    }
+
 }
