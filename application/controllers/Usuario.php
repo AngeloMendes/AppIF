@@ -47,28 +47,32 @@ class Usuario extends CI_Controller{
     /*
      * Editing a usuario
      */
-    function edit($idUsuario)
-    {   
+    function edit($idUsuario,$pontos)
+    {
+        if($pontos==0) return;
+
         // check if the usuario exists before trying to edit it
         $data['usuario'] = $this->Usuario_model->get_usuario($idUsuario);
+        $pontuacaoAtual =$data['usuario']['pontos'];
         
         if(isset($data['usuario']['idUsuario']))
         {
-            if(isset($_POST) && count($_POST) > 0)     
-            {   
+            //if(isset($_POST) && count($_POST) > 0)
+            //{
                 $params = array(
-					'nome' => $this->input->post('nome'),
-					'pontos' => $this->input->post('pontos'),
+
+					'pontos' => $pontos + $pontuacaoAtual,
                 );
 
-                $this->Usuario_model->update_usuario($idUsuario,$params);            
-                redirect('usuario/index');
-            }
+                $this->Usuario_model->update_usuario($idUsuario,$params);
+                return;
+                //redirect('usuario/index');
+            /*}
             else
             {
                 $data['_view'] = 'usuario/edit';
                 $this->load->view('layouts/main',$data);
-            }
+            }*/
         }
         else
             show_error('The usuario you are trying to edit does not exist.');

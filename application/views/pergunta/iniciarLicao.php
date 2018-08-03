@@ -1,4 +1,4 @@
-<?php echo form_open('licao/add', array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/add', array("class" => "form-horizontal")); ?>
 
 <div>
     <?php
@@ -27,7 +27,7 @@
 
     <input type="hidden" name="respostaCorreta" value="<?php echo $perguntas[$cont]['opcaoCorreta']; ?>"
     <input type="hidden" name="idUsuario" value="<?php echo 'PEGAR USUARIO DA SESSAO'; ?>">
-    <input type="hidden" name="tempo" value="<?php $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s ?>">
+    <!--<input type="hidden" name="tempo" value="<?php $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s ?>">-->
 
     <span> <?php echo $perguntas[$cont]['caixaTexto']; ?></span>
 
