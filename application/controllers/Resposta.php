@@ -10,6 +10,8 @@ class Resposta extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Resposta_model');
+        $this->load->model('Usuario_model');
+
     }
 
     /*
@@ -31,20 +33,25 @@ class Resposta extends CI_Controller
 
 
         if (isset($_POST) && count($_POST) > 0) {
+
             $t = time();
             $data_inicio = $this->input->post('data');
             $tempo = $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s;
+
+            $idUsuario = $this->input->post('idUsuario');
             $respostaCorreta = $this->input->post('respostaCorreta');
             $respostaUsuario = $this->input->post('respostaUsuario');
+
             $pontuacao = 0;
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
                 $pontuacao = round($tempo * 100);
             }
+            editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
 
             $params = array(
-                'idUsuario' => $this->input->post('idUsuario'),
-                'respostaCorreta' => $this->input->post('respostaCorreta'),
-                'respostaUsuario' => $this->input->post('respostaUsuario'),
+                'idUsuario' => $idUsuario,
+                'respostaCorreta' => $respostaCorreta,
+                'respostaUsuario' => $respostaUsuario,
             );
 
             $resposta_id = $this->Resposta_model->add_resposta($params);
@@ -54,6 +61,30 @@ class Resposta extends CI_Controller
             $this->load->view('layouts/main', $data);
         }
     }
+
+
+    function editUsuario($idUsuario,$pontos)
+    {
+        if($pontos==0) return;
+
+        // check if the usuario exists before trying to edit it
+        $data['usuario'] = $this->Usuario_model->get_usuario($idUsuario);
+        $pontuacaoAtual =$data['usuario']['pontos'];
+
+        if(isset($data['usuario']['idUsuario']))
+        {
+            $params = array(
+                'pontos' => $pontos + $pontuacaoAtual,
+            );
+
+            $this->Usuario_model->update_usuario($idUsuario,$params);
+            return;
+
+        }
+        else
+            show_error('The usuario you are trying to edit does not exist.');
+    }
+
 
     /*
      * Editing a resposta
