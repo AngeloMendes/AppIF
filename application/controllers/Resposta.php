@@ -15,13 +15,13 @@ class Resposta extends CI_Controller
     }
 
     /*
-     * Listing of resposta
+     * Listing of ranking
      */
     function index()
     {
-        $data['resposta'] = $this->Resposta_model->get_all_resposta();
-
-        $data['_view'] = 'resposta/index';
+        //$data['resposta'] = $this->Resposta_model->get_all_resposta();
+        $data['ranking'] = $this->Usuario_model->get_ranking();
+        $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
     }
 
@@ -55,6 +55,8 @@ class Resposta extends CI_Controller
             );
 
             $resposta_id = $this->Resposta_model->add_resposta($params);
+
+
             redirect('resposta/index');
         } else {
             $data['_view'] = 'resposta/add';

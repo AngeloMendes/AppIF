@@ -53,6 +53,7 @@ class Usuario_model extends CI_Model
     {
         return $this->db->delete('Usuario',array('idUsuario'=>$idUsuario));
     }
+
     /*
      * function to get ranking
      */
