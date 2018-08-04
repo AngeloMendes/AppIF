@@ -5,10 +5,13 @@
  */
  
 class Pergunta extends CI_Controller{
+
     function __construct()
     {
         parent::__construct();
         $this->load->model('Pergunta_model');
+
+
     } 
 
     /*
@@ -108,5 +111,11 @@ class Pergunta extends CI_Controller{
         else
             show_error('The pergunta you are trying to delete does not exist.');
     }
-    
+    function iniciarLicao($cont){
+        $data['perguntas'] ="buscar todas perguntas por licao";
+        $data['cont']=$cont;
+        $data['_view'] = 'pergunta/iniciarLicao';
+        $this->load->view('layouts/main',$data);
+    }
+
 }
