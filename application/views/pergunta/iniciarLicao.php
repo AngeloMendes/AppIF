@@ -20,10 +20,10 @@
     <span> <?php echo $perguntas[$cont]['video']; ?></span><br>
     <span> <?php echo $perguntas[$cont]['imagem']; ?></span><br>
 
-    <input type="radio" name="resposta" value="<?php echo $perguntas[$cont]['opcao1']; ?>"> Opção 1 <br>
-    <input type="radio" name="resposta" value="<?php echo $perguntas[$cont]['opcao2']; ?>"> Opção 2 <br>
-    <input type="radio" name="resposta" value="<?php echo $perguntas[$cont]['opcao3']; ?>"> Opção 3 <br>
-    <input type="radio" name="resposta" value="<?php echo $perguntas[$cont]['opcao4']; ?>"> Opção 4 <br>
+    <input type="radio" name="resposta" id="resposta1" value="<?php echo $perguntas[$cont]['opcao1']; ?>"> <label for="resposta1">Opção 1</label> <br>
+    <input type="radio" name="resposta" id="resposta2" value="<?php echo $perguntas[$cont]['opcao2']; ?>"> <label for="resposta2">Opção 2</label> <br>
+    <input type="radio" name="resposta" id="resposta3" value="<?php echo $perguntas[$cont]['opcao3']; ?>"> <label for="resposta3">Opção 3</label> <br>
+    <input type="radio" name="resposta" id="resposta4" value="<?php echo $perguntas[$cont]['opcao4']; ?>"> <label for="resposta4">Opção 4</label> <br>
 
     <input type="hidden" name="respostaCorreta" value="<?php echo $perguntas[$cont]['opcaoCorreta']; ?>"
     <input type="hidden" name="idUsuario" value="<?php echo 'PEGAR USUARIO DA SESSAO'; ?>">

@@ -5,10 +5,13 @@
  */
  
 class Pergunta extends CI_Controller{
+
     function __construct()
     {
         parent::__construct();
         $this->load->model('Pergunta_model');
+
+
     } 
 
     /*
@@ -110,7 +113,7 @@ class Pergunta extends CI_Controller{
     }
     function iniciarLicao($cont){
         $data['perguntas'] ="buscar todas perguntas por licao";
-        $data['cont']=$cont++;
+        $data['cont']=$cont;
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main',$data);
     }
