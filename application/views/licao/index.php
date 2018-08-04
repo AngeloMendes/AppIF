@@ -15,7 +15,7 @@
         <a href="#=<?php echo $L['idLicao']; ?>">
             <div class="licao">
                 <span>
-                    <?php echo $L['imagem']; ?>
+                    <img src="<?php echo $L['imagem']; ?>" height="100px">
                 </span>
                 <span>
                     <?php echo $L['titulo']; ?>

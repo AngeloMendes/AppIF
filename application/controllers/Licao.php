@@ -10,6 +10,7 @@ class Licao extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Licao_model');
+        $this->load->library('upload');
     }
 
     /*
@@ -29,16 +30,49 @@ class Licao extends CI_Controller
     function add()
     {
         if (isset($_POST) && count($_POST) > 0) {
-            $imagem = $_FILES['imagem'];
-            $extensaoImagem = explode('.', $imagem);
-            $extensaoImagem = $extensaoImagem[1];
-
-            $video = $_FILES['video'];
-            $extensaoVideo = explode('.', $video);
-            $extensaoVideo = $extensaoVideo[1];
             $titulo = $this->input->post('titulo');
-            $caminhoImagem = './midias/imagens/licoes/' . str_replace(" ", "", $titulo) . $extensaoImagem;
-            $caminhoVideo = './midias/videos/licoes/' . str_replace(" ", "", $titulo) . $extensaoVideo;
+            if(!empty($_FILES['imagem']['name'])){
+                $imagem = $_FILES['imagem'];
+                print_r($imagem);
+
+                $extensaoImagem = explode('.', $imagem['name']);
+                $extensaoImagem = end($extensaoImagem);
+
+                $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) .'.'.$extensaoImagem;
+                $configuracaoImagem = array(
+                    'upload_path' => '/var/www/html/AppIF/application/midias/imagens/licoes/',
+                    'allowed_types' => 'jpg|png|jpeg|gif',
+                    'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoImagem,
+                    'max_size' => '500000',
+                    'max_width'=> '4096',
+                    'max_height' => '4096'
+                );
+                $this->upload->initialize($configuracaoImagem);
+                if(!$this->upload->do_upload('imagem')){
+                    $caminhoImagem=$this->upload->display_errors();
+                }
+            }else{
+                $caminhoImagem="";
+            }
+
+            if(!empty($_FILES['video']['name'])){
+                $video = $_FILES['video'];
+                $extensaoVideo = explode('.', $video);
+                $extensaoVideo = $extensaoVideo[1];
+                $caminhoVideo = '././midias/videos/licoes/' . str_replace(" ", "", $titulo) . $extensaoVideo;
+                $configuracaoVideo = array(
+                    'upload_path' => './midias/videos/licoes/',
+                    'allowed_types' => 'FLV, AVI, WMV, MOV, RMVB, MPEG, MKV,mp4',
+                    'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoVideo,
+                    'max_size' => '500000'
+                );
+                $this->upload->initialize($configuracaoVideo);
+                if(!$this->upload->do_upload('video')){
+                    $caminhoVideo="error";
+                }
+            }else{
+                $caminhoVideo="";
+            }
 
             $params = array(
                 'titulo' => $titulo,
@@ -46,24 +80,6 @@ class Licao extends CI_Controller
                 'video' => $caminhoVideo,
                 'descricao' => $this->input->post('descricao'),
             );
-
-            $configuracaoImagem = array(
-                'upload_path' => './midias/imagens/licoes/',
-                'allowed_types' => 'jpg,png,jpeg,gif,tiff',
-                'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoImagem,
-                'max_size' => '50000'
-            );
-            $configuracaoVideo = array(
-                'upload_path' => './midias/videos/licoes/',
-                'allowed_types' => 'FLV, AVI, WMV, MOV, RMVB, MPEG, MKV,mp4',
-                'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoVideo,
-                'max_size' => '500000'
-            );
-            $this->load->library('upload');
-            $this->upload->initialize($configuracaoImagem);
-            $this->upload->initialize($configuracaoVideo);
-            $this->upload->do_upload('imagem');
-            $this->upload->do_upload('video');
 
             $licao_id = $this->Licao_model->add_licao($params);
             redirect('licao/index');
