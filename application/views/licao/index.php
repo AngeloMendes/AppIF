@@ -29,9 +29,9 @@
         </a>
         <span>
 
-            <?php if(!empty($L['video']) or $L['video']!='error') { ?>
+            <?php if(!empty($L['video']) and $L['video']!='error') { ?>
                 <video id="video" class="" width="240" height="160" controls>
-                    <source src="<?= isset($L['video']) ? $L['video'] : ''; ?>" type='video/<?= (isset($L['video'])) ? explode('.', $L['video'])[1] : 'mp4'; ?>'>
+                    <source src="<?= $L['video'] ?>" type='video/<?= explode('.', $L['video'])[1]; ?>'>
                 </video>
             <?php } ?>
         </span>
