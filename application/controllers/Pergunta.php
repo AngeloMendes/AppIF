@@ -32,15 +32,38 @@ class Pergunta extends CI_Controller
     function add()
     {
         if (isset($_POST) && count($_POST) > 0) {
-            $imagem = $_FILES['imagem'];
-            $extensaoImagem = explode('.', $imagem);
-            $extensaoImagem = $extensaoImagem[1];
+            $titulo = $this->input->post('titulo');
+            if(!empty($_FILES['imagem']['name'])){
+                $imagem = $_FILES['imagem'];
+                print_r($imagem);
+
+                $extensaoImagem = explode('.', $imagem['name']);
+                $extensaoImagem = end($extensaoImagem);
+
+                $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) .'.'.$extensaoImagem;
+                $configuracaoImagem = array(
+                    'upload_path' => './application/midias/imagens/licoes/',
+                    'allowed_types' => 'jpg|png|jpeg|gif',
+                    'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoImagem,
+                    'max_size' => '500000',
+                    'max_width'=> '4096',
+                    'max_height' => '4096'
+                );
+
+                $this->upload->initialize($configuracaoImagem);
+                if(!$this->upload->do_upload('imagem')){
+                    $caminhoImagem=$this->upload->display_errors();
+                }
+            }else{
+                $caminhoImagem="";
+            }
+
 
             $video = $_FILES['video'];
             $extensaoVideo = explode('.', $video);
             $extensaoVideo = $extensaoVideo[1];
-            $titulo = $this->input->post('titulo');
-            $caminhoImagem = './midias/imagens/perguntas/' . str_replace(" ", "", $titulo) . $extensaoImagem;
+
+
             $caminhoVideo = './midias/videos/perguntas/' . str_replace(" ", "", $titulo) . $extensaoVideo;
 
 
