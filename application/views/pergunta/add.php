@@ -1,4 +1,4 @@
-<?php echo form_open('pergunta/add', array("class" => "form-horizontal")); ?>
+<?php echo form_open_multipart('pergunta/add', array("class" => "form-horizontal")); ?>
 <div class="form-add">
 
     <div class="form-group">

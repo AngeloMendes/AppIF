@@ -1,27 +1,49 @@
 <div class="pull-right">
-	<a href="<?php echo site_url('licao/add'); ?>" class="btn btn-success">Add</a> 
+    <a href="<?php echo site_url('licao/add'); ?>" class="btn btn-success">Add</a>
 </div>
 
-<table class="table table-striped table-bordered">
+<!--<table class="table table-striped table-bordered">
     <tr>
-		<th>IdLicao</th>
+
 		<th>Titulo</th>
         <th>Imagem</th>
-		<th>Video</th>
+
 		<th>Descricao</th>
 		<th>Actions</th>
-    </tr>
-	<?php foreach($licao as $L){ ?>
-    <tr>
-		<td><?php echo $L['idLicao']; ?></td>
-		<td><?php echo $L['titulo']; ?></td>
-        <td><?php echo $L['imagem']; ?></td>
-		<td><?php echo $L['video']; ?></td>
-		<td><?php echo $L['descricao']; ?></td>
-		<td>
-            <a href="<?php echo site_url('licao/edit/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Edit</a> 
-            <a href="<?php echo site_url('licao/remove/'.$L['idLicao']); ?>" class="btn btn-danger btn-xs">Delete</a>
-        </td>
-    </tr>
-	<?php } ?>
-</table>
+    </tr>-->
+<?php foreach ($licao as $L) { ?>
+
+    <div class="licao">
+        <a href="#=<?php echo $L['idLicao']; ?>">
+            <div id="chamarLicao">
+                <span>
+                    <?php  if($L['imagem']!="" and $L['imagem']!='error') {?>
+                        <img src="<?php echo $L['imagem']; ?>" height="100px">
+                    <?php }?>
+                </span>
+                <span>
+                    <?php echo $L['titulo']; ?>
+                </span>
+                <span>
+                    <?php echo $L['descricao']; ?>
+                </span>
+            </div>
+        </a>
+        <span>
+
+            <?php if(!empty($L['video']) and $L['video']!='error') { ?>
+                <video id="video" class="" width="240" height="160" controls>
+                    <source src="<?= $L['video'] ?>" type='video/<?= explode('.', $L['video'])[1]; ?>'>
+                </video>
+            <?php } ?>
+        </span>
+    </div>
+
+
+<?php } ?>
+
+<style>
+    .licao {
+        margin: 50px 0 0 0;
+    }
+</style>
