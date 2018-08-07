@@ -17,7 +17,9 @@
         <a href="#=<?php echo $L['idLicao']; ?>">
             <div id="chamarLicao">
                 <span>
-                    <img src="<?php echo $L['imagem']; ?>" height="100px">
+                    <?php  if($L['imagem']!="" and $L['imagem']!='error') {?>
+                        <img src="<?php echo $L['imagem']; ?>" height="100px">
+                    <?php }?>
                 </span>
                 <span>
                     <?php echo $L['titulo']; ?>

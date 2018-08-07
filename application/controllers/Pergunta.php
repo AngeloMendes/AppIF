@@ -52,20 +52,33 @@ class Pergunta extends CI_Controller
 
                 $this->upload->initialize($configuracaoImagem);
                 if(!$this->upload->do_upload('imagem')){
-                    $caminhoImagem=$this->upload->display_errors();
+                    ///$caminhoImagem=$this->upload->display_errors();
+                    $caminhoImagem='error';
                 }
             }else{
                 $caminhoImagem="";
             }
 
 
-            $video = $_FILES['video'];
-            $extensaoVideo = explode('.', $video);
-            $extensaoVideo = $extensaoVideo[1];
-
-
-            $caminhoVideo = './midias/videos/perguntas/' . str_replace(" ", "", $titulo) . $extensaoVideo;
-
+            if(!empty($_FILES['video']['name'])){
+                $video = $_FILES['video'];
+                $extensaoVideo = explode('.', $video['name']);
+                $extensaoVideo = end($extensaoVideo);
+                $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(" ", "", $titulo).'.' . $extensaoVideo;
+                $configuracaoVideo = array(
+                    'upload_path' => './application/midias/videos/licoes/',
+                    'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG',
+                    'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoVideo,
+                    'max_size' => '500000000'
+                );
+                $this->upload->initialize($configuracaoVideo);
+                if(!$this->upload->do_upload('video')){
+                    //$caminhoVideo=$this->upload->display_errors();
+                    $caminhoVideo='error';
+                }
+            }else{
+                $caminhoVideo="";
+            }
 
             $params = array(
                 'titulo' => $titulo,
