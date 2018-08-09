@@ -1,6 +1,23 @@
 <?php echo form_open_multipart('pergunta/add', array("class" => "form-horizontal")); ?>
 <div class="form-add">
+    <div class="form-group">
+        <div class="col-md-8  form-inputs">
+            <!--<label for="idLicao">Lição</label>-->
+            <input type="hiden" name="idLicao" value="<?php echo $idLicao; ?>" id="idLicao"/>
 
+            <!--<select name='idLicao' id='idLicao'>
+                <option value=''> Selecione uma lição</option>
+                <?php
+                foreach ($licoes as $key => $list) {
+                    echo "<option value='" . $this->input->post('idLicao') . "'>" . $list['titulo'] . '</option>';
+                }
+                echo '</optgroup>';
+
+                ?>
+            </select>-->
+
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-md-8  form-inputs">
             <label for="titulo">Título</label>
@@ -58,7 +75,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-8  form-inputs">
-            <label for="opcao4">Opção 1</label>
+            <label for="opcao4">Opção 4</label>
             <input type="text" name="opcao4" value="<?php echo $this->input->post('opcao4'); ?>" class="form-control"
                    id="opcao4"/>
         </div>
@@ -67,17 +84,9 @@
 
     <div class="form-group">
         <div class="col-md-8  form-inputs">
-            <label for="idLicao">ID Lição PEGAR VIA POST</label>
-            <input type="text" name="idLicao" value="<?php echo $this->input->post('idLicao'); ?>" class="form-control"
-                   id="idLicao"/>
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <div class="col-md-8  form-inputs">
             <label for="opcaoCorreta">Opção correta</label>
-            <input type="text" name="opcaoCorreta" value="<?php echo $this->input->post('opcaoCorreta'); ?>" class="form-control"
+            <input type="text" name="opcaoCorreta" value="<?php echo $this->input->post('opcaoCorreta'); ?>"
+                   class="form-control"
                    id="opcaoCorreta"/>
         </div>
     </div>
