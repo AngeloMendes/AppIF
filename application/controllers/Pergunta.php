@@ -172,17 +172,24 @@ class Pergunta extends CI_Controller
             show_error('The pergunta you are trying to delete does not exist.');
     }
 
-    function iniciarLicao($cont)
+    function iniciarLicao($idLicao)
     {
         //buscar todas as perguntas de uma licao
         //chamar a view passar o 0 como primeiro indice do vetor de perguntas
         //passar o tamanho do vetor
-        $data['perguntas'] = "buscar todas perguntas por licao";
-        $data['cont'] = $cont;
+        $data['perguntas'] = $this->Pergunta_model->get_perguntas_licao($idLicao);
+        $data['cont'] = 0;
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main', $data);
     }
+    function proximaPergunta($perguntas,$cont){
 
+        $data['pergunta']=$perguntas[$cont];
+        $data['cont']=$cont;
+        $data['perguntas']=$perguntas;
+        $data['_view'] = 'pergunta/iniciarLicao';
+        $this->load->view('layouts/main', $data);
+    }
     //function incremetar contador de perguntas via ajax e voltar pra mesma view
     //cont++, return pra view
     //se cont == tamanho vai pro ranking só

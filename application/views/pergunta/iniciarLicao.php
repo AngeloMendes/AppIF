@@ -1,4 +1,4 @@
-<?php echo form_open('resposta/add', array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/add/'.$perguntas.'/'.$cont, array("class" => "form-horizontal")); ?>
 
 <div>
     <?php
@@ -9,27 +9,27 @@
     -chamar a próxima perguntar
 
     */
-    $perguntas = $_POST['perguntas'];
-    $cont = $_POST['cont'];
+    //$pergunta = $_POST['pergunta'];
+
     $t = time();
     $data_inicio = new DateTime(date("Y-m-d\TH:i:sP", $t));
     ?>
     TRAZER as informações das perguntas e ENVIAR o id do usuario, a resposta escolhida, a resposta correta e o tempo
-    <span> <?php echo $perguntas[$cont]['titulo']; ?></span><br>
-    <span> <?php echo $perguntas[$cont]['descricao']; ?></span><br>
-    <span> <?php echo $perguntas[$cont]['video']; ?></span><br>
-    <span> <?php echo $perguntas[$cont]['imagem']; ?></span><br>
+    <span> <?php echo $pergunta['titulo']; ?></span><br>
+    <span> <?php echo $pergunta['descricao']; ?></span><br>
+    <span> <?php echo $pergunta['video']; ?></span><br>
+    <span> <?php echo $pergunta['imagem']; ?></span><br>
 
-    <input type="radio" name="resposta" id="resposta1" value="<?php echo $perguntas[$cont]['opcao1']; ?>"> <label for="resposta1">Opção 1</label> <br>
-    <input type="radio" name="resposta" id="resposta2" value="<?php echo $perguntas[$cont]['opcao2']; ?>"> <label for="resposta2">Opção 2</label> <br>
-    <input type="radio" name="resposta" id="resposta3" value="<?php echo $perguntas[$cont]['opcao3']; ?>"> <label for="resposta3">Opção 3</label> <br>
-    <input type="radio" name="resposta" id="resposta4" value="<?php echo $perguntas[$cont]['opcao4']; ?>"> <label for="resposta4">Opção 4</label> <br>
+    <input type="radio" name="resposta" id="resposta1" value="<?php echo $pergunta['opcao1']; ?>"> <label for="resposta1">Opção 1</label> <br>
+    <input type="radio" name="resposta" id="resposta2" value="<?php echo $pergunta['opcao2']; ?>"> <label for="resposta2">Opção 2</label> <br>
+    <input type="radio" name="resposta" id="resposta3" value="<?php echo $pergunta['opcao3']; ?>"> <label for="resposta3">Opção 3</label> <br>
+    <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta['opcao4']; ?>"> <label for="resposta4">Opção 4</label> <br>
 
-    <input type="hidden" name="respostaCorreta" value="<?php echo $perguntas[$cont]['opcaoCorreta']; ?>"
+    <input type="hidden" name="respostaCorreta" value="<?php echo $pergunta['opcaoCorreta']; ?>"
     <input type="hidden" name="idUsuario" value="<?php echo 'PEGAR USUARIO DA SESSAO'; ?>">
     <!--<input type="hidden" name="tempo" value="<?php $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s ?>">-->
 
-    <span> <?php echo $perguntas[$cont]['caixaTexto']; ?></span>
+    <span> <?php echo $pergunta['caixaTexto']; ?></span>
 
 
     <div class="form-group">

@@ -17,11 +17,13 @@ class Resposta extends CI_Controller
     /*
      * Listing of ranking
      */
-    function index($respostaCorreta)
+    function index($respostaCorreta,$perguntas,$cont)
     {
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
         $data['ranking'] = $this->Usuario_model->get_ranking();
         $data['respostaCorreta']=$respostaCorreta;
+        $data['perguntas']=$perguntas;
+        $data['cont']=$cont;
         $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
     }
@@ -29,7 +31,7 @@ class Resposta extends CI_Controller
     /*
      * Adding a new resposta
      */
-    function add()
+    function add($perguntas,$cont)
     {
 
 
@@ -55,10 +57,11 @@ class Resposta extends CI_Controller
                 'respostaUsuario' => $respostaUsuario,
             );
 
-            $resposta_id = $this->Resposta_model->add_resposta($params);
+            //$resposta_id = $this->Resposta_model->add_resposta($params);
 
 
-            $this->index($respostaCorreta);
+            $this->index($respostaCorreta,$perguntas,$cont);//mostrar ranking
+
         } else {
             //$data['_view'] = 'resposta/add';
             //$this->load->view('layouts/main', $data);

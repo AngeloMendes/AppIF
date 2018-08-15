@@ -3,7 +3,7 @@
     <div class="form-group">
         <div class="col-md-8  form-inputs">
             <!--<label for="idLicao">Lição</label>-->
-            <input type="hiden" name="idLicao" value="<?php echo $idLicao; ?>" id="idLicao"/>
+            <input type="hidden" name="idLicao" value="<?php echo $idLicao; ?>" id="idLicao"/>
 
             <!--<select name='idLicao' id='idLicao'>
                 <option value=''> Selecione uma lição</option>
