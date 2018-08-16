@@ -11,6 +11,7 @@ class Resposta extends CI_Controller
         parent::__construct();
         $this->load->model('Resposta_model');
         $this->load->model('Usuario_model');
+        $this->load->model('Progresso_model');
 
     }
 
@@ -44,11 +45,15 @@ class Resposta extends CI_Controller
             $idUsuario = $this->input->post('idUsuario');
             $respostaCorreta = $this->input->post('respostaCorreta');
             $respostaUsuario = $this->input->post('respostaUsuario');
+            $idLicao=$this->input->post('idLicao');
+            $idPergunta=$this->input->post('idPergunta');
 
             $pontuacao = 0;
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
                 $pontuacao = round($tempo * 100);
             }
+            #SALVAR PROGRESSO
+            salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao);
             editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
 
             $params = array(
@@ -68,7 +73,21 @@ class Resposta extends CI_Controller
             $this->index("");
         }
     }
+    /*
+     * salvar progresso do usuario
+     * pontuacao da pergunta respondida
+     */
+    function salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacaoAtual){
+        $params = array(
+            'idUsuario' => $idUsuario,
+            'idLicao' => $idLicao,
+            'idPergunta' => $idPergunta,
+            'pontuacaoAtual' => $pontuacaoAtual,
+        );
 
+        $progresso_id = $this->Progresso_model->add_progresso($params);
+        return;
+    }
 
     function editUsuario($idUsuario,$pontos)
     {

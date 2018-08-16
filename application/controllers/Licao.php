@@ -136,6 +136,7 @@ class Licao extends CI_Controller
 
     function preLicao($idLicao){
         $data['licao'] = $this->Licao_model->get_licao($idLicao);
+        $data['cont'] = 0;
         $data['_view'] = 'licao/index';
         $this->load->view('layouts/main', $data);
 

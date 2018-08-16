@@ -27,6 +27,8 @@
 
     <input type="hidden" name="respostaCorreta" value="<?php echo $pergunta['opcaoCorreta']; ?>"
     <input type="hidden" name="idUsuario" value="<?php echo get_valor_sessao("idUsuario") ?>">
+    <input type="hidden" name="idLicao" value="<?php echo $pergunta['idLicao']; ?>">
+    <input type="hidden" name="idPergunta" value="<?php echo $pergunta['idPergunta']; ?>">
     <!--<input type="hidden" name="tempo" value="<?php $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s ?>">-->
 
     <span> <?php echo $pergunta['caixaTexto']; ?></span>
