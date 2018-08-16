@@ -21,5 +21,5 @@
 <?php } else {
     $cont++;
     ?>
-    <a href="<?= base_url('pergunta/iniciarLicao/' . $cont) ?>">Próxima Pergunta</a>
+    <a href="<?= base_url('pergunta/proximaPergunta/'.$perguntas.'/' . $cont) ?>">Próxima Pergunta</a>
 <?php } ?>

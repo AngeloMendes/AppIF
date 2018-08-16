@@ -11,6 +11,7 @@ class Pergunta extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Pergunta_model');
+        $this->load->model('Licao_model');
 
 
     }
@@ -29,7 +30,7 @@ class Pergunta extends CI_Controller
     /*
      * Adding a new pergunta
      */
-    function add()
+    function add($idLicao)
     {
         if (isset($_POST) && count($_POST) > 0) {
             $titulo = $this->input->post('titulo');
@@ -116,6 +117,8 @@ class Pergunta extends CI_Controller
             redirect('pergunta/index');
         } else {
             $data['_view'] = 'pergunta/add';
+            $data['idLicao'] = $idLicao;
+            $data['licoes'] = $this->Licao_model->get_all_licao();
             $this->load->view('layouts/main', $data);
         }
     }
@@ -169,12 +172,26 @@ class Pergunta extends CI_Controller
             show_error('The pergunta you are trying to delete does not exist.');
     }
 
-    function iniciarLicao($cont)
+    function iniciarLicao($idLicao)
     {
-        $data['perguntas'] = "buscar todas perguntas por licao";
-        $data['cont'] = $cont;
+        //buscar todas as perguntas de uma licao
+        //chamar a view passar o 0 como primeiro indice do vetor de perguntas
+        //passar o tamanho do vetor
+        $data['perguntas'] = $this->Pergunta_model->get_perguntas_licao($idLicao);
+        $data['cont'] = 0;
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main', $data);
     }
+    function proximaPergunta($perguntas,$cont){
+
+        $data['pergunta']=$perguntas[$cont];
+        $data['cont']=$cont;
+        $data['perguntas']=$perguntas;
+        $data['_view'] = 'pergunta/iniciarLicao';
+        $this->load->view('layouts/main', $data);
+    }
+    //function incremetar contador de perguntas via ajax e voltar pra mesma view
+    //cont++, return pra view
+    //se cont == tamanho vai pro ranking só
 
 }

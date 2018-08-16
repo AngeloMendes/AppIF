@@ -27,6 +27,12 @@
                 <span>
                     <?php echo $L['descricao']; ?>
                 </span>
+                <span>
+                    <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Adicionar pergunta</a>
+                </span>
+                <span>
+                    <a href="<?php echo site_url('licao/preLicao/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Iniciar lição</a>
+                </span>
             </div>
         </a>
         <span>

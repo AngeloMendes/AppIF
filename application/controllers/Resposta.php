@@ -11,17 +11,20 @@ class Resposta extends CI_Controller
         parent::__construct();
         $this->load->model('Resposta_model');
         $this->load->model('Usuario_model');
+        $this->load->model('Progresso_model');
 
     }
 
     /*
      * Listing of ranking
      */
-    function index($respostaCorreta)
+    function index($respostaCorreta,$perguntas,$cont)
     {
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
         $data['ranking'] = $this->Usuario_model->get_ranking();
         $data['respostaCorreta']=$respostaCorreta;
+        $data['perguntas']=$perguntas;
+        $data['cont']=$cont;
         $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
     }
@@ -29,7 +32,7 @@ class Resposta extends CI_Controller
     /*
      * Adding a new resposta
      */
-    function add()
+    function add($perguntas,$cont)
     {
 
 
@@ -42,11 +45,15 @@ class Resposta extends CI_Controller
             $idUsuario = $this->input->post('idUsuario');
             $respostaCorreta = $this->input->post('respostaCorreta');
             $respostaUsuario = $this->input->post('respostaUsuario');
+            $idLicao=$this->input->post('idLicao');
+            $idPergunta=$this->input->post('idPergunta');
 
             $pontuacao = 0;
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
                 $pontuacao = round($tempo * 100);
             }
+            #SALVAR PROGRESSO
+            salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao);
             editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
 
             $params = array(
@@ -55,17 +62,32 @@ class Resposta extends CI_Controller
                 'respostaUsuario' => $respostaUsuario,
             );
 
-            $resposta_id = $this->Resposta_model->add_resposta($params);
+            //$resposta_id = $this->Resposta_model->add_resposta($params);
 
 
-            $this->index($respostaCorreta);
+            $this->index($respostaCorreta,$perguntas,$cont);//mostrar ranking
+
         } else {
             //$data['_view'] = 'resposta/add';
             //$this->load->view('layouts/main', $data);
             $this->index("");
         }
     }
+    /*
+     * salvar progresso do usuario
+     * pontuacao da pergunta respondida
+     */
+    function salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacaoAtual){
+        $params = array(
+            'idUsuario' => $idUsuario,
+            'idLicao' => $idLicao,
+            'idPergunta' => $idPergunta,
+            'pontuacaoAtual' => $pontuacaoAtual,
+        );
 
+        $progresso_id = $this->Progresso_model->add_progresso($params);
+        return;
+    }
 
     function editUsuario($idUsuario,$pontos)
     {

@@ -134,4 +134,12 @@ class Licao extends CI_Controller
             show_error('The licao you are trying to delete does not exist.');
     }
 
+    function preLicao($idLicao){
+        $data['licao'] = $this->Licao_model->get_licao($idLicao);
+        $data['cont'] = 0;
+        $data['_view'] = 'licao/index';
+        $this->load->view('layouts/main', $data);
+
+    }
+
 }
