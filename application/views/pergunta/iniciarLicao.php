@@ -26,7 +26,7 @@
     <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta['opcao4']; ?>"> <label for="resposta4">Opção 4</label> <br>
 
     <input type="hidden" name="respostaCorreta" value="<?php echo $pergunta['opcaoCorreta']; ?>"
-    <input type="hidden" name="idUsuario" value="<?php echo 'PEGAR USUARIO DA SESSAO'; ?>">
+    <input type="hidden" name="idUsuario" value="<?php echo get_valor_sessao("idUsuario") ?>">
     <!--<input type="hidden" name="tempo" value="<?php $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s ?>">-->
 
     <span> <?php echo $pergunta['caixaTexto']; ?></span>
