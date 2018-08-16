@@ -10,7 +10,16 @@ class Usuario_model extends CI_Model
     {
         parent::__construct();
     }
-    
+
+    /*
+     * Get usuario by nome
+     */
+    function get_usuario_nome($nome)
+    {
+        return $this->db->get_where('Usuario',array('nome'=>$nome))->row_array();
+    }
+
+
     /*
      * Get usuario by idUsuario
      */

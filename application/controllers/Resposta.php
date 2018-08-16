@@ -53,8 +53,8 @@ class Resposta extends CI_Controller
                 $pontuacao = round($tempo * 100);
             }
             #SALVAR PROGRESSO
-            salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao);
-            editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
+            $this->salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao);
+            $this->editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
 
             $params = array(
                 'idUsuario' => $idUsuario,
@@ -70,7 +70,7 @@ class Resposta extends CI_Controller
         } else {
             //$data['_view'] = 'resposta/add';
             //$this->load->view('layouts/main', $data);
-            $this->index("");
+            //$this->index("");
         }
     }
     /*
