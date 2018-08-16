@@ -1,6 +1,6 @@
 <?php
-$licao = $_POST['licao'];
-$cont = -1;
+
+
 ?>
 <div>
     <span><?php echo $licao->titulo ?></span><br>
@@ -10,5 +10,5 @@ $cont = -1;
 
 </div>
 <button type="button" class="btn btn-success"
-        onclick="<?php redirect('Pergunta/iniciarLicao/' . $cont) ?>">Iniciar
+        onclick="<?php redirect('pergunta/iniciarLicao/' . $cont) ?>">Iniciar
 </button>

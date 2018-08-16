@@ -53,4 +53,11 @@ class Pergunta_model extends CI_Model
     {
         return $this->db->delete('Pergunta',array('idPergunta'=>$idPergunta));
     }
+    /*
+     * function to get all perguntas by idLicao
+     */
+    function get_perguntas_licao($idLicao)
+    {
+        return $this->db->get_where('Pergunta',array('idLicao'=>$idLicao))->result_array();
+    }
 }
