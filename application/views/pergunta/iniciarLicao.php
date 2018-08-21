@@ -15,29 +15,25 @@
     $data_inicio = $data_inicio->format('Y/m/d H:i:s');
     ?>
     <!--TRAZER as informações das perguntas e ENVIAR o id do usuario, a resposta escolhida, a resposta correta e o tempo-->
-    <span> <?php echo $pergunta['titulo']; ?></span><br>
-    <span> <?php echo $pergunta['descricao']; ?></span><br>
-    <span> <?php echo $pergunta['video']; ?></span><br>
+    <span> <?php echo $pergunta->titulo; ?></span><br>
+    <span> <?php echo $pergunta->descricao; ?></span><br>
+    <span> <?php echo $pergunta->video; ?></span><br>
     <span>
-                    <?php  if($pergunta['imagem']!="" and $pergunta['imagem']!='error') {?>
-                        <img src="<?php echo $pergunta['imagem']; ?>" height="100px">
+                    <?php  if($pergunta->imagem!="" and $pergunta->imagem!='error') {?>
+                        <img src="<?php echo $pergunta->imagem; ?>" height="100px">
                     <?php }?>
     </span>
     <br>
 
-    <input type="radio" name="resposta" id="resposta1" value="<?php echo $pergunta['opcao1']; ?>"> <label for="resposta1"><?php echo $pergunta['opcao1'];?></label> <br>
-    <input type="radio" name="resposta" id="resposta2" value="<?php echo $pergunta['opcao2']; ?>"> <label for="resposta2"><?php echo $pergunta['opcao2'];?></label> <br>
-    <input type="radio" name="resposta" id="resposta3" value="<?php echo $pergunta['opcao3']; ?>"> <label for="resposta3"><?php echo $pergunta['opcao3'];?></label> <br>
-    <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta['opcao4']; ?>"> <label for="resposta4"><?php echo $pergunta['opcao4'];?></label> <br>
+    <input type="radio" name="resposta" id="resposta1" value="<?php echo $pergunta->opcao1; ?>"> <label for="resposta1"><?php echo $pergunta->opcao1;?></label> <br>
+    <input type="radio" name="resposta" id="resposta2" value="<?php echo $pergunta->opcao2; ?>"> <label for="resposta2"><?php echo $pergunta->opcao2;?></label> <br>
+    <input type="radio" name="resposta" id="resposta3" value="<?php echo $pergunta->opcao3; ?>"> <label for="resposta3"><?php echo $pergunta->opcao3;?></label> <br>
+    <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta->opcao4; ?>"> <label for="resposta4"><?php echo $pergunta->opcao4;?></label> <br>
 
 
-    <input type="hidden" name="respostaCorreta" value="<?php echo $pergunta['opcaoCorreta']; ?>"
-    <input type="hidden" name="idLicao" value="<?php echo $pergunta['idLicao']; ?>">
-    <input type="hidden" name="idPergunta" value="<?php echo $pergunta['idPergunta']; ?>">
-    <input type="hidden" name="data" value="<?php echo $data_inicio; ?>">
-    <input type="hidden" name="perguntas" value="<?php htmlspecialchars(json_encode($perguntas)); ?>"
+    <input type="hidden" name="perguntas" value="<?=htmlspecialchars(json_encode($perguntas)); ?>"
 
-    <span> <?php echo $pergunta['caixaTexto']; ?></span>
+    <span> <?php echo $pergunta->caixaTexto; ?></span>
 
 
     <div class="form-group">

@@ -37,6 +37,7 @@ class Resposta extends CI_Controller
 
 
         $perguntas = json_decode(htmlspecialchars_decode($this->input->post('perguntas')));
+        $pergunta_atual=$perguntas[$cont];
 
         if (isset($_POST) && count($_POST) > 0) {
 
@@ -51,10 +52,10 @@ class Resposta extends CI_Controller
             //$tempo = $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s;
 
             $idUsuario=$this->session->userdata['usuario_logado'];
-            $respostaCorreta = $this->input->post('respostaCorreta');
+            $respostaCorreta = $pergunta_atual->opcaoCorreta;
             $respostaUsuario = $this->input->post('respostaUsuario');
-            $idLicao=$this->input->post('idLicao');
-            $idPergunta=$this->input->post('idPergunta');
+            $idLicao=$pergunta_atual->idLicao;
+            $idPergunta=$pergunta_atual->idPergunta;
 
             $pontuacao = 0;
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
