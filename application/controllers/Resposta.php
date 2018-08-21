@@ -34,30 +34,24 @@ class Resposta extends CI_Controller
      */
     function add($cont)
     {
-
-
-        $perguntas = json_decode(htmlspecialchars_decode($this->input->post('perguntas')));
-        $pergunta_atual=$perguntas[$cont];
-
         if (isset($_POST) && count($_POST) > 0) {
-
-            //$t = time();
-
+            $perguntas = json_decode(htmlspecialchars_decode($this->input->post('perguntas')));
+            $pergunta_atual=  $perguntas[$cont];
 
             $data_inicio = new DateTime($this->input->post('data'));
-
             $data_atual = new DateTime();
             $tempo = $data_inicio->diff($data_atual)->s;
-
             $idUsuario=$this->session->userdata['usuario_logado'];
             $respostaCorreta = $pergunta_atual->opcaoCorreta;
-            $respostaUsuario = $this->input->post('respostaUsuario');
+            $respostaUsuario = $this->input->post('resposta');
             $idLicao=$pergunta_atual->idLicao;
             $idPergunta=$pergunta_atual->idPergunta;
 
             $pontuacao = 0;
+
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
                 $pontuacao = round($tempo * 100);
+
             }
             #SALVAR PROGRESSO
             $this->salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao);
