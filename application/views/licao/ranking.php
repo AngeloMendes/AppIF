@@ -1,3 +1,4 @@
+<?php $totalPerguntas=count($perguntas);?>
 <div>
     <h3>Resposta Correta:</h3>
     <p><?= $respostaCorreta?></p>

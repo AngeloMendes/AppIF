@@ -12,6 +12,7 @@ class Pergunta extends CI_Controller
         parent::__construct();
         $this->load->model('Pergunta_model');
         $this->load->model('Licao_model');
+        $this->load->library('upload');
 
 
     }
@@ -36,7 +37,6 @@ class Pergunta extends CI_Controller
             $titulo = $this->input->post('titulo');
             if(!empty($_FILES['imagem']['name'])){
                 $imagem = $_FILES['imagem'];
-                print_r($imagem);
 
                 $extensaoImagem = explode('.', $imagem['name']);
                 $extensaoImagem = end($extensaoImagem);
@@ -178,6 +178,7 @@ class Pergunta extends CI_Controller
         //chamar a view passar o 0 como primeiro indice do vetor de perguntas
         //passar o tamanho do vetor
         $data['perguntas'] = $this->Pergunta_model->get_perguntas_licao($idLicao);
+        $data['pergunta'] =$data['perguntas'][0];
         $data['cont'] = 0;
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main', $data);

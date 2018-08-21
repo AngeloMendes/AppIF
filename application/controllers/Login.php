@@ -16,5 +16,8 @@ class Login extends CI_Controller{
 
     function index(){
         //direcionar para o inicio de tudo
+
+        $data['_view'] = 'login/index';
+        $this->load->view('layouts/main', $data);
     }
 }
