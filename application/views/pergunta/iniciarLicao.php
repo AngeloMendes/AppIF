@@ -31,6 +31,7 @@
     <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta->opcao4; ?>"> <label for="resposta4"><?php echo $pergunta->opcao4;?></label> <br>
 
 
+    <input type="hidden" name="data" value="<?=$data_inicio; ?>"
     <input type="hidden" name="perguntas" value="<?=htmlspecialchars(json_encode($perguntas)); ?>"
 
     <span> <?php echo $pergunta->caixaTexto; ?></span>

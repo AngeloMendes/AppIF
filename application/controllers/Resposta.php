@@ -49,8 +49,6 @@ class Resposta extends CI_Controller
             $data_atual = new DateTime();
             $tempo = $data_inicio->diff($data_atual)->s;
 
-            //$tempo = $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s;
-
             $idUsuario=$this->session->userdata['usuario_logado'];
             $respostaCorreta = $pergunta_atual->opcaoCorreta;
             $respostaUsuario = $this->input->post('respostaUsuario');
