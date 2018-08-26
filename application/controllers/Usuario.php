@@ -28,18 +28,27 @@ class Usuario extends CI_Controller
      */
     function login(){
 
+        if(isset($_POST['cadastrar'])){
+            die(var_dump($_POST));
+            $this->add();
+        }
         $nome=$this->input->post('nome');
         if(!empty($nome)){
             $usuario = $this->Usuario_model->get_usuario_nome($nome);
             if(isset($usuario['idUsuario'])){
                 $this->session->set_userdata("usuario_logado", $usuario['idUsuario']);
                 redirect('licao/index');
+
             }else{
-                $this->add();
+                //$this->add();
+                $data['_view'] = 'login/index';
+                $data['msg'] = "O nome está incorreto";
+                $this->load->view('layouts/main', $data);
 
             }
         }else{
             $data['_view'] = 'login/index';
+            $data['msg'] = "O nome não pode ser vazio!";
             $this->load->view('layouts/main', $data);
         }
 
@@ -52,6 +61,12 @@ class Usuario extends CI_Controller
     function add()
     {
         $nome=$this->input->post('nome');
+        if(empty($nome)){
+            $data['_view'] = 'login/index';
+            $data['msg'] = "O nome não pode ser vazio!";
+            $this->load->view('layouts/main', $data);
+            return;
+        }
         $usuario = $this->Usuario_model->get_usuario_nome($nome);
         if (!isset($usuario['idUsuario'])) {
             if (isset($_POST) && count($_POST) > 0) {
@@ -64,7 +79,7 @@ class Usuario extends CI_Controller
                 redirect('licao/index');
             } else {
                 $data['_view'] = 'login/index';
-                $data['msg'] = " ";
+                $data['msg'] = "O nome não pode ser vazio!";
                 $this->load->view('layouts/main', $data);
             }
         }else {
