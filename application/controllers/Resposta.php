@@ -48,13 +48,14 @@ class Resposta extends CI_Controller
             $idPergunta=$pergunta_atual->idPergunta;
 
             $pontuacao = 0;
-
+            $dia = date("Y-m-d");
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
-                $pontuacao = round($tempo * 100);
+                $pontuacao = round(100/$tempo);
 
             }
             #SALVAR PROGRESSO
-            $this->salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao);
+            //adicionar data e tempo 
+            $this->salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao,$tempo,$dia);
             $this->editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
 
             $params = array(
@@ -78,12 +79,14 @@ class Resposta extends CI_Controller
      * salvar progresso do usuario
      * pontuacao da pergunta respondida
      */
-    function salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacaoAtual){
+    function salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacaoAtual, $tempo,$dia){
         $params = array(
             'idUsuario' => $idUsuario,
             'idLicao' => $idLicao,
             'idPergunta' => $idPergunta,
             'pontuacaoAtual' => $pontuacaoAtual,
+            'tempo'=> $tempo,
+            'dia'=>$dia,
         );
 
         $progresso_id = $this->Progresso_model->add_progresso($params);
