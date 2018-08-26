@@ -144,6 +144,7 @@ class Pergunta extends CI_Controller
                     'opcao2' => $this->input->post('opcao2'),
                     'opcao3' => $this->input->post('opcao3'),
                     'opcao4' => $this->input->post('opcao4'),
+                    'opcao5' => $this->input->post('opcao5'),
                     'idLicao' => $this->input->post('idLicao'),
                     'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                     'caixaTexto' => $this->input->post('caixaTexto'),

@@ -80,6 +80,13 @@
                    id="opcao4"/>
         </div>
     </div>
+    <div class="form-group">
+        <div class="col-md-8  form-inputs">
+            <label for="opcao5">Opção 5</label>
+            <input type="text" name="opcao5" value="<?php echo $this->input->post('opcao5'); ?>" class="form-control"
+                   id="opcao5"/>
+        </div>
+    </div>
 
 
     <div class="form-group">
