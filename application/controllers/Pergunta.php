@@ -197,7 +197,7 @@ class Pergunta extends CI_Controller
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main', $data);
     }
-    /*
+    /* ADICIONAR ORDEM DAS PERGUNTAS
      * //perguntas == conjunto com todas as perguntas, dialogo, true ou false da licao
 
         getAllPerguntas(idLicao){
