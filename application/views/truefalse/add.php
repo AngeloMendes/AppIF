@@ -19,12 +19,13 @@
 		</div>
 	</div>
 
-	<div class="form-group">
-		<label for="descricao" class="col-md-4 control-label">Descricao</label>
-		<div class="col-md-8">
-			<textarea name="descricao" class="form-control" id="descricao"><?php echo $this->input->post('descricao'); ?></textarea>
-		</div>
-	</div>
+        <div class="form-group">
+            <div class="col-md-8 form-inputs">
+                <label for="descricao">Descrição</label>
+                <textarea class="form-control" rows="9" id="descricao" name="descricao"
+                          value="<?php echo $this->input->post('descricao'); ?>"></textarea>
+            </div>
+        </div>
 
 
 <?php $this->load->view('truefalsefrase/add');?>

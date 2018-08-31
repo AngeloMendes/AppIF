@@ -29,7 +29,7 @@
 	</div>
 
 
-    <a href="#" id="filldetails" onclick="addFields()">Adicionar frase</a>
+<input type="button" id="filldetails" onclick="addFields()" value="Adicionar Frase">
     <div id="container"/>
 
 
