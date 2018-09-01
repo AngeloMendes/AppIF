@@ -28,7 +28,9 @@ class Conjuntodialogo extends CI_Controller{
     function add()
     {   
         if(isset($_POST) && count($_POST) > 0)     
-        {   
+        {
+
+
             $params = array(
 				'idDialogo' => $this->input->post('idDialogo'),
 				'idDialogoFrases' => $this->input->post('idDialogoFrases'),
@@ -39,7 +41,7 @@ class Conjuntodialogo extends CI_Controller{
         }
         else
         {            
-            $data['_view'] = 'conjuntodialogo/add';
+            $data['_view'] = 'dialogo/add';
             $this->load->view('layouts/main',$data);
         }
     }  

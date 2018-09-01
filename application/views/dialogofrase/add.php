@@ -45,7 +45,7 @@
                class="form-control" id="opcaoCorreta"/>
     </div>
 </div>
-<input type="button" id="filldetails" onclick="addFields()" value="Adicionar Frase">
+<input type="button" id="filldetails" class="btn btn-success" onclick="addFields()" value="Adicionar Frase">
 
 <div id="container"/>
 
