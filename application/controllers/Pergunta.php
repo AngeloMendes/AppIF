@@ -197,8 +197,39 @@ class Pergunta extends CI_Controller
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main', $data);
     }
-    //function incremetar contador de perguntas via ajax e voltar pra mesma view
-    //cont++, return pra view
-    //se cont == tamanho vai pro ranking só
+    /* ADICIONAR ORDEM DAS PERGUNTAS
+     * //perguntas == conjunto com todas as perguntas, dialogo, true ou false da licao
+
+        getAllPerguntas(idLicao){
+        //selecionar todas as perguntas
+        //selecionar todos dialogos
+        //selecionar todos trueFalse de uma lição
+        //concatenar os três arrays
+        }
+
+        getPergunta(array perguntas,int ordem){
+            foreach pergunta in perguntas['multiplaEscolha']{
+                if pergunta->ordem == ordem{
+                    return pergunta;
+                }
+            }
+            foreach pergunta in perguntas['dialogo']{
+                if pergunta->ordem == ordem{
+                    return pergunta;
+                }
+            }
+            foreach pergunta in perguntas['trueFalse']{
+                if pergunta->ordem == ordem{
+                    return pergunta;
+                }
+            }
+        }
+
+        setOrdem(){
+        //selecionar todas as perguntas/dialogo/trueFalse de uma lição
+        //a proxima será o tamanho do obj resultante
+        if(tamanho ==0) $ordem=1;
+        }
+     */
 
 }

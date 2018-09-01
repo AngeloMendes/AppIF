@@ -29,7 +29,6 @@ class Usuario extends CI_Controller
     function login(){
 
         if(isset($_POST['cadastrar'])){
-            die(var_dump($_POST));
             $this->add();
         }
         $nome=$this->input->post('nome');

@@ -2,20 +2,7 @@
 <div class="form-add">
     <div class="form-group">
         <div class="col-md-8  form-inputs">
-            <!--<label for="idLicao">Lição</label>-->
             <input type="hidden" name="idLicao" value="<?php echo $idLicao; ?>" id="idLicao"/>
-
-            <!--<select name='idLicao' id='idLicao'>
-                <option value=''> Selecione uma lição</option>
-                <?php
-                foreach ($licoes as $key => $list) {
-                    echo "<option value='" . $this->input->post('idLicao') . "'>" . $list['titulo'] . '</option>';
-                }
-                echo '</optgroup>';
-
-                ?>
-            </select>-->
-
         </div>
     </div>
     <div class="form-group">
@@ -27,7 +14,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-8 form-inputs">
-            <label for="descricao">Descricao</label>
+            <label for="descricao">Descrição</label>
             <textarea class="form-control" rows="9" id="descricao" name="descricao"
                       value="<?php echo $this->input->post('descricao'); ?>"></textarea>
         </div>
