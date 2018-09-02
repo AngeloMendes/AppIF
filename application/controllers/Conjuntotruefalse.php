@@ -27,7 +27,7 @@ class Conjuntotruefalse extends CI_Controller{
     /*
      * Adding a new conjuntotruefalse
      */
-    function add()
+    function add($idLicao)
     {   
         if(isset($_POST) && count($_POST) > 0)     
         {   
@@ -103,21 +103,30 @@ class Conjuntotruefalse extends CI_Controller{
                 'descricao' => $this->input->post('descricao'),
             );
 
-            $truefalse_id = $this->Truefalse_model->add_truefalse($params);
+            $idTruefalse = $this->Truefalse_model->add_truefalse($params);
 
             //adicionar as frases do true ou false
+            $i=1;
+            while (!empty($_POST['Frase'.$i]['frase'])){
+                $fraseAtual = 'Frase'.$i;
+                $params = array(
+                    'frase' => $this->input->post($fraseAtual.'[frase]'),
+                    'opcaoTrue' => $this->input->post($fraseAtual.'[opcaoTrue]'),
+                    'opcaoFalse' => $this->input->post($fraseAtual.'[opcaoFalse]'),
+                    'opcaoCorreta' => $this->input->post($fraseAtual.'[opcaoCorreta]'),
+                );
 
-            //adicionar a relação true ou false/frases
+                $idTruefalsefrase = $this->Truefalsefrase_model->add_truefalsefrase($params);
+                $params = array(
+                    'idTrueFalseFrases' => $idTruefalsefrase,
+                    'idTrueFalse' => $idTruefalse,
+                );
 
+                $conjuntotruefalse_id = $this->Conjuntotruefalse_model->add_conjuntotruefalse($params);
 
+                $i++;
+            }
 
-
-            $params = array(
-				'idTrueFalseFrases' => $this->input->post('idTrueFalseFrases'),
-				'idTrueFalse' => $this->input->post('idTrueFalse'),
-            );
-            
-            $conjuntotruefalse_id = $this->Conjuntotruefalse_model->add_conjuntotruefalse($params);
             redirect('conjuntotruefalse/index');
         }
         else

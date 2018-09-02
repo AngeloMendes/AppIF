@@ -9,10 +9,10 @@
 
 <script type='text/javascript'>
     function addFields() {
-        buildFields("frase[Frase" + i + "]", "<?php echo $this->input->post('frase'); ?>", "Frase", true);
-        buildFields("opcaoTrue[Frase" + i + "]", "<?php echo $this->input->post('opcaoTrue'); ?>", "Opção True", false);
-        buildFields("opcaoFalse[Frase" + i + "]", "<?php echo $this->input->post('opcaoFalse'); ?>", "Opção False", false);
-        buildFields("opcaoCorreta[Frase" + i + "]", "<?php echo $this->input->post('opcaoCorreta'); ?>", "Opção Correta", false);
+        buildFields("Frase" + i + "[frase]", "<?php echo $this->input->post('frase'); ?>", "Frase", true);
+        buildFields("Frase" + i + "[opcaoTrue]", "<?php echo $this->input->post('opcaoTrue'); ?>", "Opção True", false);
+        buildFields("Frase" + i + "[opcaoFalse]", "<?php echo $this->input->post('opcaoFalse'); ?>", "Opção False", false);
+        buildFields("Frase" + i + "[opcaoCorreta]", "<?php echo $this->input->post('opcaoCorreta'); ?>", "Opção Correta", false);
         i++;
 
     }
