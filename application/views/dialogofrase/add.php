@@ -3,48 +3,7 @@
 
 </script>
 
-<div class="form-group">
-    <div class="col-md-8 form-inputs">
-        <label for="descricao">Descrição</label>
-        <textarea class="form-control" rows="9" id="descricao" name="descricao"
-                  value="<?php echo $this->input->post('descricao'); ?>"></textarea>
-    </div>
-</div>
-<div class="form-group">
-    <label for="frase" class="col-md-4 control-label">Frase</label>
-    <div class="col-md-8">
-        <input type="text" name="frase" value="<?php echo $this->input->post('frase'); ?>" class="form-control"
-               id="frase"/>
-    </div>
-</div>
-<div class="form-group">
-    <label for="opcao1" class="col-md-4 control-label">Opcao1</label>
-    <div class="col-md-8">
-        <input type="text" name="opcao1" value="<?php echo $this->input->post('opcao1'); ?>" class="form-control"
-               id="opcao1"/>
-    </div>
-</div>
-<div class="form-group">
-    <label for="opcao2" class="col-md-4 control-label">Opcao2</label>
-    <div class="col-md-8">
-        <input type="text" name="opcao2" value="<?php echo $this->input->post('opcao2'); ?>" class="form-control"
-               id="opcao2"/>
-    </div>
-</div>
-<div class="form-group">
-    <label for="opcao3" class="col-md-4 control-label">Opcao3</label>
-    <div class="col-md-8">
-        <input type="text" name="opcao3" value="<?php echo $this->input->post('opcao3'); ?>" class="form-control"
-               id="opcao3"/>
-    </div>
-</div>
-<div class="form-group">
-    <label for="opcaoCorreta" class="col-md-4 control-label">OpcaoCorreta</label>
-    <div class="col-md-8">
-        <input type="text" name="opcaoCorreta" value="<?php echo $this->input->post('opcaoCorreta'); ?>"
-               class="form-control" id="opcaoCorreta"/>
-    </div>
-</div>
+
 <input type="button" id="filldetails" class="btn btn-success" onclick="addFields()" value="Adicionar Frase">
 
 <div id="container"/>
@@ -53,13 +12,13 @@
 <script type='text/javascript'>
     function addFields() {
 
-        buildFields("descricao[Frase" + i + "][]", "<?php echo $this->input->post('descricao'); ?>", "Descrição", true);
-        buildFields("frase[Frase" + i + "][]", "<?php echo $this->input->post('frase'); ?>", "Frase", false);
-        buildFields("opcao1[Frase" + i + "][]", "<?php echo $this->input->post('opcao1'); ?>", "Opção 1", false);
-        buildFields("opcao2[Frase" + i + "][]", "<?php echo $this->input->post('opcao2'); ?>", "Opção 2", false);
-        buildFields("opcao3[Frase" + i + "][]", "<?php echo $this->input->post('opcao3'); ?>", "Opção 3", false);
-        buildFields("opcao4[Frase" + i + "][]", "<?php echo $this->input->post('opcao4'); ?>", "Opção 4", false);
-        buildFields("opcaoCorreta[Frase" + i + "][]", "<?php echo $this->input->post('opcaoCorreta'); ?>", "Opção Correta", false);
+        buildFields("Frase" + i + "[descricao]", "<?php echo $this->input->post('descricao'); ?>", "Descrição", true);
+        buildFields("Frase" + i + "[frase]", "<?php echo $this->input->post('frase'); ?>", "Frase", false);
+        buildFields("Frase" + i + "[opcao1]", "<?php echo $this->input->post('opcao1'); ?>", "Opção 1", false);
+        buildFields("Frase" + i + "[opcao2]", "<?php echo $this->input->post('opcao2'); ?>", "Opção 2", false);
+        buildFields("Frase" + i + "[opcao3]", "<?php echo $this->input->post('opcao3'); ?>", "Opção 3", false);
+        //buildFields("Frase[opcao4[Frase" + i + "]", "<?php echo $this->input->post('opcao4'); ?>", "Opção 4", false);
+        buildFields("Frase" + i +"[opcaoCorreta]", "<?php echo $this->input->post('opcaoCorreta'); ?>", "Opção Correta", false);
         i++;
 
     }
