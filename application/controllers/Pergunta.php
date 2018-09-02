@@ -42,13 +42,20 @@ class Pergunta extends CI_Controller
                 $extensaoImagem = end($extensaoImagem);
 
                 $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoImagem;
-                $configuracaoImagem = array(
+                /*$configuracaoImagem = array(
                     'upload_path' => './application/midias/imagens/licoes/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
                     'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoImagem,
                     'max_size' => '500000',
                     'max_width' => '4096',
                     'max_height' => '4096'
+                );*/
+                $configuracaoImagem = array(
+                    'upload_path' => './midias/imagens/perguntas/',
+                    'allowed_types' => 'jpg,png,jpeg,gif,tiff',
+                    'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
+                            array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
+                    'max_size' => '50000'
                 );
 
                 $this->upload->initialize($configuracaoImagem);
@@ -66,11 +73,18 @@ class Pergunta extends CI_Controller
                 $extensaoVideo = explode('.', $video['name']);
                 $extensaoVideo = end($extensaoVideo);
                 $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoVideo;
-                $configuracaoVideo = array(
+                /*$configuracaoVideo = array(
                     'upload_path' => './application/midias/videos/licoes/',
                     'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG',
                     'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoVideo,
                     'max_size' => '500000000'
+                );*/
+                $configuracaoVideo = array(
+                    'upload_path' => './midias/videos/perguntas/',
+                    'allowed_types' => 'FLV, AVI, WMV, MOV, RMVB, MPEG, MKV,mp4',
+                    'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
+                            array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
+                    'max_size' => '500000'
                 );
                 $this->upload->initialize($configuracaoVideo);
                 if (!$this->upload->do_upload('video')) {
@@ -94,7 +108,7 @@ class Pergunta extends CI_Controller
                 'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                 'caixaTexto' => $this->input->post('caixaTexto'),
             );
-            $configuracaoImagem = array(
+            /*$configuracaoImagem = array(
                 'upload_path' => './midias/imagens/perguntas/',
                 'allowed_types' => 'jpg,png,jpeg,gif,tiff',
                 'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
@@ -112,7 +126,7 @@ class Pergunta extends CI_Controller
             $this->upload->initialize($configuracaoImagem);
             $this->upload->initialize($configuracaoVideo);
             $this->upload->do_upload('imagem');
-            $this->upload->do_upload('video');
+            $this->upload->do_upload('video');*/
 
 
             $pergunta_id = $this->Pergunta_model->add_pergunta($params);

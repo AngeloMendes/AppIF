@@ -9,6 +9,8 @@ class Conjuntotruefalse extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Conjuntotruefalse_model');
+        $this->load->model('Truefalse_model');
+        $this->load->model('Truefalsefrase_model');
     } 
 
     /*
@@ -25,16 +27,106 @@ class Conjuntotruefalse extends CI_Controller{
     /*
      * Adding a new conjuntotruefalse
      */
-    function add()
+    function add($idLicao)
     {   
         if(isset($_POST) && count($_POST) > 0)     
         {   
+            //adicionar true ou false
+
+            $titulo = $this->input->post('titulo');
+            if (!empty($_FILES['imagem']['name'])) {
+                $imagem = $_FILES['imagem'];
+
+                $extensaoImagem = explode('.', $imagem['name']);
+                $extensaoImagem = end($extensaoImagem);
+
+                $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoImagem;
+                /*$configuracaoImagem = array(
+                    'upload_path' => './application/midias/imagens/licoes/',
+                    'allowed_types' => 'jpg|png|jpeg|gif',
+                    'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoImagem,
+                    'max_size' => '500000',
+                    'max_width' => '4096',
+                    'max_height' => '4096'
+                );*/
+                $configuracaoImagem = array(
+                    'upload_path' => './midias/imagens/perguntas/',
+                    'allowed_types' => 'jpg,png,jpeg,gif,tiff',
+                    'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
+                            array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
+                    'max_size' => '50000'
+                );
+
+                $this->upload->initialize($configuracaoImagem);
+                if (!$this->upload->do_upload('imagem')) {
+                    ///$caminhoImagem=$this->upload->display_errors();
+                    $caminhoImagem = 'error';
+                }
+            } else {
+                $caminhoImagem = "";
+            }
+
+
+            if (!empty($_FILES['video']['name'])) {
+                $video = $_FILES['video'];
+                $extensaoVideo = explode('.', $video['name']);
+                $extensaoVideo = end($extensaoVideo);
+                $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoVideo;
+                /*$configuracaoVideo = array(
+                    'upload_path' => './application/midias/videos/licoes/',
+                    'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG',
+                    'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoVideo,
+                    'max_size' => '500000000'
+                );*/
+                $configuracaoVideo = array(
+                    'upload_path' => './midias/videos/perguntas/',
+                    'allowed_types' => 'FLV, AVI, WMV, MOV, RMVB, MPEG, MKV,mp4',
+                    'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
+                            array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
+                    'max_size' => '500000'
+                );
+                $this->upload->initialize($configuracaoVideo);
+                if (!$this->upload->do_upload('video')) {
+                    //$caminhoVideo=$this->upload->display_errors();
+                    $caminhoVideo = 'error';
+                }
+            } else {
+                $caminhoVideo = "";
+            }
+
             $params = array(
-				'idTrueFalseFrases' => $this->input->post('idTrueFalseFrases'),
-				'idTrueFalse' => $this->input->post('idTrueFalse'),
+                'titulo' => $titulo,
+                'imagem' => $caminhoImagem,
+                'video' => $caminhoVideo,
+                'ordem' => $this->input->post('ordem'),
+                'idLicao' => $this->input->post('idLicao'),
+                'descricao' => $this->input->post('descricao'),
             );
-            
-            $conjuntotruefalse_id = $this->Conjuntotruefalse_model->add_conjuntotruefalse($params);
+
+            $idTruefalse = $this->Truefalse_model->add_truefalse($params);
+
+            //adicionar as frases do true ou false
+            $i=1;
+            while (!empty($_POST['Frase'.$i]['frase'])){
+                $fraseAtual = 'Frase'.$i;
+                $params = array(
+                    'frase' => $this->input->post($fraseAtual.'[frase]'),
+                    'opcaoTrue' => $this->input->post($fraseAtual.'[opcaoTrue]'),
+                    'opcaoFalse' => $this->input->post($fraseAtual.'[opcaoFalse]'),
+                    'opcaoCorreta' => $this->input->post($fraseAtual.'[opcaoCorreta]'),
+                );
+
+                $idTruefalsefrase = $this->Truefalsefrase_model->add_truefalsefrase($params);
+                $params = array(
+                    'idTrueFalseFrases' => $idTruefalsefrase,
+                    'idTrueFalse' => $idTruefalse,
+                );
+
+                $conjuntotruefalse_id = $this->Conjuntotruefalse_model->add_conjuntotruefalse($params);
+
+                $i++;
+            }
+
             redirect('conjuntotruefalse/index');
         }
         else
