@@ -57,4 +57,9 @@ class Truefalse_model extends CI_Model
     {
         return $this->db->get_where('TrueFalse',array('idLicao'=>$idLicao))->result_array();
     }
+    function get_all_trueFalse_licao_order($idLicao)
+    {
+        $this->db->order_by('ordem', 'asc');
+        return $this->db->get_where('TrueFalse',array('idLicao'=>$idLicao))->result_array();
+    }
 }

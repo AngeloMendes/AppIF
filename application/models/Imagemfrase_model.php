@@ -57,4 +57,9 @@ class Imagemfrase_model extends CI_Model
     {
         return $this->db->get_where('ImagemFrase',array('idLicao'=>$idLicao))->result_array();
     }
+    function get_all_imagemFrases_licao_order($idLicao)
+    {
+        $this->db->order_by('ordem', 'asc');
+        return $this->db->get_where('ImagemFrases',array('idLicao'=>$idLicao))->result_array();
+    }
 }

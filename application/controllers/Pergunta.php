@@ -218,6 +218,11 @@ class Pergunta extends CI_Controller
     /* ADICIONAR ORDEM DAS PERGUNTAS
      * //perguntas == conjunto com todas as perguntas, dialogo, true ou false da licao
 
+        //fazer metodo no licao_model que retornar um array com perguntas, o indice é o tipo das perguntas
+            $perguntas[multiplaEscolha], $perguntas['trueFalse']
+        //iterar apenas nos indices do tipo
+        //
+
         getAllPerguntas(idLicao){
         //selecionar todas as perguntas
         //selecionar todos dialogos
