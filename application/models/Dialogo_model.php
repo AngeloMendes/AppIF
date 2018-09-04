@@ -53,4 +53,9 @@ class Dialogo_model extends CI_Model
     {
         return $this->db->delete('Dialogo',array('idDialogo'=>$idDialogo));
     }
+
+    function get_dialogos_licao($idLicao)
+    {
+        return $this->db->get_where('Dialogo',array('idLicao'=>$idLicao))->result_array();
+    }
 }

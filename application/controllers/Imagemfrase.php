@@ -9,6 +9,7 @@ class Imagemfrase extends CI_Controller{
     {
         parent::__construct();
         $this->load->model('Imagemfrase_model');
+        $this->load->model('Licao_model');
     } 
 
     /*
@@ -25,7 +26,7 @@ class Imagemfrase extends CI_Controller{
     /*
      * Adding a new imagemfrase
      */
-    function add()
+    function add($idLicao)
     {   
         if(isset($_POST) && count($_POST) > 0)     
         {   
@@ -43,8 +44,9 @@ class Imagemfrase extends CI_Controller{
 				'frase7' => $this->input->post('frase7'),
 				'frase8' => $this->input->post('frase8'),
 				'fraseCorreta' => $this->input->post('fraseCorreta'),
-				'idLicao' => $this->input->post('idLicao'),
-				'ordem' => $this->input->post('ordem'),
+				'idLicao' => $idLicao,
+				'ordem' => $this->Licao_model->setOrdem($idLicao),
+                'tipo'=>'imagemfrase',
             );
             
             $imagemfrase_id = $this->Imagemfrase_model->add_imagemfrase($params);
@@ -84,7 +86,7 @@ class Imagemfrase extends CI_Controller{
 					'frase8' => $this->input->post('frase8'),
 					'fraseCorreta' => $this->input->post('fraseCorreta'),
 					'idLicao' => $this->input->post('idLicao'),
-					'ordem' => $this->input->post('ordem'),
+					'ordem' => $this->Licao_model->setOrdem($this->input->post('idLicao')),
                 );
 
                 $this->Imagemfrase_model->update_imagemfrase($idImagemFrase,$params);            

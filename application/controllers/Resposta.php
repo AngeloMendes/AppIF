@@ -79,7 +79,7 @@ class Resposta extends CI_Controller
      * salvar progresso do usuario
      * pontuacao da pergunta respondida
      */
-    function salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacaoAtual, $tempo,$dia){
+    function salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacaoAtual, $tempo,$dia){//},$idDialogo,$idImagem,$idTrueFalse){
         $params = array(
             'idUsuario' => $idUsuario,
             'idLicao' => $idLicao,
@@ -87,6 +87,9 @@ class Resposta extends CI_Controller
             'pontuacaoAtual' => $pontuacaoAtual,
             'tempo'=> $tempo,
             'dia'=>$dia,
+            //'idDialogo' => $idDialogo,
+            //'idImagemFrase' => $idImagem,
+            //'idTrueFalse' => $idTrueFalse,
         );
 
         $progresso_id = $this->Progresso_model->add_progresso($params);

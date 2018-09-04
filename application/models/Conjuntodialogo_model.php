@@ -53,4 +53,5 @@ class Conjuntodialogo_model extends CI_Model
     {
         return $this->db->delete('ConjuntoDialogo',array('idConjuntoDialogo'=>$idConjuntoDialogo));
     }
+
 }

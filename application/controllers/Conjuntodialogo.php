@@ -12,6 +12,8 @@ class Conjuntodialogo extends CI_Controller
         $this->load->model('Conjuntodialogo_model');
         $this->load->model('Dialogo_model');
         $this->load->model('Dialogofrase_model');
+        $this->load->model('Licao_model');
+
     }
 
     /*
@@ -65,8 +67,9 @@ class Conjuntodialogo extends CI_Controller
                 'titulo' => $titulo,
                 'imagem' => $caminhoImagem,
                 'descricao' => $this->input->post('descricao'),
-                'ordem' => $this->input->post('ordem'),
+                'ordem' => $this->Licao_model->setOrdem($idLicao),
                 'idLicao' => $idLicao,
+                'tipo'=>'dialogo',
             );
 
             $idDialogo = $this->Dialogo_model->add_dialogo($params);

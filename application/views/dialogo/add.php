@@ -1,4 +1,4 @@
-<?php echo form_open('conjuntodialogo/add', array("class" => "form-horizontal")); ?>
+<?php echo form_open('conjuntodialogo/add/'.$idLicao, array("class" => "form-horizontal")); ?>
     <div>
         <div class="form-group">
             <label for="titulo" class="col-md-4 control-label">Titulo</label>
@@ -24,7 +24,8 @@
                           value="<?php echo $this->input->post('descricao'); ?>"></textarea>
             </div>
         </div>
-        <?php $this->load->view('dialogofrase/add/'.$idLicao); ?>
+
+        <?php $this->load->view('dialogofrase/add'); ?>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">

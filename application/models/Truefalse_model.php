@@ -53,4 +53,8 @@ class Truefalse_model extends CI_Model
     {
         return $this->db->delete('TrueFalse',array('idTrueFalse'=>$idTrueFalse));
     }
+    function get_truefalses_licao($idLicao)
+    {
+        return $this->db->get_where('TrueFalse',array('idLicao'=>$idLicao))->result_array();
+    }
 }

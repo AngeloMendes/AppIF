@@ -104,9 +104,12 @@ class Pergunta extends CI_Controller
                 'opcao2' => $this->input->post('opcao2'),
                 'opcao3' => $this->input->post('opcao3'),
                 'opcao4' => $this->input->post('opcao4'),
+                'opcao5' => $this->input->post('opcao5'),
                 'idLicao' => $this->input->post('idLicao'),
                 'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                 'caixaTexto' => $this->input->post('caixaTexto'),
+                'tipo'=>'multiplaEscolha',
+                'ordem'=>$this->Licao_model->setOrdem($idLicao),
             );
             /*$configuracaoImagem = array(
                 'upload_path' => './midias/imagens/perguntas/',
@@ -162,6 +165,7 @@ class Pergunta extends CI_Controller
                     'idLicao' => $this->input->post('idLicao'),
                     'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                     'caixaTexto' => $this->input->post('caixaTexto'),
+
                 );
 
                 $this->Pergunta_model->update_pergunta($idPergunta, $params);
@@ -239,11 +243,6 @@ class Pergunta extends CI_Controller
             }
         }
 
-        setOrdem(){
-        //selecionar todas as perguntas/dialogo/trueFalse de uma lição
-        //a proxima será o tamanho do obj resultante
-        if(tamanho ==0) $ordem=1;
-        }
      */
 
 }

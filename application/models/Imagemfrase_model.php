@@ -53,4 +53,8 @@ class Imagemfrase_model extends CI_Model
     {
         return $this->db->delete('ImagemFrase',array('idImagemFrase'=>$idImagemFrase));
     }
+    function get_imagemFrases_licao($idLicao)
+    {
+        return $this->db->get_where('ImagemFrase',array('idLicao'=>$idLicao))->result_array();
+    }
 }

@@ -11,6 +11,8 @@ class Conjuntotruefalse extends CI_Controller{
         $this->load->model('Conjuntotruefalse_model');
         $this->load->model('Truefalse_model');
         $this->load->model('Truefalsefrase_model');
+        $this->load->model('Licao_model');
+
     } 
 
     /*
@@ -98,9 +100,10 @@ class Conjuntotruefalse extends CI_Controller{
                 'titulo' => $titulo,
                 'imagem' => $caminhoImagem,
                 'video' => $caminhoVideo,
-                'ordem' => $this->input->post('ordem'),
-                'idLicao' => $this->input->post('idLicao'),
+                'ordem' => $this->Licao_model->setOrdem($idLicao),
+                'idLicao' => $idLicao,
                 'descricao' => $this->input->post('descricao'),
+                'tipo'=>'truefalse',
             );
 
             $idTruefalse = $this->Truefalse_model->add_truefalse($params);
