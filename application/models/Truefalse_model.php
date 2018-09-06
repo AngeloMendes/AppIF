@@ -62,4 +62,11 @@ class Truefalse_model extends CI_Model
         $this->db->order_by('ordem', 'asc');
         return $this->db->get_where('TrueFalse',array('idLicao'=>$idLicao))->result_array();
     }
+    /*
+    * function to get all TrueFalse by idLicao and ordem
+    */
+    function get_truefalse_licao_ordem($idLicao,$ordem)
+    {
+        return $this->db->get_where('TrueFalse',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
+    }
 }

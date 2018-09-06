@@ -215,39 +215,12 @@ class Pergunta extends CI_Controller
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main', $data);
     }
-    /* ADICIONAR ORDEM DAS PERGUNTAS
-     * //perguntas == conjunto com todas as perguntas, dialogo, true ou false da licao
 
-        //fazer metodo no licao_model que retornar um array com perguntas, o indice é o tipo das perguntas
-            $perguntas[multiplaEscolha], $perguntas['trueFalse']
-        //iterar apenas nos indices do tipo
-        //
+    function selectPergunta ($idLicao,$ordem){
+        $pergunta = $this->Licao_model->getProxPergunta($idLicao,$ordem);
+        $data['_view']=$pergunta['tipo'].'/iniciarLicao';
+        $this->load->view('layouts/main', $data);
+    }
 
-        getAllPerguntas(idLicao){
-        //selecionar todas as perguntas
-        //selecionar todos dialogos
-        //selecionar todos trueFalse de uma lição
-        //concatenar os três arrays
-        }
-
-        getPergunta(array perguntas,int ordem){
-            foreach pergunta in perguntas['multiplaEscolha']{
-                if pergunta->ordem == ordem{
-                    return pergunta;
-                }
-            }
-            foreach pergunta in perguntas['dialogo']{
-                if pergunta->ordem == ordem{
-                    return pergunta;
-                }
-            }
-            foreach pergunta in perguntas['trueFalse']{
-                if pergunta->ordem == ordem{
-                    return pergunta;
-                }
-            }
-        }
-
-     */
 
 }
