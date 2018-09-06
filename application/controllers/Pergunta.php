@@ -104,9 +104,12 @@ class Pergunta extends CI_Controller
                 'opcao2' => $this->input->post('opcao2'),
                 'opcao3' => $this->input->post('opcao3'),
                 'opcao4' => $this->input->post('opcao4'),
+                'opcao5' => $this->input->post('opcao5'),
                 'idLicao' => $this->input->post('idLicao'),
                 'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                 'caixaTexto' => $this->input->post('caixaTexto'),
+                'tipo'=>'multiplaEscolha',
+                'ordem'=>$this->Licao_model->setOrdem($idLicao),
             );
             /*$configuracaoImagem = array(
                 'upload_path' => './midias/imagens/perguntas/',
@@ -162,6 +165,7 @@ class Pergunta extends CI_Controller
                     'idLicao' => $this->input->post('idLicao'),
                     'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                     'caixaTexto' => $this->input->post('caixaTexto'),
+
                 );
 
                 $this->Pergunta_model->update_pergunta($idPergunta, $params);
@@ -203,7 +207,6 @@ class Pergunta extends CI_Controller
 
     function proximaPergunta($cont)
     {
-
         $perguntas = json_decode(htmlspecialchars_decode($this->input->post('perguntas')));
         $data['pergunta'] = $perguntas[$cont];
         $data['cont'] = $cont;
@@ -211,39 +214,16 @@ class Pergunta extends CI_Controller
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main', $data);
     }
-    /* ADICIONAR ORDEM DAS PERGUNTAS
-     * //perguntas == conjunto com todas as perguntas, dialogo, true ou false da licao
 
-        getAllPerguntas(idLicao){
-        //selecionar todas as perguntas
-        //selecionar todos dialogos
-        //selecionar todos trueFalse de uma lição
-        //concatenar os três arrays
-        }
+    function selectPergunta ($idLicao,$ordem){
 
-        getPergunta(array perguntas,int ordem){
-            foreach pergunta in perguntas['multiplaEscolha']{
-                if pergunta->ordem == ordem{
-                    return pergunta;
-                }
-            }
-            foreach pergunta in perguntas['dialogo']{
-                if pergunta->ordem == ordem{
-                    return pergunta;
-                }
-            }
-            foreach pergunta in perguntas['trueFalse']{
-                if pergunta->ordem == ordem{
-                    return pergunta;
-                }
-            }
+        $pergunta = $this->Licao_model->getProxPergunta($idLicao,$ordem);
+        if($pergunta) {
+            $data['_view'] = $pergunta['tipo'] . '/iniciarLicao';
+            $this->load->view('layouts/main', $data);
         }
+        //redirecionar para ranking final
+    }
 
-        setOrdem(){
-        //selecionar todas as perguntas/dialogo/trueFalse de uma lição
-        //a proxima será o tamanho do obj resultante
-        if(tamanho ==0) $ordem=1;
-        }
-     */
 
 }

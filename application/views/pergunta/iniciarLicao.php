@@ -17,7 +17,14 @@
     <!--TRAZER as informações das perguntas e ENVIAR o id do usuario, a resposta escolhida, a resposta correta e o tempo-->
     <span> <?php echo $pergunta->titulo; ?></span><br>
     <span> <?php echo $pergunta->descricao; ?></span><br>
-    <span> <?php echo $pergunta->video; ?></span><br>
+    <span>
+        <?php if (!empty($pergunta->video) and $pergunta->video != 'error') { ?>
+            <video id="video" class="" width="240" height="160" controls>
+                    <source src="<?= $pergunta->video ?>" type='video/<?= explode('.', $pergunta->video)[1]; ?>'>
+                </video>
+        <?php } ?>
+    </span>
+
     <span>
                     <?php  if($pergunta->imagem!="" and $pergunta->imagem!='error') {?>
                         <img src="<?php echo $pergunta->imagem; ?>" height="100px">

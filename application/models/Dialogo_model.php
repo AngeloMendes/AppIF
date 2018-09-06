@@ -53,4 +53,24 @@ class Dialogo_model extends CI_Model
     {
         return $this->db->delete('Dialogo',array('idDialogo'=>$idDialogo));
     }
+
+    function get_dialogos_licao($idLicao)
+    {
+        return $this->db->get_where('Dialogo',array('idLicao'=>$idLicao))->result_array();
+    }
+    /*
+    * function to get all dialogos by idLicao ordenados
+    */
+    function get_all_dialogo_licao_order($idLicao)
+    {
+        $this->db->order_by('ordem', 'asc');
+        return $this->db->get_where('Dialogo',array('idLicao'=>$idLicao))->result_array();
+    }
+    /*
+    * function to get all dialogo by idLicao and ordem
+    */
+    function get_dialogo_licao_ordem($idLicao,$ordem)
+    {
+        return $this->db->get_where('Dialogo',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
+    }
 }
