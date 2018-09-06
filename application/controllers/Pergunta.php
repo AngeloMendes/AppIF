@@ -207,7 +207,6 @@ class Pergunta extends CI_Controller
 
     function proximaPergunta($cont)
     {
-
         $perguntas = json_decode(htmlspecialchars_decode($this->input->post('perguntas')));
         $data['pergunta'] = $perguntas[$cont];
         $data['cont'] = $cont;
@@ -217,9 +216,13 @@ class Pergunta extends CI_Controller
     }
 
     function selectPergunta ($idLicao,$ordem){
+
         $pergunta = $this->Licao_model->getProxPergunta($idLicao,$ordem);
-        $data['_view']=$pergunta['tipo'].'/iniciarLicao';
-        $this->load->view('layouts/main', $data);
+        if($pergunta) {
+            $data['_view'] = $pergunta['tipo'] . '/iniciarLicao';
+            $this->load->view('layouts/main', $data);
+        }
+        //redirecionar para ranking final
     }
 
 
