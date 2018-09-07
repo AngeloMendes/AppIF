@@ -25,13 +25,13 @@
     <? $i=1?>
     <?php foreach ($dialogoFrases as $dialogoFrase) { ?>
         <span> <?php echo $dialogoFrase->descricao; ?></span><br>
-        <input type="radio" name=<?php echo "resposta[".$i."]"; ?> id=<?php echo "resposta1[".$i."]"; ?> value="<?php echo $dialogoFrase->opcao1; ?>"> <label
+        <input type="radio" name=<?php echo "resposta".$i; ?> id=<?php echo "resposta1[".$i."]"; ?> value="<?php echo $dialogoFrase->opcao1; ?>"> <label
                 for=<?php echo "resposta1[".$i."]"; ?>><?php echo $dialogoFrase->opcao1; ?></label> <br>
-        <input type="radio" name=<?php echo "resposta[".$i."]"; ?> id=<?php echo "resposta2[".$i."]"; ?> value="<?php echo $dialogoFrase->opcao2; ?>"> <label
+        <input type="radio" name=<?php echo "resposta".$i; ?> id=<?php echo "resposta2[".$i."]"; ?> value="<?php echo $dialogoFrase->opcao2; ?>"> <label
                 for=<?php echo "resposta2[".$i."]"; ?>><?php echo $dialogoFrase->opcao2; ?></label> <br>
-        <input type="radio" name=<?php echo "resposta[".$i."]"; ?> id=<?php echo "resposta3[".$i."]"; ?> value="<?php echo $dialogoFrase->opcao3; ?>"> <label
+        <input type="radio" name=<?php echo "resposta".$i; ?> id=<?php echo "resposta3[".$i."]"; ?> value="<?php echo $dialogoFrase->opcao3; ?>"> <label
                 for=<?php echo "resposta3[".$i."]"; ?>><?php echo $dialogoFrase->opcao3; ?></label> <br>
-        <input type="hidden" name=<?php echo "respostaCorreta[".$i."]"; ?>
+        <input type="hidden" name=<?php echo "respostaCorreta".$i; ?>
                value="<?php echo $dialogoFrase->opcaoCorreta; ?>">  <br>
     <?php } ?>
     <input type="hidden" name="data" value="<?=$data_inicio; ?>">

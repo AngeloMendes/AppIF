@@ -17,7 +17,7 @@
         buildFields("Frase" + i + "[opcao1]", "<?php echo $this->input->post('opcao1'); ?>", "Opção 1", false);
         buildFields("Frase" + i + "[opcao2]", "<?php echo $this->input->post('opcao2'); ?>", "Opção 2", false);
         buildFields("Frase" + i + "[opcao3]", "<?php echo $this->input->post('opcao3'); ?>", "Opção 3", false);
-        //buildFields("Frase[opcao4[Frase" + i + "]", "<?php echo $this->input->post('opcao4'); ?>", "Opção 4", false);
+       
         buildFields("Frase" + i +"[opcaoCorreta]", "<?php echo $this->input->post('opcaoCorreta'); ?>", "Opção Correta", false);
         i++;
 

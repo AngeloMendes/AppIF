@@ -17,14 +17,13 @@ class Resposta extends CI_Controller
 
     /*
      * Listing of ranking
+     * params $respostas é o array composto por respostaUsuario e respostaCorreta
      */
-    function index($respostaCorreta,$perguntas,$cont)
+    function index($respostas)
     {
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
         $data['ranking'] = $this->Usuario_model->get_ranking();
-        $data['respostaCorreta']=$respostaCorreta;
-        $data['perguntas']=$perguntas;
-        $data['cont']=$cont;
+        $data['respostas'] = $respostas;
         $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
     }
@@ -36,27 +35,27 @@ class Resposta extends CI_Controller
     {
         if (isset($_POST) && count($_POST) > 0) {
             $perguntas = json_decode(htmlspecialchars_decode($this->input->post('perguntas')));
-            $pergunta_atual=  $perguntas[$cont];
+            $pergunta_atual = $perguntas[$cont];
 
             $data_inicio = new DateTime($this->input->post('data'));
             $data_atual = new DateTime();
             $tempo = $data_inicio->diff($data_atual)->s;
-            $idUsuario=$this->session->userdata['usuario_logado'];
+            $idUsuario = $this->session->userdata['usuario_logado'];
             $respostaCorreta = $pergunta_atual->opcaoCorreta;
             $respostaUsuario = $this->input->post('resposta');
-            $idLicao=$pergunta_atual->idLicao;
-            $idPergunta=$pergunta_atual->idPergunta;
+            $idLicao = $pergunta_atual->idLicao;
+            $idPergunta = $pergunta_atual->idPergunta;
 
             $pontuacao = 0;
             $dia = date("Y-m-d");
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
-                $pontuacao = round(100/$tempo);
+                $pontuacao = round(100 / $tempo);
 
             }
             #SALVAR PROGRESSO
             //adicionar data e tempo 
-            $this->salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao,$tempo,$dia);
-            $this->editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
+            $this->salvarProgresso($idUsuario, $idLicao, $pontuacao, $tempo, $dia, null, null, $idPergunta, null);
+            $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
 
             $params = array(
                 'idUsuario' => $idUsuario,
@@ -67,7 +66,7 @@ class Resposta extends CI_Controller
             $resposta_id = $this->Resposta_model->add_resposta($params);
 
 
-            $this->index($respostaCorreta,$perguntas,$cont);//mostrar ranking
+            $this->index($respostaCorreta, $perguntas, $cont);//mostrar ranking
 
         } else {
             //$data['_view'] = 'resposta/add';
@@ -75,46 +74,46 @@ class Resposta extends CI_Controller
             //$this->index("");
         }
     }
+
     /*
      * salvar progresso do usuario
      * pontuacao da pergunta respondida
      */
-    function salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacaoAtual, $tempo,$dia){//},$idDialogo,$idImagem,$idTrueFalse){
+    function salvarProgresso($idUsuario, $idLicao, $pontuacaoAtual, $tempo, $dia, $idDialogo = null, $idImagemFrase = null, $idPergunta = null, $idTrueFalse = null)
+    {
         $params = array(
             'idUsuario' => $idUsuario,
             'idLicao' => $idLicao,
             'idPergunta' => $idPergunta,
             'pontuacaoAtual' => $pontuacaoAtual,
-            'tempo'=> $tempo,
-            'dia'=>$dia,
-            //'idDialogo' => $idDialogo,
-            //'idImagemFrase' => $idImagem,
-            //'idTrueFalse' => $idTrueFalse,
+            'tempo' => $tempo,
+            'dia' => $dia,
+            'idDialogo' => $idDialogo,
+            'idImagemFrase' => $idImagemFrase,
+            'idTrueFalse' => $idTrueFalse,
         );
 
         $progresso_id = $this->Progresso_model->add_progresso($params);
         return;
     }
 
-    function editUsuario($idUsuario,$pontos)
+    function editUsuario($idUsuario, $pontos)
     {
-        if($pontos==0) return;
+        if ($pontos == 0) return;
 
         // check if the usuario exists before trying to edit it
         $data['usuario'] = $this->Usuario_model->get_usuario($idUsuario);
-        $pontuacaoAtual =$data['usuario']['pontos'];
+        $pontuacaoAtual = $data['usuario']['pontos'];
 
-        if(isset($data['usuario']['idUsuario']))
-        {
+        if (isset($data['usuario']['idUsuario'])) {
             $params = array(
                 'pontos' => $pontos + $pontuacaoAtual,
             );
 
-            $this->Usuario_model->update_usuario($idUsuario,$params);
+            $this->Usuario_model->update_usuario($idUsuario, $params);
             return;
 
-        }
-        else
+        } else
             show_error('The usuario you are trying to edit does not exist.');
     }
 
@@ -122,7 +121,7 @@ class Resposta extends CI_Controller
     /*
          * Adding a new resposta
          */
-    function addDialogo($idLicao,$idDialogo)
+    function addDialogo($idLicao, $idDialogo)
     {
         //dialogo tem várias frases, vou receber todas as respostasUsuario e perguntas
         //comparar cada uma e atualizar a pontuação com a seguinte regra: numero de acertos * 100/tempo
@@ -134,32 +133,119 @@ class Resposta extends CI_Controller
             $data_inicio = new DateTime($this->input->post('data'));
             $data_atual = new DateTime();
             $tempo = $data_inicio->diff($data_atual)->s;
-            $idUsuario=$this->session->userdata['usuario_logado'];
-            $respostaCorreta = $this->input->post('respostaCorreta');
-            $respostaUsuario = $this->input->post('resposta');
-
+            $idUsuario = $this->session->userdata['usuario_logado'];
 
             $pontuacao = 0;
+            $quantidadeAcertos = 0;
             $dia = date("Y-m-d");
-            if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
-                $pontuacao = round(100/$tempo);
 
+            $i = 1;
+            $arrayRespostas = array("arrayRespostaUsuario", "arrayRespostaCorreta");
+            while (!empty($_POST['resposta' . $i])) {
+                $respostaUsuario = $this->input->post('resposta' . $i);
+                $respostaCorreta = $this->input->post('respostaCorreta' . $i);
+                $arrayRespostas = array_merge($arrayRespostas, $arrayRespostas($respostaUsuario, $respostaCorreta));
+                if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
+                    $quantidadeAcertos++;
+                }
+                $params = array(
+                    'idUsuario' => $idUsuario,
+                    'respostaCorreta' => $respostaCorreta,
+                    'respostaUsuario' => $respostaUsuario,
+                );
+                $resposta_id = $this->Resposta_model->add_resposta($params);
+                $i++;
             }
-            #SALVAR PROGRESSO
-            //adicionar data e tempo
-            $this->salvarProgresso($idUsuario,$idLicao,$idDialogo,$pontuacao,$tempo,$dia);
-            $this->editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
+            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
 
+            $this->salvarProgresso($idUsuario, $idLicao, $pontuacao, $tempo, $dia, $idDialogo, null, null, null);
+            $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
+
+            $this->index($respostaCorreta, $arrayRespostas);//mostrar ranking
+
+        } else {
+            //$data['_view'] = 'resposta/add';
+            //$this->load->view('layouts/main', $data);
+            //$this->index("");
+        }
+    }
+
+    function addTrueFalse($idLicao, $idTrueFalse)
+    {
+
+        if (isset($_POST) && count($_POST) > 0) {
+            $data_inicio = new DateTime($this->input->post('data'));
+            $data_atual = new DateTime();
+            $tempo = $data_inicio->diff($data_atual)->s;
+            $idUsuario = $this->session->userdata['usuario_logado'];
+            $pontuacao = 0;
+            $quantidadeAcertos = 0;
+            $dia = date("Y-m-d");
+            $i = 1;
+            $arrayRespostas = array("arrayRespostaUsuario", "arrayRespostaCorreta");
+            while (!empty($_POST['resposta' . $i])) {
+                $respostaUsuario = $this->input->post('resposta' . $i);
+                $respostaCorreta = $this->input->post('respostaCorreta' . $i);
+                $arrayRespostas = array_merge($arrayRespostas, $arrayRespostas($respostaUsuario, $respostaCorreta));
+                if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
+                    $quantidadeAcertos++;
+                }
+                $params = array(
+                    'idUsuario' => $idUsuario,
+                    'respostaCorreta' => $respostaCorreta,
+                    'respostaUsuario' => $respostaUsuario,
+                );
+                $resposta_id = $this->Resposta_model->add_resposta($params);
+                $i++;
+            }
+            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+
+            $this->salvarProgresso($idUsuario, $idLicao, $pontuacao, $tempo, $dia, null, null, null, $idTrueFalse);
+            $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
+
+            $this->index($respostaCorreta, $arrayRespostas);//mostrar ranking
+
+        } else {
+            //$data['_view'] = 'resposta/add';
+            //$this->load->view('layouts/main', $data);
+            //$this->index("");
+        }
+    }
+
+    function addImagemFrase($idLicao, $idImagemFrase)
+    {
+
+        if (isset($_POST) && count($_POST) > 0) {
+            $data_inicio = new DateTime($this->input->post('data'));
+            $data_atual = new DateTime();
+            $tempo = $data_inicio->diff($data_atual)->s;
+            $idUsuario = $this->session->userdata['usuario_logado'];
+            $pontuacao = 0;
+            $quantidadeAcertos = 0;
+            $dia = date("Y-m-d");
+
+            $arrayRespostas = array("arrayRespostaUsuario", "arrayRespostaCorreta");
+            $respostaUsuario = $this->input->post('resposta');
+            $respostaCorreta = $this->input->post('respostaCorreta');
+            $arrayRespostas = array_merge($arrayRespostas, $arrayRespostas($respostaUsuario, $respostaCorreta));
+
+            if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
+                $quantidadeAcertos++;
+            }
             $params = array(
                 'idUsuario' => $idUsuario,
                 'respostaCorreta' => $respostaCorreta,
                 'respostaUsuario' => $respostaUsuario,
             );
-
             $resposta_id = $this->Resposta_model->add_resposta($params);
 
 
-            $this->index($respostaCorreta,$perguntas,$cont);//mostrar ranking
+            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+
+            $this->salvarProgresso($idUsuario, $idLicao, $pontuacao, $tempo, $dia, null, $idImagemFrase, null, null);
+            $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
+
+            $this->index($arrayRespostas);//mostrar ranking
 
         } else {
             //$data['_view'] = 'resposta/add';
