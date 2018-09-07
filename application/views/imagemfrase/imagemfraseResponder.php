@@ -1,4 +1,4 @@
-<?php echo form_open('resposta/addImagemFrase/', array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/addImagemFrase/'.$imagemFrase->idLicao . '/' .$imagemFrase->idImagemFrase, array("class" => "form-horizontal")); ?>
     <div>
         <?php
         /*LISTAR PERGUNTAS DE UMA LIÇÃO

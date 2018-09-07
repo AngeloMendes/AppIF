@@ -31,20 +31,18 @@ class Resposta extends CI_Controller
     /*
      * Adding a new resposta
      */
-    function add($cont)
+    function add($idLicao,$idPergunta)
     {
         if (isset($_POST) && count($_POST) > 0) {
-            $perguntas = json_decode(htmlspecialchars_decode($this->input->post('perguntas')));
-            $pergunta_atual = $perguntas[$cont];
 
             $data_inicio = new DateTime($this->input->post('data'));
             $data_atual = new DateTime();
             $tempo = $data_inicio->diff($data_atual)->s;
             $idUsuario = $this->session->userdata['usuario_logado'];
-            $respostaCorreta = $pergunta_atual->opcaoCorreta;
+            $respostaCorreta = $this->input->post('respostaCorreta');
             $respostaUsuario = $this->input->post('resposta');
-            $idLicao = $pergunta_atual->idLicao;
-            $idPergunta = $pergunta_atual->idPergunta;
+
+            $arrayRespostas = array("arrayRespostaUsuario"=>$respostaUsuario, "arrayRespostaCorreta"=>$respostaCorreta);
 
             $pontuacao = 0;
             $dia = date("Y-m-d");
@@ -66,7 +64,7 @@ class Resposta extends CI_Controller
             $resposta_id = $this->Resposta_model->add_resposta($params);
 
 
-            $this->index($respostaCorreta, $perguntas, $cont);//mostrar ranking
+            $this->index($arrayRespostas);//mostrar ranking
 
         } else {
             //$data['_view'] = 'resposta/add';

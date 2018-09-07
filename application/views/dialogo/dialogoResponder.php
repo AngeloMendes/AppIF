@@ -1,4 +1,4 @@
-<?php echo form_open('resposta/addDialogo/', array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/addDialogo/'.$dialogo->idLicao . '/'.$dialogo->idLicao, array("class" => "form-horizontal")); ?>
 <div>
     <?php
     /*LISTAR PERGUNTAS DE UMA LIÇÃO

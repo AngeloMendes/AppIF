@@ -1,4 +1,4 @@
-<?php echo form_open('resposta/add/'.$cont, array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/add/'.$pergunta->idLicao . '/' .$pergunta->idPergunta, array("class" => "form-horizontal")); ?>
 
 <div>
     <?php
@@ -32,14 +32,14 @@
     </span>
     <br>
 
-    <input type="radio" name="resposta" id="resposta1" value="<?php echo $pergunta->opcao1; ?>"> <label for="resposta1"><?php echo $pergunta->opcao1;?></label> <br>
-    <input type="radio" name="resposta" id="resposta2" value="<?php echo $pergunta->opcao2; ?>"> <label for="resposta2"><?php echo $pergunta->opcao2;?></label> <br>
-    <input type="radio" name="resposta" id="resposta3" value="<?php echo $pergunta->opcao3; ?>"> <label for="resposta3"><?php echo $pergunta->opcao3;?></label> <br>
-    <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta->opcao4; ?>"> <label for="resposta4"><?php echo $pergunta->opcao4;?></label> <br>
+    <input type="radio" name="resposta" id="resposta1" value="<?php echo $pergunta->opcao1; ?>"/> <label for="resposta1"><?php echo $pergunta->opcao1;?></label> <br>
+    <input type="radio" name="resposta" id="resposta2" value="<?php echo $pergunta->opcao2; ?>"/> <label for="resposta2"><?php echo $pergunta->opcao2;?></label> <br>
+    <input type="radio" name="resposta" id="resposta3" value="<?php echo $pergunta->opcao3; ?>"/> <label for="resposta3"><?php echo $pergunta->opcao3;?></label> <br>
+    <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta->opcao4; ?>"/> <label for="resposta4"><?php echo $pergunta->opcao4;?></label> <br>
+    <input type="hidden" name="respostaCorreta"  value="<?php echo $pergunta->opcaoCorreta; ?>"/>
 
+    <input type="hidden" name="data" value="<?=$data_inicio; ?>"/>
 
-    <input type="hidden" name="data" value="<?=$data_inicio; ?>">
-    <input type="hidden" name="perguntas" value="<?=htmlspecialchars(json_encode($perguntas)); ?>">
 
 
     <span> <?php echo $pergunta->caixaTexto; ?></span>
