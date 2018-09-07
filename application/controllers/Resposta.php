@@ -120,44 +120,52 @@ class Resposta extends CI_Controller
 
 
     /*
-     * Editing a resposta
-     */
-    function edit($idResposta)
+         * Adding a new resposta
+         */
+    function addDialogo($idLicao,$idDialogo)
     {
-        // check if the resposta exists before trying to edit it
-        $data['Resposta'] = $this->Resposta_model->get_resposta($idResposta);
+        //dialogo tem várias frases, vou receber todas as respostasUsuario e perguntas
+        //comparar cada uma e atualizar a pontuação com a seguinte regra: numero de acertos * 100/tempo
+        //salvar todas respostasUsuario e respotasCorreta
 
-        if (isset($data['Resposta']['idResposta'])) {
-            if (isset($_POST) && count($_POST) > 0) {
-                $params = array(
-                    'idUsuario' => $this->input->post('idUsuario'),
-                    'respostaCorreta' => $this->input->post('respostaCorreta'),
-                    'respostaUsuario' => $this->input->post('respostaUsuario'),
-                );
+        if (isset($_POST) && count($_POST) > 0) {
 
-                $this->Resposta_model->update_resposta($idResposta, $params);
-                redirect('resposta/index');
-            } else {
-                $data['_view'] = 'resposta/edit';
-                $this->load->view('layouts/main', $data);
+
+            $data_inicio = new DateTime($this->input->post('data'));
+            $data_atual = new DateTime();
+            $tempo = $data_inicio->diff($data_atual)->s;
+            $idUsuario=$this->session->userdata['usuario_logado'];
+            $respostaCorreta = $this->input->post('respostaCorreta');
+            $respostaUsuario = $this->input->post('resposta');
+
+
+            $pontuacao = 0;
+            $dia = date("Y-m-d");
+            if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
+                $pontuacao = round(100/$tempo);
+
             }
-        } else
-            show_error('The resposta you are trying to edit does not exist.');
-    }
+            #SALVAR PROGRESSO
+            //adicionar data e tempo
+            $this->salvarProgresso($idUsuario,$idLicao,$idDialogo,$pontuacao,$tempo,$dia);
+            $this->editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
 
-    /*
-     * Deleting resposta
-     */
-    function remove($idResposta)
-    {
-        $resposta = $this->Resposta_model->get_resposta($idResposta);
+            $params = array(
+                'idUsuario' => $idUsuario,
+                'respostaCorreta' => $respostaCorreta,
+                'respostaUsuario' => $respostaUsuario,
+            );
 
-        // check if the resposta exists before trying to delete it
-        if (isset($resposta['idResposta'])) {
-            $this->Resposta_model->delete_resposta($idResposta);
-            redirect('resposta/index');
-        } else
-            show_error('The resposta you are trying to delete does not exist.');
+            $resposta_id = $this->Resposta_model->add_resposta($params);
+
+
+            $this->index($respostaCorreta,$perguntas,$cont);//mostrar ranking
+
+        } else {
+            //$data['_view'] = 'resposta/add';
+            //$this->load->view('layouts/main', $data);
+            //$this->index("");
+        }
     }
 
 }
