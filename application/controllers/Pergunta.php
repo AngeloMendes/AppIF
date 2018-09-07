@@ -219,7 +219,7 @@ class Pergunta extends CI_Controller
 
         $pergunta = $this->Licao_model->getProxPergunta($idLicao,$ordem);
         if($pergunta) {
-            $data['_view'] = $pergunta['tipo'] . '/iniciarLicao';
+            $data['_view'] = $pergunta['tipo'] . '/'. $pergunta['tipo'] . 'Responder';
             $this->load->view('layouts/main', $data);
         }
         //redirecionar para ranking final
