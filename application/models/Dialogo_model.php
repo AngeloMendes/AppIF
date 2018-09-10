@@ -71,6 +71,22 @@ class Dialogo_model extends CI_Model
     */
     function get_dialogo_licao_ordem($idLicao,$ordem)
     {
-        return $this->db->get_where('Dialogo',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
+        //buscar dialogo na ordem X
+        //se achar, buscar no conjunto a relação dialogo/frase
+        // buscar todas as frases do dialogo
+        //mandar pra tela, dialogo + as frases
+
+        $dialogo= $this->db->get_where('Dialogo',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
+        if($dialogo){
+            $conjuntoDialogo = $this->db->get_where('ConjuntoDialogo',array('idDialogo'=>$dialogo->idDialogo))->result_array();
+            $i=1;
+            foreach ($conjuntoDialogo as $conjunto){
+                $frases['frase'.$i] = $this->db->get_where('DialogoFrases',array('idDialogoFrases'=>$conjunto->idDialogoFrases))->result_array();
+                $dialogo=array_merge($dialogo,$frases);
+                $i++;
+            }
+
+        }
+        return$dialogo;
     }
 }

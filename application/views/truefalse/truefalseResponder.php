@@ -1,4 +1,4 @@
-<?php echo form_open('resposta/addTrueFalse/', array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/addTrueFalse/'.$trueFalse, array("class" => "form-horizontal")); ?>
     <div>
         <?php
         /*LISTAR PERGUNTAS DE UMA LIÇÃO
@@ -33,11 +33,11 @@
         <? $i=1?>
         <?php foreach ($trueFalseFrases as $trueFalseFrase) { ?>
             <span> <?php echo $trueFalseFrase->descricao; ?></span><br>
-            <input type="radio" name=<?php echo "resposta[".$i."]"; ?> id=<?php echo "resposta1[".$i."]"; ?> value="<?php echo $trueFalseFrase->opcao1; ?>"> <label
+            <input type="radio" name=<?php echo "resposta".$i; ?> id=<?php echo "resposta1[".$i."]"; ?> value="<?php echo $trueFalseFrase->opcao1; ?>"> <label
                 for=<?php echo "resposta1[".$i."]"; ?>><?php echo $trueFalseFrase->opcao1; ?></label> <br>
-            <input type="radio" name=<?php echo "resposta[".$i."]"; ?> id=<?php echo "resposta2[".$i."]"; ?> value="<?php echo $trueFalseFrase->opcao2; ?>"> <label
+            <input type="radio" name=<?php echo "resposta".$i; ?> id=<?php echo "resposta2[".$i."]"; ?> value="<?php echo $trueFalseFrase->opcao2; ?>"> <label
                 for=<?php echo "resposta2[".$i."]"; ?>><?php echo $trueFalseFrase->opcao2; ?></label> <br>
-             <input type="hidden" name=<?php echo "respostaCorreta[".$i."]"; ?>
+             <input type="hidden" name=<?php echo "respostaCorreta".$i; ?>
             value="<?php echo $trueFalseFrase->opcaoCorreta; ?>">  <br>
         <?php } ?>
         <input type="hidden" name="data" value="<?=$data_inicio; ?>">
