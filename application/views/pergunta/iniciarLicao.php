@@ -1,4 +1,4 @@
-<?php echo form_open('resposta/add/'.$pergunta->idLicao . '/' .$pergunta->idPergunta, array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/add/'.$pergunta, array("class" => "form-horizontal")); ?>
 
 <div>
     <?php

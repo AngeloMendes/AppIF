@@ -1,4 +1,4 @@
-<?php echo form_open('resposta/addTrueFalse/'.$trueFalse->idLicao . '/' .$trueFalse->idTrueFalse, array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/addTrueFalse/'.$trueFalse, array("class" => "form-horizontal")); ?>
     <div>
         <?php
         /*LISTAR PERGUNTAS DE UMA LIÇÃO

@@ -1,10 +1,16 @@
-<?php $totalPerguntas = count($perguntas); ?>
-
+    <a href="<?php base_url('resposta/index/' . $respostas . '/'.$pergunta) ?>">Atualizar Ranking</a>
+<?php if ($respostas) { ?>
+    <?php foreach ($respostas as $resposta){?>
+    <div>
+        <h3>Sua Resposta:</h3>
+        <p><?= $resposta['respostaUsuario'] ?></p>
+    </div> <br>
     <div>
         <h3>Resposta Correta:</h3>
-        <p><?= $respostaCorreta ?></p>
+        <p><?= $resposta['respostaCorreta'] ?></p>
     </div>
-
+    <?php } ?>
+<?php } ?>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Nome</th>
@@ -18,15 +24,13 @@
         <?php } ?>
     </table>
 
-<?php if ($cont == $totalPerguntas-1) { ?>
+<?php if (!$respostas) { ?>
     <a href="<?= base_url('licao/index') ?>">Lições</a>
 <?php } else {
-    $cont++;
+
     ?>
 
-    <?php echo form_open('pergunta/proximaPergunta/' . $cont, array("class" => "form-horizontal")); ?>
-
-    <input type="hidden" name="perguntas" value="<?php echo htmlspecialchars(json_encode($perguntas)); ?>"
+    <?php echo form_open('pergunta/selectPergunta/' . $pergunta['idLicao'].'/'.$pergunta['ordem'], array("class" => "form-horizontal")); ?>
 
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
