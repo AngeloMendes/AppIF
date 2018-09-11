@@ -108,7 +108,7 @@ class Pergunta extends CI_Controller
                 'idLicao' => $this->input->post('idLicao'),
                 'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                 'caixaTexto' => $this->input->post('caixaTexto'),
-                'tipo'=>'multiplaEscolha',
+                'tipo'=>'pergunta',
                 'ordem'=>$this->Licao_model->setOrdem($idLicao),
             );
             /*$configuracaoImagem = array(
@@ -133,7 +133,7 @@ class Pergunta extends CI_Controller
 
 
             $pergunta_id = $this->Pergunta_model->add_pergunta($params);
-            redirect('pergunta/index');
+            redirect('licao/index');
         } else {
             $data['_view'] = 'pergunta/add';
             $data['idLicao'] = $idLicao;
