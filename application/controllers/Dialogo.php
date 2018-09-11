@@ -25,7 +25,7 @@ class Dialogo extends CI_Controller{
     /*
      * Adding a new dialogo
      */
-    function add()
+    function add($idLicao)
     {   
         if(isset($_POST) && count($_POST) > 0)     
         {   
@@ -38,10 +38,11 @@ class Dialogo extends CI_Controller{
             );
             
             $dialogo_id = $this->Dialogo_model->add_dialogo($params);
-            redirect('dialogo/index');
+            redirect('licao/index');
         }
         else
-        {            
+        {
+            $data['idLicao']=$idLicao;
             $data['_view'] = 'dialogo/add';
             $this->load->view('layouts/main',$data);
         }

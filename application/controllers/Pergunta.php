@@ -230,7 +230,7 @@ class Pergunta extends CI_Controller
         }
         else{
             //redirecionar para ranking final
-            redirect('resposta/index/'.null);
+            redirect('resposta/index/' . null.'/'. null);
         }
 
     }

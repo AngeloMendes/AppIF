@@ -28,11 +28,21 @@
                     <?php echo $L['descricao']; ?>
                 </span>
                 <span>
-                    <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Adicionar pergunta</a>
-                </span>
-                <span>
                     <a href="<?php echo site_url('licao/preLicao/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Iniciar lição</a>
                 </span>
+                <span>
+                    <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Adicionar pergunta múltipla escolha</a>
+                </span>
+                <span>
+                    <a href="<?php echo site_url('truefalse/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Adicionar pergunta verdadeiro ou falso</a>
+                </span>
+                <span>
+                    <a href="<?php echo site_url('dialogo/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Adicionar diálogo</a>
+                </span>
+                <span>
+                    <a href="<?php echo site_url('imagemfrase/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Adicionar pergunta para relacionar frases a imagem</a>
+                </span>
+
             </div>
         </a>
         <span>
