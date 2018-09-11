@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
+<link rel="stylesheet" type="text/css" href="   /appif/application/views/css/style.css">
 <?php echo form_open('imagemfrase/add', array("class" => "form-horizontal")); ?>
-
+<div class="form-add">
 <div class="form-group">
     <div class="col-md-8  form-inputs">
         <label for="titulo">Título</label>
@@ -97,6 +97,6 @@
         <button type="submit" class="btn btn-success">Save</button>
     </div>
 </div>
-
+</div>
 <?php echo form_close(); ?>
 
