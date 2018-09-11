@@ -25,7 +25,7 @@ class Truefalse extends CI_Controller{
     /*
      * Adding a new truefalse
      */
-    function add()
+    function add($idLicao)
     {   
         if(isset($_POST) && count($_POST) > 0)     
         {   
@@ -39,10 +39,10 @@ class Truefalse extends CI_Controller{
             );
             
             $truefalse_id = $this->Truefalse_model->add_truefalse($params);
-            redirect('truefalse/index');
+            redirect('licao/index');
         }
         else
-        {            
+        {   $data['idLicao']=$idLicao;
             $data['_view'] = 'truefalse/add';
             $this->load->view('layouts/main',$data);
         }

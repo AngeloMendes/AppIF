@@ -67,6 +67,17 @@ class Truefalse_model extends CI_Model
     */
     function get_truefalse_licao_ordem($idLicao,$ordem)
     {
-        return $this->db->get_where('TrueFalse',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
+        $truefalse=$this->db->get_where('TrueFalse',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
+        if($truefalse){
+            $conjuntoTrueFalse = $this->db->get_where('ConjuntoTrueFalse',array('idTrueFalse'=>$truefalse->idTrueFalse))->result_array();
+            $i=1;
+            foreach ($conjuntoTrueFalse as $conjunto){
+                $frases['frase'.$i] = $this->db->get_where('TrueFalseFrases',array('idTrueFalseFrases'=>$conjunto->idTrueFalseFrases))->result_array();
+                $truefalse=array_merge($truefalse,$frases);
+                $i++;
+            }
+        }
+        return $truefalse;
+
     }
 }

@@ -50,10 +50,11 @@ class Imagemfrase extends CI_Controller{
             );
             
             $imagemfrase_id = $this->Imagemfrase_model->add_imagemfrase($params);
-            redirect('imagemfrase/index');
+            redirect('licao/index');
         }
         else
-        {            
+        {
+            $data['idLicao']=$idLicao;
             $data['_view'] = 'imagemfrase/add';
             $this->load->view('layouts/main',$data);
         }
