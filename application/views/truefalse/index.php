@@ -1,8 +1,12 @@
-<div class="pull-right">
-	<a href="<?php echo site_url('truefalse/add'); ?>" class="btn btn-success">Add</a> 
-</div>
+<link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
 
+
+<div style="margin: 3% 3% 3% 3%">
+    <div class="pull-right">
+        <a href="<?php echo site_url('truefalse/add'); ?>" class="btn btn-success">Add</a>
+    </div>
 <table class="table table-striped table-bordered">
+
     <tr>
 		<th>IdTrueFalse</th>
 		<th>Titulo</th>
@@ -28,4 +32,4 @@
         </td>
     </tr>
 	<?php } ?>
-</table>
+</table></div>

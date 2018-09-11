@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
+<div style="margin: 3% 3% 3% 3%">
 <div class="pull-right">
 	<a href="<?php echo site_url('truefalsefrase/add'); ?>" class="btn btn-success">Add</a> 
 </div>
