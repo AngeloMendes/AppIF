@@ -1,15 +1,16 @@
 <?php echo form_open('conjuntotruefalse/add',array("class"=>"form-horizontal")); ?>
+    <link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
 
 	<div class="form-group">
-		<label for="idTrueFalseFrases" class="col-md-4 control-label">IdTrueFalseFrases</label>
-		<div class="col-md-8">
-			<input type="text" name="idTrueFalseFrases" value="<?php echo $this->input->post('idTrueFalseFrases'); ?>" class="form-control" id="idTrueFalseFrases" />
+        <div class="col-md-8  form-inputs">
+            <label for="idTrueFalseFrases" >IdTrueFalseFrases</label>
+            <input type="text" name="idTrueFalseFrases" value="<?php echo $this->input->post('idTrueFalseFrases'); ?>" class="form-control" id="idTrueFalseFrases" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="idTrueFalse" class="col-md-4 control-label">IdTrueFalse</label>
-		<div class="col-md-8">
-			<input type="text" name="idTrueFalse" value="<?php echo $this->input->post('idTrueFalse'); ?>" class="form-control" id="idTrueFalse" />
+        <div class="col-md-8  form-inputs">
+            <label for="idTrueFalse">IdTrueFalse</label>
+            <input type="text" name="idTrueFalse" value="<?php echo $this->input->post('idTrueFalse'); ?>" class="form-control" id="idTrueFalse" />
 		</div>
 	</div>
 	
