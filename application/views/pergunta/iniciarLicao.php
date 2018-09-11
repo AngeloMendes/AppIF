@@ -1,4 +1,5 @@
-<?php echo form_open('resposta/add/'.$pergunta, array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/add', array("class" => "form-horizontal")); ?>
+<input type="hidden" name="pergunta" value="<?=htmlspecialchars(json_encode($pergunta));?>"/>
 
 <div>
     <?php

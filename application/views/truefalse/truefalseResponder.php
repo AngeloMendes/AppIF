@@ -1,4 +1,5 @@
-<?php echo form_open('resposta/addTrueFalse/'.$trueFalse, array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/addTrueFalse', array("class" => "form-horizontal")); ?>
+    <input type="hidden" name="trueFalse" value="<?=htmlspecialchars(json_encode($trueFalse));?>"/>
     <div>
         <?php
         /*LISTAR PERGUNTAS DE UMA LIÇÃO

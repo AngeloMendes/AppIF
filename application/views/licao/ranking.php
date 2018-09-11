@@ -1,13 +1,14 @@
-    <a href="<?php base_url('resposta/index/' . $respostas . '/'.$pergunta) ?>">Atualizar Ranking</a>
-<?php if ($respostas) { ?>
-    <?php foreach ($respostas as $resposta){?>
+    <!--<a href="<?php base_url('resposta/index/' . $respostas . '/'.$pergunta) ?>">Atualizar Ranking</a>-->
+<?php if ($respostas) {?>
+
+    <?php foreach($respostas as $resposta){?>
     <div>
         <h3>Sua Resposta:</h3>
-        <p><?= $resposta['respostaUsuario'] ?></p>
+        <p><?= $resposta['arrayRespostaUsuario'] ?></p>
     </div> <br>
     <div>
         <h3>Resposta Correta:</h3>
-        <p><?= $resposta['respostaCorreta'] ?></p>
+        <p><?= $resposta['arrayRespostaCorreta'] ?></p>
     </div>
     <?php } ?>
 <?php } ?>
@@ -30,7 +31,7 @@
 
     ?>
 
-    <?php echo form_open('pergunta/selectPergunta/' . $pergunta['idLicao'].'/'.$pergunta['ordem'], array("class" => "form-horizontal")); ?>
+    <?php echo form_open('pergunta/selectPergunta/' . $pergunta->idLicao.'/'.$pergunta->ordem, array("class" => "form-horizontal")); ?>
 
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">

@@ -78,15 +78,18 @@ class Dialogo_model extends CI_Model
 
         $dialogo= $this->db->get_where('Dialogo',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
         if($dialogo){
-            $conjuntoDialogo = $this->db->get_where('ConjuntoDialogo',array('idDialogo'=>$dialogo->idDialogo))->result_array();
+            $conjuntoDialogo = $this->db->get_where('ConjuntoDialogo',array('idDialogo'=>$dialogo['idDialogo']))->result_array();
+
             $i=1;
             foreach ($conjuntoDialogo as $conjunto){
-                $frases['frase'.$i] = $this->db->get_where('DialogoFrases',array('idDialogoFrases'=>$conjunto->idDialogoFrases))->result_array();
+                $frases['frase'.$i] = $this->db->get_where('DialogoFrases',array('idDialogoFrases'=>$conjunto['idDialogoFrases']))->result_array();
                 $dialogo=array_merge($dialogo,$frases);
                 $i++;
             }
 
+
         }
+
         return$dialogo;
     }
 }

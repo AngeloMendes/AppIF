@@ -216,14 +216,15 @@ class Pergunta extends CI_Controller
     }
 
     function selectPergunta ($idLicao,$ordem){
+        $ordem++;
+        $pergunta = (object) $this->Licao_model->getProxPergunta($idLicao,$ordem);
 
-        $pergunta = $this->Licao_model->getProxPergunta($idLicao,$ordem);
-        if($pergunta and $pergunta['tipo']!='multiplaEscolha') {
-            $data[$pergunta['tipo']]=$pergunta;
-            $data['_view'] = $pergunta['tipo'] . '/'. $pergunta['tipo'] . 'Responder';
+        if($pergunta and $pergunta->tipo!='pergunta') {
+            $data[$pergunta->tipo]= $pergunta;
+            $data['_view'] = $pergunta->tipo . '/'. $pergunta->tipo . 'Responder';
             $this->load->view('layouts/main', $data);
         }
-        elseif ($pergunta and $pergunta['tipo']=='multiplaEscolha'){
+        elseif ($pergunta and $pergunta->tipo=='pergunta'){
             $data['pergunta']=$pergunta;
             $data['_view'] = 'pergunta/iniciarLicao';
             $this->load->view('layouts/main', $data);

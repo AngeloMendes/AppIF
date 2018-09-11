@@ -60,13 +60,13 @@ class Imagemfrase_model extends CI_Model
     function get_all_imagemFrases_licao_order($idLicao)
     {
         $this->db->order_by('ordem', 'asc');
-        return $this->db->get_where('ImagemFrases',array('idLicao'=>$idLicao))->result_array();
+        return $this->db->get_where('ImagemFrase',array('idLicao'=>$idLicao))->result_array();
     }
     /*
     * function to get all ImagemFrases by idLicao and ordem
     */
     function get_imagemFrase_licao_ordem($idLicao,$ordem)
     {
-        return $this->db->get_where('ImagemFrases',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
+        return $this->db->get_where('ImagemFrase',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
     }
 }

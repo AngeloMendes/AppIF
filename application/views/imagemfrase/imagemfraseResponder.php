@@ -1,4 +1,5 @@
-<?php echo form_open('resposta/addImagemFrase/'.$imagemFrase, array("class" => "form-horizontal")); ?>
+<?php echo form_open('resposta/addImagemFrase', array("class" => "form-horizontal")); ?>
+    <input type="hidden" name="imagemFrase" value="<?=htmlspecialchars(json_encode($imagemFrase));?>"/>
     <div>
         <?php
         /*LISTAR PERGUNTAS DE UMA LIÇÃO
