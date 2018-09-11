@@ -17,14 +17,14 @@ class Resposta extends CI_Controller
 
     /*
      * Listing of ranking
+     * params $respostas é o array composto por respostaUsuario e respostaCorreta
      */
-    function index($respostaCorreta,$perguntas,$cont)
+    function index($respostas,$pergunta)
     {
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
         $data['ranking'] = $this->Usuario_model->get_ranking();
-        $data['respostaCorreta']=$respostaCorreta;
-        $data['perguntas']=$perguntas;
-        $data['cont']=$cont;
+        $data['pergunta']=$pergunta;
+        $data['respostas'] = $respostas;
         $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
     }
@@ -32,29 +32,31 @@ class Resposta extends CI_Controller
     /*
      * Adding a new resposta
      */
-    function add($perguntas,$cont)
+    function add()
     {
-
+        $pergunta=json_decode(htmlspecialchars_decode($this->input->post('pergunta')));
 
         if (isset($_POST) && count($_POST) > 0) {
 
-            $t = time();
-            $data_inicio = $this->input->post('data');
-            $tempo = $data_inicio->diff(new DateTime(date("Y-m-d\TH:i:sP", $t)))->s;
-
-            $idUsuario = $this->input->post('idUsuario');
+            $data_inicio = new DateTime($this->input->post('data'));
+            $data_atual = new DateTime();
+            $tempo = $data_inicio->diff($data_atual)->s;
+            $idUsuario = $this->session->userdata['usuario_logado'];
             $respostaCorreta = $this->input->post('respostaCorreta');
-            $respostaUsuario = $this->input->post('respostaUsuario');
-            $idLicao=$this->input->post('idLicao');
-            $idPergunta=$this->input->post('idPergunta');
+            $respostaUsuario = $this->input->post('resposta');
+
+            $arrayRespostas['0'] = array("arrayRespostaUsuario"=>$respostaUsuario, "arrayRespostaCorreta"=>$respostaCorreta);
 
             $pontuacao = 0;
+            $dia = date("Y-m-d");
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
-                $pontuacao = round($tempo * 100);
+                $pontuacao = round(100 / $tempo);
+
             }
             #SALVAR PROGRESSO
-            salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacao);
-            editUsuario($idUsuario,$pontuacao);//atualiza pontuação do usuario
+            //adicionar data e tempo 
+            $this->salvarProgresso($idUsuario, $pergunta->idLicao, $pontuacao, $tempo, $dia, null, null, $pergunta->idPergunta, null);
+            $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
 
             $params = array(
                 'idUsuario' => $idUsuario,
@@ -62,95 +64,192 @@ class Resposta extends CI_Controller
                 'respostaUsuario' => $respostaUsuario,
             );
 
-            //$resposta_id = $this->Resposta_model->add_resposta($params);
+            $resposta_id = $this->Resposta_model->add_resposta($params);
 
 
-            $this->index($respostaCorreta,$perguntas,$cont);//mostrar ranking
+            $this->index($arrayRespostas,$pergunta);//mostrar ranking
 
         } else {
             //$data['_view'] = 'resposta/add';
             //$this->load->view('layouts/main', $data);
-            $this->index("");
+            //$this->index("");
         }
     }
+
     /*
      * salvar progresso do usuario
      * pontuacao da pergunta respondida
      */
-    function salvarProgresso($idUsuario,$idLicao,$idPergunta,$pontuacaoAtual){
+    function salvarProgresso($idUsuario, $idLicao, $pontuacaoAtual, $tempo, $dia, $idDialogo = null, $idImagemFrase = null, $idPergunta = null, $idTrueFalse = null)
+    {
         $params = array(
             'idUsuario' => $idUsuario,
             'idLicao' => $idLicao,
             'idPergunta' => $idPergunta,
             'pontuacaoAtual' => $pontuacaoAtual,
+            'tempo' => $tempo,
+            'dia' => $dia,
+            'idDialogo' => $idDialogo,
+            'idImagemFrase' => $idImagemFrase,
+            'idTrueFalse' => $idTrueFalse,
         );
 
         $progresso_id = $this->Progresso_model->add_progresso($params);
         return;
     }
 
-    function editUsuario($idUsuario,$pontos)
+    function editUsuario($idUsuario, $pontos)
     {
-        if($pontos==0) return;
+        if ($pontos == 0) return;
 
         // check if the usuario exists before trying to edit it
         $data['usuario'] = $this->Usuario_model->get_usuario($idUsuario);
-        $pontuacaoAtual =$data['usuario']['pontos'];
+        $pontuacaoAtual = $data['usuario']['pontos'];
 
-        if(isset($data['usuario']['idUsuario']))
-        {
+        if (isset($data['usuario']['idUsuario'])) {
             $params = array(
                 'pontos' => $pontos + $pontuacaoAtual,
             );
 
-            $this->Usuario_model->update_usuario($idUsuario,$params);
+            $this->Usuario_model->update_usuario($idUsuario, $params);
             return;
 
-        }
-        else
+        } else
             show_error('The usuario you are trying to edit does not exist.');
     }
 
 
     /*
-     * Editing a resposta
-     */
-    function edit($idResposta)
+         * Adding a new resposta
+         */
+    function addDialogo()
     {
-        // check if the resposta exists before trying to edit it
-        $data['Resposta'] = $this->Resposta_model->get_resposta($idResposta);
+        //dialogo tem várias frases, vou receber todas as respostasUsuario e perguntas
+        //comparar cada uma e atualizar a pontuação com a seguinte regra: numero de acertos * 100/tempo
+        //salvar todas respostasUsuario e respotasCorreta
 
-        if (isset($data['Resposta']['idResposta'])) {
-            if (isset($_POST) && count($_POST) > 0) {
+        $dialogo=json_decode(htmlspecialchars_decode($this->input->post('dialogo')));
+        if (isset($_POST) && count($_POST) > 0) {
+
+            $data_inicio = new DateTime($this->input->post('data'));
+            $data_atual = new DateTime();
+            $tempo = $data_inicio->diff($data_atual)->s;
+            $idUsuario = $this->session->userdata['usuario_logado'];
+
+            $pontuacao = 0;
+            $quantidadeAcertos = 0;
+            $dia = date("Y-m-d");
+
+            $i = 1;
+            $arrayIndexRespostas=array('arrayRespostaUsuario', 'arrayRespostaCorreta');
+            $arrayRespostas = array();
+            while (!empty($_POST['resposta' . $i])) {
+                $respostaUsuario = $this->input->post('resposta' . $i);
+                $respostaCorreta = $this->input->post('respostaCorreta' . $i);
+                $arrayRespostas[$i] = array_merge($arrayRespostas,$arrayIndexRespostas($respostaUsuario, $respostaCorreta));
+                if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
+                    $quantidadeAcertos++;
+                }
                 $params = array(
-                    'idUsuario' => $this->input->post('idUsuario'),
-                    'respostaCorreta' => $this->input->post('respostaCorreta'),
-                    'respostaUsuario' => $this->input->post('respostaUsuario'),
+                    'idUsuario' => $idUsuario,
+                    'respostaCorreta' => $respostaCorreta,
+                    'respostaUsuario' => $respostaUsuario,
                 );
-
-                $this->Resposta_model->update_resposta($idResposta, $params);
-                redirect('resposta/index');
-            } else {
-                $data['_view'] = 'resposta/edit';
-                $this->load->view('layouts/main', $data);
+                $resposta_id = $this->Resposta_model->add_resposta($params);
+                $i++;
             }
-        } else
-            show_error('The resposta you are trying to edit does not exist.');
+            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+
+            $this->salvarProgresso($idUsuario, $dialogo->idLicao, $pontuacao, $tempo, $dia, $dialogo->idDialogo, null, null, null);
+            $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
+
+            $this->index($arrayRespostas,$dialogo);//mostrar ranking
+
+        } else {
+            //$data['_view'] = 'resposta/add';
+            //$this->load->view('layouts/main', $data);
+            //$this->index("");
+        }
     }
 
-    /*
-     * Deleting resposta
-     */
-    function remove($idResposta)
+    function addTrueFalse()
     {
-        $resposta = $this->Resposta_model->get_resposta($idResposta);
+        $trueFalse=json_decode(htmlspecialchars_decode($this->input->post('trueFalse')));
+        if (isset($_POST) && count($_POST) > 0) {
+            $data_inicio = new DateTime($this->input->post('data'));
+            $data_atual = new DateTime();
+            $tempo = $data_inicio->diff($data_atual)->s;
+            $idUsuario = $this->session->userdata['usuario_logado'];
+            $pontuacao = 0;
+            $quantidadeAcertos = 0;
+            $dia = date("Y-m-d");
+            $i = 1;
+            $arrayRespostas = array();
+            while (!empty($_POST['resposta' . $i])) {
+                $respostaUsuario = $this->input->post('resposta' . $i);
+                $respostaCorreta = $this->input->post('respostaCorreta' . $i);
+                $arrayRespostas[$i]['arrayRespostaUsuario'] = $respostaUsuario;
+                $arrayRespostas[$i]['arrayRespostaCorreta'] = $respostaCorreta;
+                if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
+                    $quantidadeAcertos++;
+                }
+                $params = array(
+                    'idUsuario' => $idUsuario,
+                    'respostaCorreta' => $respostaCorreta,
+                    'respostaUsuario' => $respostaUsuario,
+                );
+                $resposta_id = $this->Resposta_model->add_resposta($params);
+                $i++;
+            }
+            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
 
-        // check if the resposta exists before trying to delete it
-        if (isset($resposta['idResposta'])) {
-            $this->Resposta_model->delete_resposta($idResposta);
-            redirect('resposta/index');
-        } else
-            show_error('The resposta you are trying to delete does not exist.');
+            $this->salvarProgresso($idUsuario, $trueFalse->idLicao, $pontuacao, $tempo, $dia, null, null, null, $trueFalse->idTrueFalse);
+            $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
+
+            $this->index($arrayRespostas,$trueFalse);//mostrar ranking
+
+        } else {
+            //$data['_view'] = 'resposta/add';
+            //$this->load->view('layouts/main', $data);
+            //$this->index("");
+        }
+    }
+
+    function addImagemFrase()
+    {
+        $imagemFrase=json_decode(htmlspecialchars_decode($this->input->post('imagemFrase')));
+        if (isset($_POST) && count($_POST) > 0) {
+            $data_inicio = new DateTime($this->input->post('data'));
+            $data_atual = new DateTime();
+            $tempo = $data_inicio->diff($data_atual)->s;
+            $idUsuario = $this->session->userdata['usuario_logado'];
+            $pontuacao = 0;
+            $quantidadeAcertos = 0;
+            $dia = date("Y-m-d");
+            $respostaUsuario = $this->input->post('resposta');
+            $respostaCorreta = $this->input->post('respostaCorreta');
+            $arrayRespostas['0'] = array("arrayRespostaUsuario"=>$respostaUsuario, "arrayRespostaCorreta"=>$respostaCorreta);
+            if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
+                $quantidadeAcertos++;
+            }
+            $params = array(
+                'idUsuario' => $idUsuario,
+                'respostaCorreta' => $respostaCorreta,
+                'respostaUsuario' => $respostaUsuario,
+            );
+            $resposta_id = $this->Resposta_model->add_resposta($params);
+
+            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+
+            $this->salvarProgresso($idUsuario, $imagemFrase->idLicao, $pontuacao, $tempo, $dia, null, $imagemFrase->idImagemFrase, null, null);
+            $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
+            $this->index($arrayRespostas,$imagemFrase);//mostrar ranking
+
+        } else {
+            //$data['_view'] = 'resposta/add';
+            //$this->load->view('layouts/main', $data);
+            //$this->index("");
+        }
     }
 
 }

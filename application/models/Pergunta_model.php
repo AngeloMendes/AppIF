@@ -60,4 +60,16 @@ class Pergunta_model extends CI_Model
     {
         return $this->db->get_where('Pergunta',array('idLicao'=>$idLicao))->result_array();
     }
+    function get_all_pergunta_licao_order($idLicao)
+    {
+        $this->db->order_by('ordem', 'asc');
+        return $this->db->get_where('Pergunta',array('idLicao'=>$idLicao))->result_array();
+    }
+    /*
+    * function to get all perguntas by idLicao and ordem
+    */
+    function get_pergunta_licao_ordem($idLicao,$ordem)
+    {
+        return $this->db->get_where('Pergunta',array('idLicao'=>$idLicao, 'ordem'=>$ordem))->row_array();
+    }
 }

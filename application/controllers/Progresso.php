@@ -33,6 +33,10 @@ class Progresso extends CI_Controller{
 				'idUsuario' => $this->input->post('idUsuario'),
 				'idLicao' => $this->input->post('idLicao'),
 				'idPergunta' => $this->input->post('idPergunta'),
+                'idDialogo' => $this->input->post('idDialogo'),
+                'idImagemFrase' => $this->input->post('idImagemFrase'),
+                'idTrueFalse' => $this->input->post('idTrueFalse'),
+
             );
             
             $progresso_id = $this->Progresso_model->add_progresso($params);
