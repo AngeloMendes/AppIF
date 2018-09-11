@@ -1,4 +1,4 @@
-<?php echo form_open_multipart('pergunta/add', array("class" => "form-horizontal")); ?>
+<?php echo form_open_multipart('pergunta/add/'.$idLicao, array("class" => "form-horizontal")); ?>
 <div class="form-add">
     <div class="form-group">
         <div class="col-md-8  form-inputs">

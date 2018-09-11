@@ -108,7 +108,7 @@ class Pergunta extends CI_Controller
                 'idLicao' => $this->input->post('idLicao'),
                 'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                 'caixaTexto' => $this->input->post('caixaTexto'),
-                'tipo'=>'multiplaEscolha',
+                'tipo'=>'pergunta',
                 'ordem'=>$this->Licao_model->setOrdem($idLicao),
             );
             /*$configuracaoImagem = array(
