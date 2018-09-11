@@ -133,7 +133,7 @@ class Pergunta extends CI_Controller
 
 
             $pergunta_id = $this->Pergunta_model->add_pergunta($params);
-            redirect('pergunta/index');
+            redirect('licao/index');
         } else {
             $data['_view'] = 'pergunta/add';
             $data['idLicao'] = $idLicao;
