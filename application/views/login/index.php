@@ -1,6 +1,5 @@
-<?php echo $msg;?>
 <?php echo form_open('usuario/login', array("class" => "form-horizontal")); ?>
-<link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
+    <link rel="stylesheet" type="text/css" href="   /Appif/application/views/css/style.css">
 
 
 
@@ -15,7 +14,10 @@
         </div>
         <div class="col-md-4">
         </div>
+
     </div>
+    <?php echo $msg;?>
+
 </div>
 
 

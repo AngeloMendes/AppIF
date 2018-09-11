@@ -33,8 +33,13 @@
     </div>
     </div>-->
     <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+            <label for="video">Adicione uma imagem </label></div>
+
+        <label for="video">Adicione um video </label>
+    </div>
+    <div class="row">
         <div class="col-md-4 col-md-offset-1">
-            <label for="video">Adicione uma imagem </label>
             <div class="form-group files">
 
                 <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
@@ -42,7 +47,8 @@
                        id="imagem" multiple=""></div>
         </div>
         <div class="col-md-4 col-md-offset-2">
-            <label for="video">Adicione um video </label>
+
+
             <div class="form-group files">
                 <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
                        class="form-control"

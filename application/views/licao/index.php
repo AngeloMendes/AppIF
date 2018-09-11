@@ -38,16 +38,15 @@
                             <td>
                                 <?php echo $L['descricao']; ?>
                             </td>
-                            <td>
-                                <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">pergunta</a>
-                                <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">múltipla escolha</a>
-                                <a href="<?php echo site_url('truefalse/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">verdadeiro ou falso</a>
-                                <a href="<?php echo site_url('dialogo/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">diálogo</a>
-                                <a href="<?php echo site_url('imagemfrase/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">relacionar frases a imagem</a>
+                            <td align="center" >
+                                <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Múltipla escolha</a>
+                                <a href="<?php echo site_url('truefalse/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Verdadeiro ou falso</a>
+                                <a href="<?php echo site_url('dialogo/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Diálogo</a>
+                                <a href="<?php echo site_url('imagemfrase/add/'.$L['idLicao']); ?>" class="btn btn-default btn-xs">Relacionar frases a imagem</a>
 
                             </td>
                             <td>
-                                <a href="<?php echo site_url('licao/preLicao/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Iniciar lição</a>
+                                <a href="<?php echo site_url('licao/preLicao/'.$L['idLicao']); ?>" class="btn btn-success btn-xs">Iniciar lição</a>
 
                             </td>
                         </div>
