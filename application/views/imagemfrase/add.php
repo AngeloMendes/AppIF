@@ -1,4 +1,4 @@
-<?php echo form_open('imagemfrase/add', array("class" => "form-horizontal")); ?>
+<?php echo form_open('imagemfrase/add/'.$idLicao, array("class" => "form-horizontal")); ?>
 
 <div class="form-group">
     <label for="titulo" class="col-md-4 control-label">Título</label>
