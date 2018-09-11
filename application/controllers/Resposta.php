@@ -141,12 +141,13 @@ class Resposta extends CI_Controller
             $dia = date("Y-m-d");
 
             $i = 1;
-            $arrayIndexRespostas=array('arrayRespostaUsuario', 'arrayRespostaCorreta');
+
             $arrayRespostas = array();
             while (!empty($_POST['resposta' . $i])) {
                 $respostaUsuario = $this->input->post('resposta' . $i);
                 $respostaCorreta = $this->input->post('respostaCorreta' . $i);
-                $arrayRespostas[$i] = array_merge($arrayRespostas,$arrayIndexRespostas($respostaUsuario, $respostaCorreta));
+                $arrayRespostas[$i]['arrayRespostaUsuario'] = $respostaUsuario;
+                $arrayRespostas[$i]['arrayRespostaCorreta'] = $respostaCorreta;
                 if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
                     $quantidadeAcertos++;
                 }
