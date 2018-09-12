@@ -1,4 +1,4 @@
-<?php echo form_open('licao/add', array("class" => "form-horizontal")); ?>
+<?php echo form_open_multipart('licao/add', array("class" => "form-horizontal")); ?>
 <link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
 <h1 align="center">Adicionar Lição </h1>
 <div class="form-add">
@@ -14,7 +14,7 @@
         <div class="col-md-3 col-md-offset-3 form-inputs">
             <div class="form-group files">
                 <label for="imagem">Adicione uma imagem </label>
-                <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
+                <input type="file" name="imagem" value="<?php //echo $this->input->post('imagem'); ?>"
                        class="form-control"
                        id="imagem" multiple="">
             </div>
@@ -25,7 +25,7 @@
         <div class="col-md-3 col-md-offset-3 form-inputs">
             <div class="form-group files">
                 <label for="video">Adicione um video </label>
-                <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
+                <input type="file" name="video" value="<?php //echo $this->input->post('video'); ?>"
                        class="form-control"
                        id="video" multiple="">
             </div>
