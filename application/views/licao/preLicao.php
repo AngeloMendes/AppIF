@@ -5,7 +5,12 @@
 <div>
     <span><?php echo $licao['titulo'] ?></span><br>
     <span><?php echo $licao['descricao'] ?></span><br>
-    <span><?php echo $licao['imagem'] ?></span><br>
+    <span>
+        <?php  if($licao['imagem']!="" and $licao['imagem']!='error') {?>
+            <img src="<?php echo $licao['imagem']; ?>" height="100px">
+        <?php }?>
+    </span><br>
+
 
 
 </div>
