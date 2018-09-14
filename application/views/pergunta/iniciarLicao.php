@@ -47,28 +47,33 @@
         <div  class="row btn-group-toggle col-md-offset-1" data-toggle="buttons">
 
                 <label style="margin: 1% 1% 1% 1%"class="btn btn-danger  col-xs-12 col-sm-10 col-md-5 col-sm-offset-2">
-                    <input type="radio" name="resposta" autocomplete="off">  <?php echo $pergunta->opcao1; ?>
+                    <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao1; ?>">  <?php echo $pergunta->opcao1; ?>
                 </label>
                 <label style="margin: 1% 1% 1% 1%"class="btn btn-success  col-xs-12 col-sm-10 col-md-5  col-sm-offset-2">
-                    <input type="radio" name="resposta" autocomplete="off">  <?php echo $pergunta->opcao2; ?>
+                    <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao2; ?>">  <?php echo $pergunta->opcao2; ?>
                 </label>
 
 
                 <label style="margin: 1% 1% 1% 1%"class="btn btn-warning col-xs-12 col-sm-10 col-md-5 col-sm-offset-1">
-                    <input type="radio" name="resposta" autocomplete="off">  <?php echo $pergunta->opcao3; ?>
+                    <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao3; ?>">  <?php echo $pergunta->opcao3; ?>
                 </label>
                 <label style="margin: 1% 1% 1% 1%"class="btn btn-info col-xs-12 col-sm-10 col-md-5  col-sm-offset-1">
-                    <input type="radio" name="resposta" autocomplete="off">  <?php echo $pergunta->opcao4; ?>
+                    <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao4; ?>">  <?php echo $pergunta->opcao4; ?>
                 </label>
+                <?php if(!$pergunta->opcao5){
+                      echo "<!--";
+                }?>
+                    <label style="margin: 1% 1% 1% 1%"class="btn btn-info col-xs-12 col-sm-10 col-md-5  col-sm-offset-1">
+                      <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao5; ?>"/> <?php echo $pergunta->opcao5;?> 
+                    </label>
+                <?php if(!$pergunta->opcao5){
+                      echo "-->";
+                }?>
 
 
         </div>
 
-
-
-
     <input type="hidden" name="respostaCorreta"  value="<?php echo $pergunta->opcaoCorreta; ?>"/>
-
     <input type="hidden" name="data" value="<?=$data_inicio; ?>"/>
 
 

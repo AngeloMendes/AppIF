@@ -10,7 +10,11 @@
 
             <th>Video</th>
             <th>Descricao</th>
-            <th>Perguntas</th>
+            <?php if($this->session->userdata['tipo']!='aluno'){
+                echo "<th>Perguntas</th>";
+            }?>
+
+
         </tr>
         <?php foreach ($licao as $L) { ?>
 
@@ -38,13 +42,23 @@
                             <td>
                                 <?php echo $L['descricao']; ?>
                             </td>
-                            <td align="center" >
+
+                            <?php if($this->session->userdata['tipo']=='aluno'){
+                                echo "<!--";
+                            }?>
+                            
+                           <td align="center" >
                                 <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Múltipla escolha</a>
                                 <a href="<?php echo site_url('truefalse/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Verdadeiro ou falso</a>
                                 <a href="<?php echo site_url('dialogo/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Diálogo</a>
                                 <a href="<?php echo site_url('imagemfrase/add/'.$L['idLicao']); ?>" class="btn btn-default btn-xs">Relacionar frases a imagem</a>
+                                                             
+
 
                             </td>
+                            <?php if($this->session->userdata['tipo']=='aluno'){
+                                echo "-->";
+                            }?>
                             <td>
                                 <a href="<?php echo site_url('licao/preLicao/'.$L['idLicao']); ?>" class="btn btn-success btn-xs">Iniciar lição</a>
 
