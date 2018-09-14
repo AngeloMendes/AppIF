@@ -1,38 +1,35 @@
-<?php echo form_open_multipart('pergunta/add/' . $idLicao, array("class" => "form-horizontal")); ?>
+
+<?php echo form_open_multipart('pergunta/add/'.$idLicao, array("class" => "form-horizontal")); ?>
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
+
 <div class="form-add">
+
     <div class="form-group">
         <div class="col-md-8  form-inputs">
-            <!--<label for="idLicao">Lição</label>-->
             <input type="hidden" name="idLicao" value="<?php echo $idLicao; ?>" id="idLicao"/>
-
-            <!--<select name='idLicao' id='idLicao'>
-                <option value=''> Selecione uma lição</option>
-                <?php
-            foreach ($licoes as $key => $list) {
-                echo "<option value='" . $this->input->post('idLicao') . "'>" . $list['titulo'] . '</option>';
-            }
-            echo '</optgroup>';
-
-            ?>
-            </select>-->
-
+        </div>
+    </div>
+    <div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <h1 align="center" for="titulo">Múltipla escolha</h1>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-8  form-inputs">
+        <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <label for="titulo">Título</label>
             <input type="text" name="titulo" value="<?php echo $this->input->post('titulo'); ?>" class="form-control"
                    id="titulo"/>
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-8 form-inputs">
-            <label for="descricao">Descricao</label>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <label for="descricao">Descrição</label>
             <textarea class="form-control" rows="9" id="descricao" name="descricao"
                       value="<?php echo $this->input->post('descricao'); ?>"></textarea>
         </div>
     </div>
     <div class="row">
+
         <div class="col-md-6 col-md-offset-1">
             <label for="video">Adicione um video </label>
             <div class="col-md-4 col-md-offset-2">
@@ -41,9 +38,11 @@
                            class="form-control"
                            id="video" multiple="">
 
+
                 </div>
             </div>
         </div>
+
         <div>
             <label for="imagem">Adicione uma imagem </label>
             <div class="col-md-4 col-md-offset-1">
@@ -54,8 +53,10 @@
                 </div>
             </div>
 
+
         </div>
     </div>
+
     <div class="row">
 
     </div>
@@ -88,20 +89,23 @@
                    id="opcao5"/>
         </div>
     </div>
-
-
-    <div class="form-group">
+    <div class="row">
         <div class="col-md-4 col-md-offset-1">
-            <label style="margin: 3% 3% 3% 3%" for="opcaoCorreta">Opção correta</label>
-            <input type="text" name="opcaoCorreta" value="<?php echo $this->input->post('opcaoCorreta'); ?>"
-                   class="form-control"
+            <label style="margin: 3% 3% 3% 3%" for="opcao5">Opção 5</label>
+            <input type="text" name="opcao5" value="<?php echo $this->input->post('opcao5'); ?>" class="form-control"
+                   id="opcao5"/>
+        </div>
+        <div class="col-md-4  col-md-offset-2">
+            <label style="margin: 3% 3% 3% 3%" for="opcaoCorreta">Opção Correta</label>
+            <input type="text" name="opcaoCorreta" value="<?php echo $this->input->post('opcaoCorreta'); ?>" class="form-control"
                    id="opcaoCorreta"/>
         </div>
     </div>
 
+
     <div class="form-group">
         <div class="col-md-8 form-inputs">
-            <label for="caixaTexto">Observações</label>
+            <label style="margin-top: 3% " for="caixaTexto">Observações</label>
             <textarea class="form-control" rows="9" id="caixaTexto" name="caixaTexto"
                       value="<?php echo $this->input->post('caixaTexto'); ?>"></textarea>
         </div>
@@ -109,10 +113,9 @@
 
 
     <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-8 ">
+        <div class="col-sm-offset-4 col-sm-4 ">
             <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
         </div>
     </div>
 </div>
 <?php echo form_close(); ?>
-

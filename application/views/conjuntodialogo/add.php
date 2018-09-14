@@ -1,4 +1,5 @@
 <?php echo form_open('conjuntodialogo/add',array("class"=>"form-horizontal")); ?>
+
     <link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
 
 	<div class="form-group">

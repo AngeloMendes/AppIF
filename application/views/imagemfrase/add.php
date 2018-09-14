@@ -1,6 +1,11 @@
-<link rel="stylesheet" type="text/css" href="   /appif/application/views/css/style.css">
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 <?php echo form_open('imagemfrase/add', array("class" => "form-horizontal")); ?>
 <div class="form-add">
+    <div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <h1 align="center" for="titulo">Relacione imagem a frase</h1>
+        </div>
+    </div>
 <div class="form-group">
     <div class="col-md-8  form-inputs">
         <label for="titulo">Título</label>
@@ -8,9 +13,11 @@
                id="titulo"/>
     </div>
 </div>
+
 <div class="row">
     <div class="col-md-4 col-md-offset-1">
-        <label for="video">Adicione uma imagem </label>
+        <label for="video">Adicione imagem </label>
+
         <div class="form-group files">
 
             <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
@@ -18,8 +25,10 @@
                    id="imagem" multiple=""></div>
     </div>
     <div class="col-md-4 col-md-offset-2">
-        <label for="video">Adicione um video </label>
+        <label for="video">Adicione video </label>
+
         <div class="form-group files">
+
             <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
                    class="form-control"
                    id="video" multiple=""></div>
@@ -93,8 +102,8 @@
 
 
 <div class="form-group">
-    <div class="col-sm-offset-4 col-sm-8">
-        <button type="submit" class="btn btn-success">Save</button>
+    <div class="col-sm-offset-4 col-sm-4">
+        <button type="submit"class="btn btn-primary btn-lg btn-block">Adicionar</button>
     </div>
 </div>
 </div>
