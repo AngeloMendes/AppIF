@@ -1,5 +1,6 @@
-    <!--<a href="<?php base_url('resposta/index/' . $respostas . '/'.$pergunta) ?>">Atualizar Ranking</a>-->
-<?php if ($respostas) {?>
+<?php error_reporting(E_ERROR | E_PARSE); ?>
+<!--<a href="<?php base_url('resposta/index/' . $respostas . '/'.$pergunta) ?>">Atualizar Ranking</a>-->
+<?php if (isset($respostas)) {?>
 
     <?php foreach($respostas as $resposta){?>
     <div>
@@ -25,7 +26,7 @@
         <?php } ?>
     </table>
 
-<?php if (!$respostas) { ?>
+<?php if (!isset($respostas)) { ?>
     <a href="<?= base_url('licao/index') ?>">Lições</a>
 <?php } else {
 
