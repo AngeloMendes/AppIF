@@ -1,4 +1,6 @@
 <?php echo form_open('resposta/add', array("class" => "form-horizontal")); ?>
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
+
 <input type="hidden" name="pergunta" value="<?=htmlspecialchars(json_encode($pergunta));?>"/>
 
 <div>
@@ -16,8 +18,18 @@
     $data_inicio = $data_inicio->format('Y/m/d H:i:s');
     ?>
     <!--TRAZER as informações das perguntas e ENVIAR o id do usuario, a resposta escolhida, a resposta correta e o tempo-->
-    <span> <?php echo $pergunta->titulo; ?></span><br>
-    <span> <?php echo $pergunta->descricao; ?></span><br>
+    <div class="form-add">
+        <div class="form-group">
+            <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+                <h2 align="center" ><?php echo $pergunta->titulo; ?></h2>
+            </div>
+        </div>
+        <div class="form-group">
+            <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+                <h3 align="center" >  <?php echo $pergunta->descricao; ?>
+                </h3>
+            </div>
+        </div>
     <span>
         <?php if (!empty($pergunta->video) and $pergunta->video != 'error') { ?>
             <video id="video" class="" width="240" height="160" controls>
@@ -32,11 +44,29 @@
                     <?php }?>
     </span>
     <br>
+        <div  class="row btn-group-toggle col-md-offset-1" data-toggle="buttons">
 
-    <input type="radio" name="resposta" id="resposta1" value="<?php echo $pergunta->opcao1; ?>"/> <label for="resposta1"><?php echo $pergunta->opcao1;?></label> <br>
-    <input type="radio" name="resposta" id="resposta2" value="<?php echo $pergunta->opcao2; ?>"/> <label for="resposta2"><?php echo $pergunta->opcao2;?></label> <br>
-    <input type="radio" name="resposta" id="resposta3" value="<?php echo $pergunta->opcao3; ?>"/> <label for="resposta3"><?php echo $pergunta->opcao3;?></label> <br>
-    <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta->opcao4; ?>"/> <label for="resposta4"><?php echo $pergunta->opcao4;?></label> <br>
+                <label style="margin: 1% 1% 1% 1%"class="btn btn-danger  col-xs-12 col-sm-10 col-md-5 col-sm-offset-2">
+                    <input type="radio" name="resposta" autocomplete="off">  <?php echo $pergunta->opcao1; ?>
+                </label>
+                <label style="margin: 1% 1% 1% 1%"class="btn btn-success  col-xs-12 col-sm-10 col-md-5  col-sm-offset-2">
+                    <input type="radio" name="resposta" autocomplete="off">  <?php echo $pergunta->opcao2; ?>
+                </label>
+
+
+                <label style="margin: 1% 1% 1% 1%"class="btn btn-warning col-xs-12 col-sm-10 col-md-5 col-sm-offset-1">
+                    <input type="radio" name="resposta" autocomplete="off">  <?php echo $pergunta->opcao3; ?>
+                </label>
+                <label style="margin: 1% 1% 1% 1%"class="btn btn-info col-xs-12 col-sm-10 col-md-5  col-sm-offset-1">
+                    <input type="radio" name="resposta" autocomplete="off">  <?php echo $pergunta->opcao4; ?>
+                </label>
+
+
+        </div>
+
+
+
+
     <input type="hidden" name="respostaCorreta"  value="<?php echo $pergunta->opcaoCorreta; ?>"/>
 
     <input type="hidden" name="data" value="<?=$data_inicio; ?>"/>
@@ -46,9 +76,9 @@
     <span> <?php echo $pergunta->caixaTexto; ?></span>
 
 
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8 ">
-            <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+    <div >
+        <div class="col-sm-offset-2 col-sm-8 ">
+            <button  style="margin: 3% 1% 1% 1%" type="submit" class="btn btn-primary btn-lg btn-block">Próxima</button>
         </div>
     </div>
 </div>

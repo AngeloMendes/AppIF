@@ -1,5 +1,5 @@
 <?php echo form_open('progresso/add',array("class"=>"form-horizontal")); ?>
-<link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 
 <div class="form-add">
 

@@ -1,7 +1,12 @@
 <?php echo form_open('conjuntotruefalse/add/' . $idLicao, array("class" => "form-horizontal")); ?>
-<link rel="stylesheet" type="text/css" href="   /Appif/application/views/css/style.css">
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 
 <div class="form-add">
+    <div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <h1 align="center" for="titulo">Verdadero ou Falso</h1>
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-md-8  form-inputs">
             <label for="titulo" >Titulo</label>
@@ -9,14 +14,12 @@
                    class="form-control" id="titulo"/>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6 col-md-offset-1">
-            <label for="video">Adicione uma imagem </label></div>
 
-        <label for="video">Adicione um video </label>
-    </div>
+
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
+            <label for="video">Adicione imagem </label>
+
             <div class="form-group files">
 
                 <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
@@ -25,6 +28,7 @@
         </div>
         <div class="col-md-4 col-md-offset-2">
 
+            <label for="video">Adicione video </label>
 
             <div class="form-group files">
                 <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"

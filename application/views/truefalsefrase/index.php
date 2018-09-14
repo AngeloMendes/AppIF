@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 <div style="margin: 3% 3% 3% 3%">
 <div class="pull-right">
 	<a href="<?php echo site_url('truefalsefrase/add'); ?>" class="btn btn-success">Add</a> 

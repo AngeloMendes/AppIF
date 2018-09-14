@@ -1,5 +1,5 @@
 <?php echo form_open('usuario/add',array("class"=>"form-horizontal")); ?>
-<link rel="stylesheet" type="text/css" href="   /Appif/application/views/css/style.css">
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 
 
 

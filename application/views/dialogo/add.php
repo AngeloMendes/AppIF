@@ -1,6 +1,11 @@
-<link rel="stylesheet" type="text/css" href="   /Appif/application/views/css/style.css">
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 <?php echo form_open('conjuntodialogo/add/'.$idLicao, array("class" => "form-horizontal")); ?>
 <div class="form-add">
+    <div>
+        <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <h1 align="center" for="titulo">Dialogo</h1>
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-md-6  form-inputs">
             <label for="titulo">Titulo</label>
