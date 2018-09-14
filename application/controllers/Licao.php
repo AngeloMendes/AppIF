@@ -31,9 +31,9 @@ class Licao extends CI_Controller
     {
         if (isset($_POST) && count($_POST) > 0) {
             $titulo = $this->input->post('titulo');
+
             if(!empty($_FILES['imagem']['name'])){
                 $imagem = $_FILES['imagem'];
-                print_r($imagem);
 
                 $extensaoImagem = explode('.', $imagem['name']);
                 $extensaoImagem = end($extensaoImagem);
