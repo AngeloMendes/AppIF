@@ -37,8 +37,14 @@
     <input type="radio" name="resposta" id="resposta2" value="<?php echo $pergunta->opcao2; ?>"/> <label for="resposta2"><?php echo $pergunta->opcao2;?></label> <br>
     <input type="radio" name="resposta" id="resposta3" value="<?php echo $pergunta->opcao3; ?>"/> <label for="resposta3"><?php echo $pergunta->opcao3;?></label> <br>
     <input type="radio" name="resposta" id="resposta4" value="<?php echo $pergunta->opcao4; ?>"/> <label for="resposta4"><?php echo $pergunta->opcao4;?></label> <br>
+    <?php if(!$pergunta->opcao5){
+        echo "<!--";
+    }?>
+    <input type="radio" name="resposta" id="resposta5" value="<?php echo $pergunta->opcao5; ?>"/> <label for="resposta4"><?php echo $pergunta->opcao5;?></label> <br>
+    <?php if(!$pergunta->opcao5){
+        echo "-->";
+    }?>
     <input type="hidden" name="respostaCorreta"  value="<?php echo $pergunta->opcaoCorreta; ?>"/>
-
     <input type="hidden" name="data" value="<?=$data_inicio; ?>"/>
 
 
