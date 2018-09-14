@@ -1,4 +1,4 @@
-<?php echo form_open_multipart('pergunta/add/'.$idLicao, array("class" => "form-horizontal")); ?>
+<?php echo form_open_multipart('pergunta/add/' . $idLicao, array("class" => "form-horizontal")); ?>
 <div class="form-add">
     <div class="form-group">
         <div class="col-md-8  form-inputs">
@@ -35,7 +35,7 @@
     <div class="row">
         <div class="col-md-6 col-md-offset-1">
             <label for="video">Adicione um video </label></div>
-            <label for="video">Adicione uma imagem </label>
+        <label for="video">Adicione uma imagem </label>
     </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
@@ -43,8 +43,10 @@
 
                 <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
                        class="form-control"
-                       id="imagem" multiple=""></div>
+                       id="imagem" multiple="">
+            </div>
         </div>
+
         <div class="col-md-4 col-md-offset-2">
 
 
@@ -61,21 +63,26 @@
                    id="opcao1"/>
         </div>
         <div class="col-md-4  col-md-offset-2">
-            <label  style="margin: 3% 3% 3% 3%" for="opcao2">Opção 2</label>
+            <label style="margin: 3% 3% 3% 3%" for="opcao2">Opção 2</label>
             <input type="text" name="opcao2" value="<?php echo $this->input->post('opcao2'); ?>" class="form-control"
                    id="opcao2"/>
         </div>
     </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
-            <label style="margin: 3% 3% 3% 3%" for="opcao1">Opção 3</label>
+            <label style="margin: 3% 3% 3% 3%" for="opcao3">Opção 3</label>
             <input type="text" name="opcao3" value="<?php echo $this->input->post('opcao3'); ?>" class="form-control"
-                   id="opcao1"/>
+                   id="opcao3"/>
         </div>
         <div class="col-md-4  col-md-offset-2">
-            <label style="margin: 3% 3% 3% 3%" for="opcao2">Opção 4</label>
+            <label style="margin: 3% 3% 3% 3%" for="opcao4">Opção 4</label>
             <input type="text" name="opcao4" value="<?php echo $this->input->post('opcao4'); ?>" class="form-control"
-                   id="opcao2"/>
+                   id="opcao4"/>
+        </div>
+        <div class="col-md-4  col-md-offset-2">
+            <label style="margin: 3% 3% 3% 3%" for="opcao5">Opção 5</label>
+            <input type="text" name="opcao5" value="<?php echo $this->input->post('opcao5'); ?>" class="form-control"
+                   id="opcao5"/>
         </div>
     </div>
 

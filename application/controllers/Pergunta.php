@@ -51,7 +51,7 @@ class Pergunta extends CI_Controller
                     'max_height' => '4096'
                 );*/
                 $configuracaoImagem = array(
-                    'upload_path' => './midias/imagens/perguntas/',
+                    'upload_path' => './application/midias/imagens/perguntas/',
                     'allowed_types' => 'jpg,png,jpeg,gif,tiff',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
                             array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
@@ -80,7 +80,7 @@ class Pergunta extends CI_Controller
                     'max_size' => '500000000'
                 );*/
                 $configuracaoVideo = array(
-                    'upload_path' => './midias/videos/perguntas/',
+                    'upload_path' => './application/midias/videos/perguntas/',
                     'allowed_types' => 'FLV, AVI, WMV, MOV, RMVB, MPEG, MKV,mp4',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
                             array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
