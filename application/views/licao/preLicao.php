@@ -14,5 +14,5 @@
 
 
 </div>
-<a href="<?php echo site_url('pergunta/iniciarLicao/' . $licao['idLicao'])?>" >Iniciar</a>
+<a href="<?php echo site_url('pergunta/selectPergunta/' . $licao['idLicao']. '/'.'0')?>" >Iniciar</a>
 
