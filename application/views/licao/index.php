@@ -10,7 +10,11 @@
 
             <th>Video</th>
             <th>Descricao</th>
-            <th>Perguntas</th>
+            <?php if($this->session->userdata['tipo']!='aluno'){
+                echo "<th>Perguntas</th>";
+            }?>
+
+
         </tr>
         <?php foreach ($licao as $L) { ?>
 
@@ -38,6 +42,9 @@
                             <td>
                                 <?php echo $L['descricao']; ?>
                             </td>
+                            <?php if($this->session->userdata['tipo']=='aluno'){
+                                echo "<!--";
+                            }?>
                             <td>
                                 <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">pergunta</a>
                                 <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">múltipla escolha</a>
@@ -46,6 +53,9 @@
                                 <a href="<?php echo site_url('imagemfrase/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">relacionar frases a imagem</a>
 
                             </td>
+                            <?php if($this->session->userdata['tipo']=='aluno'){
+                                echo "-->";
+                            }?>
                             <td>
                                 <a href="<?php echo site_url('licao/preLicao/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Iniciar lição</a>
 
