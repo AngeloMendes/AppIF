@@ -21,13 +21,13 @@
     <div class="form-add">
         <div class="form-group">
             <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
-                <h2 align="center" ><?php echo $pergunta->titulo; ?></h2>
+                <h1 align="center" ><?php echo $pergunta->titulo; ?></h1>
             </div>
         </div>
         <div class="form-group">
             <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
-                <h3 align="center" >  <?php echo $pergunta->descricao; ?>
-                </h3>
+                <h2 align="center" >  <?php echo $pergunta->descricao; ?>
+                </h2>
             </div>
         </div>
     <span>
@@ -44,21 +44,24 @@
                     <?php }?>
     </span>
     <br>
-        <div  class="row btn-group-toggle col-md-offset-1" data-toggle="buttons">
-
-                <label style="margin: 1% 1% 1% 1%"class="btn btn-danger  col-xs-12 col-sm-10 col-md-5 col-sm-offset-2">
-                    <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao1; ?>">  <?php echo $pergunta->opcao1; ?>
-                </label>
-                <label style="margin: 1% 1% 1% 1%"class="btn btn-success  col-xs-12 col-sm-10 col-md-5  col-sm-offset-2">
-                    <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao2; ?>">  <?php echo $pergunta->opcao2; ?>
-                </label>
+        <div  class="row btn-group-toggle col-md-offset-1" data-toggle="buttons" >
 
 
-                <label style="margin: 1% 1% 1% 1%"class="btn btn-warning col-xs-12 col-sm-10 col-md-5 col-sm-offset-1">
-                    <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao3; ?>">  <?php echo $pergunta->opcao3; ?>
+
+
+                <label  style="margin: 1% 1% 1% 1%" class="btn btn-success col-xs-12 col-sm-10 col-md-5 col-sm-offset-2" >
+                    <input type="radio" id="opt1"  name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao1; ?>">  <?php echo $pergunta->opcao1; ?>
                 </label>
-                <label style="margin: 1% 1% 1% 1%"class="btn btn-info col-xs-12 col-sm-10 col-md-5  col-sm-offset-1">
-                    <input type="radio" name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao4; ?>">  <?php echo $pergunta->opcao4; ?>
+                <label style="margin: 1% 1% 1% 1%" class="btn btn-info col-xs-12 col-sm-10 col-md-5  col-sm-offset-2">
+                    <input type="radio" id="opt2"  name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao2; ?>">  <?php echo $pergunta->opcao2; ?>
+                </label>
+
+
+                <label style="margin: 1% 1% 1% 1%" class="btn btn-danger col-xs-12 col-sm-10 col-md-5 col-sm-offset-1">
+                    <input type="radio" id="opt3"  name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao3; ?>">  <?php echo $pergunta->opcao3; ?>
+                </label>
+                <label style="margin: 1% 1% 1% 1%" class="btn btn-warning col-xs-12 col-sm-10 col-md-5  col-sm-offset-1">
+                    <input type="radio" id="opt4"  name="resposta" autocomplete="off" value="<?php echo $pergunta->opcao4; ?>">  <?php echo $pergunta->opcao4; ?>
                 </label>
                 <?php if(!$pergunta->opcao5){
                       echo "<!--";
@@ -88,3 +91,30 @@
     </div>
 </div>
 <?php echo form_close(); ?>
+
+
+<style>
+    .btn-success {
+        border-color: #7bc143;
+        color: #1f1d1d;
+        background-color: #8c9b9c;
+    }
+    .btn-danger {
+        border-color: #c13930;
+        color: #1f1d1d;
+        background-color: #8c9b9c;
+
+    }
+    .btn-info {
+        border-color: #60b6c1;
+        color: #1f1d1d;
+        background-color: #8c9b9c;
+
+    }
+    .btn-warning {
+        border-color: #c1bf1d;
+        color: #1f1d1d;
+        background-color: #8c9b9c;
+
+    }
+</style>

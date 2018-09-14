@@ -1,5 +1,4 @@
 
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700);
 
 body {
     font-family: 'Open Sans', 'sans-serif';
@@ -127,10 +126,10 @@ label {
 .color input {
     background-color: #f1f1f1;
 }
-img {
-    width: 100%;
-    height: auto;
-}
+
+
+
+
 /*.files:before {
     position: absolute;
     bottom: 10px;

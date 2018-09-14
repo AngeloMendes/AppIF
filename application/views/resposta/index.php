@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
+
 <div class="pull-right">
 	<a href="<?php echo site_url('resposta/add'); ?>" class="btn btn-success">Add</a>
 </div>

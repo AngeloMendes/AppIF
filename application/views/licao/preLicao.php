@@ -20,7 +20,7 @@
 <div class="form-group">
     <div align="center" style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
         <?php  if($licao['imagem']!="" and $licao['imagem']!='error') {?>
-            <img class="media-object" src="<?php echo $licao['imagem']; ?>" "width="460" height="345">
+            <img class="media-object" src="<?php echo $licao['imagem']; ?>" width="460" height="345">
         <?php }?>
 
 
