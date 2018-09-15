@@ -83,11 +83,7 @@
             <input type="text" name="opcao4" value="<?php echo $this->input->post('opcao4'); ?>" class="form-control"
                    id="opcao4"/>
         </div>
-        <div class="col-md-4  col-md-offset-2">
-            <label style="margin: 3% 3% 3% 3%" for="opcao5">Opção 5</label>
-            <input type="text" name="opcao5" value="<?php echo $this->input->post('opcao5'); ?>" class="form-control"
-                   id="opcao5"/>
-        </div>
+
     </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-1">

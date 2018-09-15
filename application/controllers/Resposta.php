@@ -29,6 +29,13 @@ class Resposta extends CI_Controller
         $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
     }
+    function rankingFinal()
+    {
+        //$data['resposta'] = $this->Resposta_model->get_all_resposta();
+        $data['ranking'] = $this->Usuario_model->get_ranking();
+        $data['_view'] = 'licao/ranking';
+        $this->load->view('layouts/main', $data);
+    }
 
     /*
      * Adding a new resposta

@@ -10,6 +10,7 @@ class Imagemfrase extends CI_Controller{
         parent::__construct();
         $this->load->model('Imagemfrase_model');
         $this->load->model('Licao_model');
+        $this->load->library('upload');
     } 
 
     /*
@@ -29,11 +30,78 @@ class Imagemfrase extends CI_Controller{
     function add($idLicao)
     {   
         if(isset($_POST) && count($_POST) > 0)     
-        {   
+        {
+            $titulo = $this->input->post('titulo');
+            $opcaoCorreta=$this->input->post('opcaoCorreta');
+            if (!empty($_FILES['imagem']['name'])) {
+                $imagem = $_FILES['imagem'];
+
+                $extensaoImagem = explode('.', $imagem['name']);
+                $extensaoImagem = end($extensaoImagem);
+
+                $caminhoImagem = base_url('application/midias/imagens/perguntas/') . str_replace(array(' ', '?', '!', '.', ':'),
+                        array('', '', '', '', ''), $titulo)  . '.' . $opcaoCorreta. $extensaoImagem;
+                /*$configuracaoImagem = array(
+                    'upload_path' => './application/midias/imagens/licoes/',
+                    'allowed_types' => 'jpg|png|jpeg|gif',
+                    'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoImagem,
+                    'max_size' => '500000',
+                    'max_width' => '4096',
+                    'max_height' => '4096'
+                );*/
+                $configuracaoImagem = array(
+                    'upload_path' => './application/midias/imagens/perguntas/',
+                    'allowed_types' => 'jpg|png|jpeg|gif|tiff',
+                    'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
+                            array('', '', '', '', ''), $titulo) . '.' . $opcaoCorreta.$extensaoImagem,
+                    'max_size' => '500000',
+                    'max_width' => '4096',
+                    'max_height' => '4096'
+                );
+
+                $this->upload->initialize($configuracaoImagem);
+                if (!$this->upload->do_upload('imagem')) {
+                    //$caminhoImagem=$this->upload->display_errors();
+                    $caminhoImagem = 'error';
+                }
+            } else {
+                $caminhoImagem = "";
+            }
+
+
+            if (!empty($_FILES['video']['name'])) {
+                $video = $_FILES['video'];
+                $extensaoVideo = explode('.', $video['name']);
+                $extensaoVideo = end($extensaoVideo);
+                $caminhoVideo = base_url('application/midias/videos/perguntas/') . str_replace(" ", "", $titulo) . '.' . $extensaoVideo;
+                /*$configuracaoVideo = array(
+                    'upload_path' => './application/midias/videos/licoes/',
+                    'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG',
+                    'file_name' => str_replace(" ", "", $titulo) . '.' . $extensaoVideo,
+                    'max_size' => '500000000'
+                );*/
+                $configuracaoVideo = array(
+                    'upload_path' => './application/midias/videos/perguntas/',
+                    'allowed_types' => 'FLV| AVI| WMV| MOV| RMVB| MPEG| MKV|mp4|MP4',
+                    'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
+                            array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
+                    'max_size' => '50000000'
+                );
+                $this->upload->initialize($configuracaoVideo);
+                if (!$this->upload->do_upload('video')) {
+                    //$caminhoVideo=$this->upload->display_errors();
+                    $caminhoVideo = 'error';
+                }
+            } else {
+                $caminhoVideo = "";
+            }
+
+
+
             $params = array(
-				'titulo' => $this->input->post('titulo'),
-				'imagem' => $this->input->post('imagem'),
-				'video' => $this->input->post('video'),
+				'titulo' => $titulo,
+				'imagem' => $caminhoImagem,
+				'video' => $caminhoVideo,
 				'descricao' => $this->input->post('descricao'),
 				'frase1' => $this->input->post('frase1'),
 				'frase2' => $this->input->post('frase2'),

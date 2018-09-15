@@ -1,5 +1,5 @@
 <?php error_reporting(E_ERROR | E_PARSE); ?>
-<!--<a href="<?php base_url('resposta/index/' . $respostas . '/'.$pergunta) ?>">Atualizar Ranking</a>-->
+
 <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 <?php if (isset($respostas)) {?>
 
@@ -34,6 +34,7 @@
 
 <?php if (!isset($respostas)) { ?>
     <a href="<?= base_url('licao/index') ?>">Lições</a>
+    <a href="<?php base_url('resposta/rankingFinal/') ?>">Ranking Final (esperar todos acabarem)</a>
 <?php } else {
 
     ?>
