@@ -10,19 +10,16 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col-md-6 col-md-offset-1">
 
-
-
-    </div>
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
+            <label for="imagem">Adicione uma imagem </label>
+
             <div class="form-group files">
-                <label for="imagem">Adicione uma imagem </label></div>
                 <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
                        class="form-control"
-                       id="imagem" multiple=""></div>
+                       id="imagem" multiple="">
+            </div>
         </div>
         <div class="col-md-4 col-md-offset-2">
 
