@@ -1,7 +1,8 @@
-<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
-
+<?php error_reporting(E_ERROR | E_PARSE); ?>
 <!--<a href="<?php base_url('resposta/index/' . $respostas . '/'.$pergunta) ?>">Atualizar Ranking</a>-->
-<?php if ($respostas) {?>
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
+<?php if (isset($respostas)) {?>
+
 
     <?php foreach($respostas as $resposta){?>
    <div class="form-add">
@@ -31,7 +32,7 @@
         <?php } ?>
     </table>
 
-<?php if (!$respostas) { ?>
+<?php if (!isset($respostas)) { ?>
     <a href="<?= base_url('licao/index') ?>">Lições</a>
 <?php } else {
 

@@ -42,7 +42,7 @@ class Pergunta extends CI_Controller
                 $extensaoImagem = explode('.', $imagem['name']);
                 $extensaoImagem = end($extensaoImagem);
 
-                $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoImagem;
+                $caminhoImagem = base_url('application/midias/imagens/perguntas/') . str_replace(" ", "", $titulo) . '.' . $extensaoImagem;
                 /*$configuracaoImagem = array(
                     'upload_path' => './application/midias/imagens/licoes/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
@@ -75,7 +75,7 @@ class Pergunta extends CI_Controller
                 $video = $_FILES['video'];
                 $extensaoVideo = explode('.', $video['name']);
                 $extensaoVideo = end($extensaoVideo);
-                $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoVideo;
+                $caminhoVideo = base_url('application/midias/videos/perguntas/') . str_replace(" ", "", $titulo) . '.' . $extensaoVideo;
                 /*$configuracaoVideo = array(
                     'upload_path' => './application/midias/videos/licoes/',
                     'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG',
@@ -222,7 +222,7 @@ class Pergunta extends CI_Controller
         $ordem++;
         $pergunta = (object) $this->Licao_model->getProxPergunta($idLicao,$ordem);
 
-        if($pergunta and $pergunta->tipo!='pergunta') {
+        if($pergunta and $pergunta->tipo!='pergunta' and $pergunta->tipo!='') {
             $data[$pergunta->tipo]= $pergunta;
             $data['_view'] = $pergunta->tipo . '/'. $pergunta->tipo . 'Responder';
             $this->load->view('layouts/main', $data);
@@ -232,9 +232,9 @@ class Pergunta extends CI_Controller
             $data['_view'] = 'pergunta/iniciarLicao';
             $this->load->view('layouts/main', $data);
         }
+        //redirecionar para ranking final
         else{
-            //redirecionar para ranking final
-            redirect('resposta/index/' . null.'/'. null);
+            redirect('resposta/index/' . null . '/' . null);
         }
 
     }
