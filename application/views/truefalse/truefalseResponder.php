@@ -34,7 +34,7 @@
         <?php $i=1; $j=0;?>
         <?php $truefalse = get_object_vars($truefalse);?>
         <?php while (isset($truefalse['frase'.$i])) { ?>
-            <span> <?php echo $truefalse['frase'.$i]; ?></span><br>
+            <span> <?php echo $truefalse['frase'.$i][$j]['frase']; ?></span><br>
             <input type="radio" name=<?php echo "resposta".$i; ?> id=<?php echo "resposta1[".$i."]"; ?> value="<?= $i/2==0? $truefalse['frase'.$i][$j]['opcaoFalse'] : $truefalse['frase'.$i][$j]['opcaoTrue']; ?>"> <label
                 for=<?php echo "resposta1[".$i."]"; ?>><?= $i/2==0? $truefalse['frase'.$i][$j]['opcaoTrue'] : $truefalse['frase'.$i][$j]['opcaoFalse']; ?></label> <br>
             <input type="radio" name=<?php echo "resposta".$i; ?> id=<?php echo "resposta2[".$i."]"; ?> value="<?= $i/2==0? $truefalse['frase'.$i][$j]['opcaoTrue'] : $truefalse['frase'.$i][$j]['opcaoFalse']; ?>"> <label
