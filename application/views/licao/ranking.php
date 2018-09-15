@@ -1,13 +1,19 @@
 <?php error_reporting(E_ERROR | E_PARSE); ?>
 <!--<a href="<?php base_url('resposta/index/' . $respostas . '/'.$pergunta) ?>">Atualizar Ranking</a>-->
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 <?php if (isset($respostas)) {?>
 
+
     <?php foreach($respostas as $resposta){?>
-    <div>
+   <div class="form-add">
+<div align="center" class="col-md-6 col-md-offset-3">       <h1>Correção</h1>
+</div>
+       <div class="col-md-4 col-md-offset-1">
         <h3>Sua Resposta:</h3>
         <p><?= $resposta['arrayRespostaUsuario'] ?></p>
-    </div> <br>
-    <div>
+    </div>
+
+       <div class="col-md-4 col-md-offset-1">
         <h3>Resposta Correta:</h3>
         <p><?= $resposta['arrayRespostaCorreta'] ?></p>
     </div>
@@ -43,4 +49,4 @@
     <?php echo form_close(); ?>
 
 
-<?php } ?>
+<?php } ?></div>
