@@ -43,7 +43,7 @@ class Pergunta extends CI_Controller
                 $extensaoImagem = end($extensaoImagem);
 
                 $caminhoImagem = base_url('application/midias/imagens/perguntas/') . str_replace(array(' ', '?', '!', '.', ':'),
-                        array('', '', '', '', ''), $titulo) . '.' . $opcaoCorreta. $extensaoImagem;
+                        array('', '', '', '', ''), $titulo) . $opcaoCorreta. '.' . $extensaoImagem;
                 /*$configuracaoImagem = array(
                     'upload_path' => './application/midias/imagens/licoes/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
@@ -56,7 +56,7 @@ class Pergunta extends CI_Controller
                     'upload_path' => './application/midias/imagens/perguntas/',
                     'allowed_types' => 'jpg|png|jpeg|gif|tiff',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $opcaoCorreta.$extensaoImagem,
+                            array('', '', '', '', ''), $titulo) . $opcaoCorreta. '.' .$extensaoImagem,
                     'max_size' => '500000',
                     'max_width' => '4096',
                     'max_height' => '4096'
@@ -76,7 +76,8 @@ class Pergunta extends CI_Controller
                 $video = $_FILES['video'];
                 $extensaoVideo = explode('.', $video['name']);
                 $extensaoVideo = end($extensaoVideo);
-                $caminhoVideo = base_url('application/midias/videos/perguntas/') . str_replace(" ", "", $titulo) . '.' . $extensaoVideo;
+                $caminhoVideo = base_url('application/midias/videos/perguntas/') . str_replace(array(' ', '?', '!', '.', ':'),
+                        array('', '', '', '', ''), $titulo) . $opcaoCorreta . '.' . $extensaoVideo;
                 /*$configuracaoVideo = array(
                     'upload_path' => './application/midias/videos/licoes/',
                     'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG',
@@ -87,7 +88,7 @@ class Pergunta extends CI_Controller
                     'upload_path' => './application/midias/videos/perguntas/',
                     'allowed_types' => 'FLV| AVI| WMV| MOV| RMVB| MPEG| MKV|mp4|MP4',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
+                            array('', '', '', '', ''), $titulo) . $opcaoCorreta. '.' . $extensaoVideo,
                     'max_size' => '50000000'
                 );
                 $this->upload->initialize($configuracaoVideo);

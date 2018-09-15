@@ -52,8 +52,8 @@ class Conjuntotruefalse extends CI_Controller{
                     'max_height' => '4096'
                 );*/
                 $configuracaoImagem = array(
-                    'upload_path' => './midias/imagens/perguntas/',
-                    'allowed_types' => 'jpg,png,jpeg,gif,tiff',
+                    'upload_path' => './application/midias/imagens/perguntas/',
+                    'allowed_types' => 'jpg|png|jpeg|gif',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
                             array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
                     'max_size' => '50000'
@@ -81,11 +81,11 @@ class Conjuntotruefalse extends CI_Controller{
                     'max_size' => '500000000'
                 );*/
                 $configuracaoVideo = array(
-                    'upload_path' => './midias/videos/perguntas/',
-                    'allowed_types' => 'FLV, AVI, WMV, MOV, RMVB, MPEG, MKV,mp4',
+                    'upload_path' => './application/midias/videos/perguntas/',
+                    'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|MP4',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
                             array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
-                    'max_size' => '500000'
+                    'max_size' => '50000000'
                 );
                 $this->upload->initialize($configuracaoVideo);
                 if (!$this->upload->do_upload('video')) {
@@ -130,7 +130,7 @@ class Conjuntotruefalse extends CI_Controller{
                 $i++;
             }
 
-            redirect('conjuntotruefalse/index');
+            redirect('licao/index');
         }
         else
         {            

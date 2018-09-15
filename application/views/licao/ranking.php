@@ -3,11 +3,11 @@
 <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 <?php if (isset($respostas)) {?>
 
-
+<div class="form-add">
+    <div align="center" class="col-md-6 col-md-offset-3">       <h1>Correção</h1>
+    </div>
     <?php foreach($respostas as $resposta){?>
-   <div class="form-add">
-<div align="center" class="col-md-6 col-md-offset-3">       <h1>Correção</h1>
-</div>
+
        <div class="col-md-4 col-md-offset-1">
         <h3>Sua Resposta:</h3>
         <p><?= $resposta['arrayRespostaUsuario'] ?></p>

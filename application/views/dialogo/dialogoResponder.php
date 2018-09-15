@@ -38,7 +38,7 @@
         <input type="hidden" name=<?php echo "respostaCorreta".$i; ?>
                value="<?php echo $dialogo['frase'.$i][$j]['opcaoCorreta']; ?>">  <br>
 
-    <?php $i++;$j++;} ?>
+    <?php $i++;} ?>
     <input type="hidden" name="data" value="<?=$data_inicio; ?>">
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8 ">

@@ -32,7 +32,7 @@ class Imagemfrase extends CI_Controller{
         if(isset($_POST) && count($_POST) > 0)     
         {
             $titulo = $this->input->post('titulo');
-            $opcaoCorreta=$this->input->post('opcaoCorreta');
+            $opcaoCorreta=$this->input->post('fraseCorreta');
             if (!empty($_FILES['imagem']['name'])) {
                 $imagem = $_FILES['imagem'];
 
@@ -40,7 +40,7 @@ class Imagemfrase extends CI_Controller{
                 $extensaoImagem = end($extensaoImagem);
 
                 $caminhoImagem = base_url('application/midias/imagens/perguntas/') . str_replace(array(' ', '?', '!', '.', ':'),
-                        array('', '', '', '', ''), $titulo)  . '.' . $opcaoCorreta. $extensaoImagem;
+                        array('', '', '', '', ''), $titulo)  . $opcaoCorreta.'.'  . $extensaoImagem;
                 /*$configuracaoImagem = array(
                     'upload_path' => './application/midias/imagens/licoes/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
@@ -53,7 +53,7 @@ class Imagemfrase extends CI_Controller{
                     'upload_path' => './application/midias/imagens/perguntas/',
                     'allowed_types' => 'jpg|png|jpeg|gif|tiff',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $opcaoCorreta.$extensaoImagem,
+                            array('', '', '', '', ''), $titulo)  . $opcaoCorreta. '.'.$extensaoImagem,
                     'max_size' => '500000',
                     'max_width' => '4096',
                     'max_height' => '4096'
