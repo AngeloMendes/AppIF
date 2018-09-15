@@ -20,10 +20,10 @@
 <div class="form-group">
     <div align="center" style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
         <?php  if($licao['imagem']!="" and $licao['imagem']!='error') {?>
-            <img class="media-object" src="<?php echo $licao['imagem']; ?>" width="460" height="345">
+            <img class="media-object" src="<?php echo $licao['imagem']; ?>" width="300" >
         <?php }?>
         <?php if(!empty($licao['video']) and $licao['video']!='error') { ?>
-            <video id="video" class="" width="540" height="360" controls>
+            <video id="video" class="" width="300" controls>
                 <source src="<?= $licao['video'] ?>" type='video/<?= explode('.', $licao['video'])[1]; ?>'>
             </video>
         <?php } ?>
