@@ -32,7 +32,7 @@
             <div align="center" style="margin-top:5%"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($imagemfrase->imagem != "" and $imagemfrase->imagem != 'error') { ?>
-                    <img src="<?php echo $imagemfrase->imagem; ?>" height="100px">
+                    <img src="<?php echo $imagemfrase->imagem; ?>" height="240px">
                 <?php } ?>
                 <?php if (!empty($imagemfrase->video) and $imagemfrase->video != 'error') {
                     $extensao = explode('.', $imagemfrase['video']); ?>

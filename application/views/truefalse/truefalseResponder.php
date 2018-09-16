@@ -19,7 +19,7 @@
         <span> <?php echo $truefalse->descricao; ?></span><br>
         <span>
                     <?php if ($truefalse->imagem != "" and $truefalse->imagem != 'error') { ?>
-                        <img src="<?php echo $truefalse->imagem; ?>" height="100px">
+                        <img src="<?php echo $truefalse->imagem; ?>" height="240px">
                     <?php } ?>
         </span>
         <span>

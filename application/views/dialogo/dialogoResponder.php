@@ -32,7 +32,7 @@
             <div align="center" style="margin-top:5%"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($dialogo->imagem != "" and $dialogo->imagem != 'error') { ?>
-                    <img src="<?php echo $dialogo->imagem; ?>" height="100px">
+                    <img src="<?php echo $dialogo->imagem; ?>" height="240px">
                 <?php } ?>
             </div>
         </div>
