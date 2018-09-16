@@ -18,18 +18,18 @@
 
 
         <div class="form-group">
-            <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <div style="margin-top:1%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h1 align="center"><?php echo $dialogo->titulo; ?></h1>
             </div>
         </div>
         <div class="form-group">
-            <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <div style="margin-top:1%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h2 align="center">  <?php echo $dialogo->descricao; ?>
                 </h2>
             </div>
         </div>
         <div class="form-group">
-            <div align="center" style="margin-top:5%"
+            <div align="center"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($dialogo->imagem != "" and $dialogo->imagem != 'error') { ?>
                     <img src="<?php echo $dialogo->imagem; ?>" height="240px">
@@ -45,12 +45,12 @@
         <?php while (isset($dialogo['frase' . $i])) { ?>
         <div class="btn-group-toggle" data-toggle="buttons" align="center">
             <div class="form-group">
-                <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+                <div  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                     <h1 align="center"><?php echo $dialogo['frase' . $i][$j]['descricao']; ?></h1>
                 </div>
             </div>
             <div class="form-group">
-                <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+                <div  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                     <h2 align="center"><?php echo $dialogo['frase' . $i][$j]['frase']; ?></h2>
                 </div>
             </div>

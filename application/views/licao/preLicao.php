@@ -7,18 +7,18 @@
 
 <div class="form-add">
     <div class="form-group">
-        <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+        <div style="margin-top:2%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <h2 align="center" ><?php echo $licao['titulo'] ?></h2>
         </div>
     </div>
 <div class="form-group">
-    <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+    <div style="margin-top:2%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
         <h3 align="center" >   <?php echo $licao['descricao'] ?>
         </h3>
     </div>
 </div>
 <div class="form-group">
-    <div align="center" style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+    <div align="center" style="margin-top:2%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
         <?php  if($licao['imagem']!="" and $licao['imagem']!='error') {?>
             <img class="media-object" src="<?php echo $licao['imagem']; ?>" width="460" height="345">
         <?php }?>
@@ -36,7 +36,7 @@
 
 
     <div class="form-group ">
-        <div style="margin-top:5%" align="center"  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2">
+        <div style="margin-top:3%" align="center"  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2">
             <a href="<?php echo site_url('pergunta/selectPergunta/' . $licao['idLicao']. '/'.'0')?>"
                class="btn btn-primary btn-lg active" role="button">Iniciar</a>        </div>
     </div>
