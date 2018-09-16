@@ -3,7 +3,8 @@
 
 <input type="hidden" name="pergunta" value="<?= htmlspecialchars(json_encode($pergunta)); ?>"/>
 
-<div>
+<div class="form-add">
+
     <?php
     /*LISTAR PERGUNTAS DE UMA LIÇÃO
     -trazer todas as perguntas
@@ -18,7 +19,6 @@
     $data_inicio = $data_inicio->format('Y/m/d H:i:s');
     ?>
     <!--TRAZER as informações das perguntas e ENVIAR o id do usuario, a resposta escolhida, a resposta correta e o tempo-->
-    <div class="form-add">
         <div class="form-group">
             <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h1 align="center"><?php echo $pergunta->titulo; ?></h1>
@@ -34,7 +34,7 @@
             <div align="center" style="margin-top:5%"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($pergunta->imagem != "" and $pergunta->imagem != 'error') { ?>
-                    <img src="<?php echo $pergunta->imagem; ?>" height="100px">
+                    <img src="<?php echo $pergunta->imagem; ?>" height="240px">
                 <?php } ?>
                 <?php if (!empty($pergunta->video) and $pergunta->video != 'error') {
                     $extensao = explode('.', $pergunta['video']); ?>

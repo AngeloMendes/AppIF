@@ -1,7 +1,7 @@
 <?php echo form_open('resposta/addImagemFrase', array("class" => "form-horizontal")); ?>
 <input type="hidden" name="imagemFrase" value="<?= htmlspecialchars(json_encode($imagemfrase)); ?>"/>
-<div>
-    <?php
+<div class="form-add">
+<?php
     /*LISTAR PERGUNTAS DE UMA LIÇÃO
     -trazer todas as perguntas
     -mostrar de uma em uma para o usuário responder
@@ -15,7 +15,7 @@
     $data_inicio = $data_inicio->format('Y/m/d H:i:s');
     ?>
 
-    <div class="form-add">
+
         <div class="form-group">
             <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h1 align="center"><?php echo $imagemfrase->titulo; ?></h1>
@@ -32,7 +32,7 @@
             <div align="center" style="margin-top:5%"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($imagemfrase->imagem != "" and $imagemfrase->imagem != 'error') { ?>
-                    <img src="<?php echo $imagemfrase->imagem; ?>" height="100px">
+                    <img src="<?php echo $imagemfrase->imagem; ?>" height="240px">
                 <?php } ?>
                 <?php if (!empty($imagemfrase->video) and $imagemfrase->video != 'error') {
                     $extensao = explode('.', $imagemfrase['video']); ?>
