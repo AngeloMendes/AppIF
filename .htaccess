@@ -1,4 +1,7 @@
-
+<Files ~ "\.(jpg|jpeg|png|gif|mp4|MP4|css)$">
+   order deny,allow
+   allow from all
+</Files>
 RewriteEngine on
 RewriteCond $1 !^(index\.php|public|\.txt)
 RewriteCond %{REQUEST_FILENAME} !-f

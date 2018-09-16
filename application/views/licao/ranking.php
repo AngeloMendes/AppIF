@@ -41,8 +41,8 @@
 
     <?php echo form_open('pergunta/selectPergunta/' . $pergunta->idLicao.'/'.$pergunta->ordem, array("class" => "form-horizontal")); ?>
 
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8">
+    <div >
+        <div align="center">
             <button type="submit" class="btn btn-success">Próxima Pergunta</button>
         </div>
     </div>

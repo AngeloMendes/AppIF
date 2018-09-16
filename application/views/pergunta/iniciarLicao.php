@@ -34,7 +34,7 @@
             <div align="center" style="margin-top:5%"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($pergunta->imagem != "" and $pergunta->imagem != 'error') { ?>
-                    <img src="<?php echo $pergunta->imagem; ?>" height="100px">
+                    <img src="<?php echo $pergunta->imagem; ?>" height="240px">
                 <?php } ?>
                 <?php if (!empty($pergunta->video) and $pergunta->video != 'error') {
                     $extensao = explode('.', $pergunta['video']); ?>
