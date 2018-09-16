@@ -33,9 +33,9 @@
                             <td>
 
                                 <?php if(!empty($L['video']) and $L['video']!='error') {
-                                    $extensao=explode('.', $licao['video']);?>
-                                    <video id="video" class="" width="540" height="360" controls>
-                                        <source src="<?= $licao['video'] ?>" type='video/<?= $extensao[count($extensao)-1] ?>'>
+                                    $extensao=explode('.', $L['video']);?>
+                                    <video id="video" class="" width="340" height="160" controls>
+                                        <source src="<?= $L['video'] ?>" type='video/<?= $extensao[count($extensao)-1]; ?>'>
                                     </video>
                                 <?php } ?>
                             </td>

@@ -31,9 +31,10 @@
             </div>
         </div>
         <span>
-        <?php if (!empty($pergunta->video) and $pergunta->video != 'error') { ?>
+        <?php if (!empty($pergunta->video) and $pergunta->video != 'error') {
+            $extensao=explode('.', $L['video']);?>
             <video id="video" class="" width="240" height="160" controls>
-                    <source src="<?= $pergunta->video ?>" type='video/<?= explode('.', $pergunta->video)[1]; ?>'>
+                    <source src="<?= $pergunta->video ?>" type='video/<?= $extensao[count($extensao)-1]; ?>'>
                 </video>
         <?php } ?>
     </span>
