@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>application/views/css/style.css" type="text/css"/>
 <?php echo form_open('resposta/addDialogo', array("class" => "form-horizontal")); ?>
 <input type="hidden" name="dialogo" value="<?= htmlspecialchars(json_encode($dialogo)); ?>"/>
-<div>
+<div class="form-add">
     <?php
     /*LISTAR PERGUNTAS DE UMA LIÇÃO
     -trazer todas as perguntas
@@ -16,7 +16,7 @@
     $data_inicio = $data_inicio->format('Y/m/d H:i:s');
     ?>
 
-    <div class="form-add">
+
         <div class="form-group">
             <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h1 align="center"><?php echo $dialogo->titulo; ?></h1>
@@ -37,6 +37,7 @@
             </div>
         </div>
         <br>
+        <div class="form-group">
         <?php $i = 1;
         $j = 0; ?>
         <?php $dialogo = get_object_vars($dialogo); ?>
@@ -74,18 +75,20 @@
             <input type="hidden"
                    name="<?php echo "respostaCorreta" . $i; ?>" value="<?php echo $dialogo['frase' . $i][$j]['opcaoCorreta']; ?>">
             <br>
-
+        </div>
             <?php $i++;
             } ?>
+
+        </div>
             <input type="hidden" name="data" value="<?= $data_inicio; ?>">
             <div>
                 <div align="center" class="col-sm-offset-2 col-sm-8 ">
-                    <button style="margin: 3% 1% 1% 1%" type="submit" class="btn btn-primary btn-lg btn-block">Próxima
-                    </button>
+                    <button style="margin: 3% 1% 1% 1%" type="submit" class="btn btn-primary btn-lg btn-block">Próxima</button>
                 </div>
             </div>
 
         </div>
+
 <?php echo form_close(); ?>
         <style>
             .btn-success {
