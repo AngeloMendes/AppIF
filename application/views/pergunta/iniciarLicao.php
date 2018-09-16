@@ -30,20 +30,22 @@
                 </h2>
             </div>
         </div>
-        <span>
-        <?php if (!empty($pergunta->video) and $pergunta->video != 'error') {
-            $extensao=explode('.', $L['video']);?>
-            <video id="video" class="" width="240" height="160" controls>
-                    <source src="<?= $pergunta->video ?>" type='video/<?= $extensao[count($extensao)-1]; ?>'>
-                </video>
-        <?php } ?>
-    </span>
+        <div class="form-group">
+            <div align="center" style="margin-top:5%"
+                 class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+                <?php if ($pergunta->imagem != "" and $pergunta->imagem != 'error') { ?>
+                    <img src="<?php echo $pergunta->imagem; ?>" height="100px">
+                <?php } ?>
+                <?php if (!empty($pergunta->video) and $pergunta->video != 'error') {
+                    $extensao = explode('.', $pergunta['video']); ?>
+                    <video id="video" class="" width="240" height="160" controls>
+                        <source src="<?= $pergunta->video ?>" type='video/<?= $extensao[count($extensao) - 1]; ?>'>
+                    </video>
+                <?php } ?>
+            </div>
+        </div>
 
-        <span>
-                    <?php if ($pergunta->imagem != "" and $pergunta->imagem != 'error') { ?>
-                        <img src="<?php echo $pergunta->imagem; ?>" height="100px">
-                    <?php } ?>
-    </span>
+
         <br>
         <div class="row btn-group-toggle col-md-offset-1" data-toggle="buttons">
 
@@ -90,7 +92,13 @@
         <input type="hidden" name="data" value="<?= $data_inicio; ?>"/>
 
 
-        <span> <?php echo $pergunta->caixaTexto; ?></span>
+        <div>
+            <div align="center" style="margin: 3% 1% 1% 1%" class="col-md-10 col-md-offset-1">
+                <div class="form-group">
+                    <?php echo $pergunta->caixaTexto; ?>
+                </div>
+            </div>
+        </div>
 
 
         <div>
