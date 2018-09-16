@@ -22,9 +22,10 @@
         <?php  if($licao['imagem']!="" and $licao['imagem']!='error') {?>
             <img class="media-object" src="<?php echo $licao['imagem']; ?>" width="460" height="345">
         <?php }?>
-        <?php if(!empty($licao['video']) and $licao['video']!='error') { ?>
+        <?php if(!empty($licao['video']) and $licao['video']!='error') {
+            $extensao=explode('.', $licao['video']);?>
             <video id="video" class="" width="540" height="360" controls>
-                <source src="<?= $licao['video'] ?>" type='video/<?= explode('.', $licao['video'])[1]; ?>'>
+                <source src="<?= $licao['video'] ?>" type='video/<?= $extensao[count($extensao)-1] ?>'>
             </video>
         <?php } ?>
 

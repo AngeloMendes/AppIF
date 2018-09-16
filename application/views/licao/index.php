@@ -32,9 +32,10 @@
                             </td>
                             <td>
 
-                                <?php if(!empty($L['video']) and $L['video']!='error') { ?>
-                                    <video id="video" class="" width="240" height="160" controls>
-                                        <source src="<?= $L['video'] ?>" type='video/<?= explode('.', $L['video'])[1]; ?>'>
+                                <?php if(!empty($L['video']) and $L['video']!='error') {
+                                    $extensao=explode('.', $licao['video']);?>
+                                    <video id="video" class="" width="540" height="360" controls>
+                                        <source src="<?= $licao['video'] ?>" type='video/<?= $extensao[count($extensao)-1] ?>'>
                                     </video>
                                 <?php } ?>
                             </td>
