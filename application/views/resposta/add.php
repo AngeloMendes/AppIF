@@ -1,5 +1,5 @@
 <?php echo form_open('resposta/add',array("class"=>"form-horizontal")); ?>
-    <link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 
     <div class="form-group">
         <label for="idUsuario" class="col-md-4 control-label">IdUsuario</label>
@@ -20,8 +20,8 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8">
+    <div align="center" class="form-group">
+        <div  class="col-sm-offset-4 col-sm-8">
             <button type="submit" class="btn btn-success">Save</button>
         </div>
     </div>

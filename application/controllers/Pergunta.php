@@ -13,7 +13,7 @@ class Pergunta extends CI_Controller
         $this->load->model('Pergunta_model');
         $this->load->model('Licao_model');
         $this->load->library('upload');
-
+        $this->load->model('Ultimapergunta_model');
 
     }
 
@@ -35,13 +35,15 @@ class Pergunta extends CI_Controller
     {
         if (isset($_POST) && count($_POST) > 0) {
             $titulo = $this->input->post('titulo');
+            $opcaoCorreta = $this->input->post('opcaoCorreta');
             if (!empty($_FILES['imagem']['name'])) {
                 $imagem = $_FILES['imagem'];
 
                 $extensaoImagem = explode('.', $imagem['name']);
                 $extensaoImagem = end($extensaoImagem);
 
-                $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoImagem;
+                $caminhoImagem = base_url('application/midias/imagens/perguntas/') . str_replace(array(' ', '?', '!', '.', ':'),
+                        array('', '', '', '', ''), $titulo) . $opcaoCorreta . '.' . $extensaoImagem;
                 /*$configuracaoImagem = array(
                     'upload_path' => './application/midias/imagens/licoes/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
@@ -51,16 +53,18 @@ class Pergunta extends CI_Controller
                     'max_height' => '4096'
                 );*/
                 $configuracaoImagem = array(
-                    'upload_path' => './midias/imagens/perguntas/',
-                    'allowed_types' => 'jpg,png,jpeg,gif,tiff',
+                    'upload_path' => './application/midias/imagens/perguntas/',
+                    'allowed_types' => 'jpg|png|jpeg|gif|tiff',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
-                    'max_size' => '50000'
+                            array('', '', '', '', ''), $titulo) . $opcaoCorreta . '.' . $extensaoImagem,
+                    'max_size' => '500000',
+                    'max_width' => '4096',
+                    'max_height' => '4096'
                 );
 
                 $this->upload->initialize($configuracaoImagem);
                 if (!$this->upload->do_upload('imagem')) {
-                    ///$caminhoImagem=$this->upload->display_errors();
+                    //$caminhoImagem=$this->upload->display_errors();
                     $caminhoImagem = 'error';
                 }
             } else {
@@ -72,7 +76,8 @@ class Pergunta extends CI_Controller
                 $video = $_FILES['video'];
                 $extensaoVideo = explode('.', $video['name']);
                 $extensaoVideo = end($extensaoVideo);
-                $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoVideo;
+                $caminhoVideo = base_url('application/midias/videos/perguntas/') . str_replace(array(' ', '?', '!', '.', ':'),
+                        array('', '', '', '', ''), $titulo) . $opcaoCorreta . '.' . $extensaoVideo;
                 /*$configuracaoVideo = array(
                     'upload_path' => './application/midias/videos/licoes/',
                     'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG',
@@ -80,11 +85,11 @@ class Pergunta extends CI_Controller
                     'max_size' => '500000000'
                 );*/
                 $configuracaoVideo = array(
-                    'upload_path' => './midias/videos/perguntas/',
-                    'allowed_types' => 'FLV, AVI, WMV, MOV, RMVB, MPEG, MKV,mp4',
+                    'upload_path' => './application/midias/videos/perguntas/',
+                    'allowed_types' => 'FLV| AVI| WMV| MOV| RMVB| MPEG| MKV|mp4|MP4',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
-                    'max_size' => '500000'
+                            array('', '', '', '', ''), $titulo) . $opcaoCorreta . '.' . $extensaoVideo,
+                    'max_size' => '50000000'
                 );
                 $this->upload->initialize($configuracaoVideo);
                 if (!$this->upload->do_upload('video')) {
@@ -108,8 +113,8 @@ class Pergunta extends CI_Controller
                 'idLicao' => $this->input->post('idLicao'),
                 'opcaoCorreta' => $this->input->post('opcaoCorreta'),
                 'caixaTexto' => $this->input->post('caixaTexto'),
-                'tipo'=>'pergunta',
-                'ordem'=>$this->Licao_model->setOrdem($idLicao),
+                'tipo' => 'pergunta',
+                'ordem' => $this->Licao_model->setOrdem($idLicao),
             );
             /*$configuracaoImagem = array(
                 'upload_path' => './midias/imagens/perguntas/',
@@ -199,7 +204,7 @@ class Pergunta extends CI_Controller
         //chamar a view passar o 0 como primeiro indice do vetor de perguntas
         //passar o tamanho do vetor
         $data['perguntas'] = $this->Pergunta_model->get_perguntas_licao($idLicao);
-        $data['pergunta'] = (object) $data['perguntas'][0];
+        $data['pergunta'] = (object)$data['perguntas'][0];
         $data['cont'] = 0;
         $data['_view'] = 'pergunta/iniciarLicao';
         $this->load->view('layouts/main', $data);
@@ -215,26 +220,35 @@ class Pergunta extends CI_Controller
         $this->load->view('layouts/main', $data);
     }
 
-    function selectPergunta ($idLicao,$ordem){
-        $ordem++;
-        $pergunta = (object) $this->Licao_model->getProxPergunta($idLicao,$ordem);
+    function selectPergunta($idLicao, $ordem)
+    {
 
-        if($pergunta and $pergunta->tipo!='pergunta') {
-            $data[$pergunta->tipo]= $pergunta;
-            $data['_view'] = $pergunta->tipo . '/'. $pergunta->tipo . 'Responder';
+        $ordem++;
+        $pergunta = (object)$this->Licao_model->getProxPergunta($idLicao, $ordem);
+
+        if (isset($pergunta->tipo) and $pergunta->tipo != 'pergunta' and $pergunta->tipo != '') {
+            $data[$pergunta->tipo] = $pergunta;
+            $data['_view'] = $pergunta->tipo . '/' . $pergunta->tipo . 'Responder';
             $this->load->view('layouts/main', $data);
-        }
-        elseif ($pergunta and $pergunta->tipo=='pergunta'){
-            $data['pergunta']=$pergunta;
+        } elseif (isset($pergunta->tipo) and $pergunta->tipo == 'pergunta') {
+            $data['pergunta'] = $pergunta;
             $data['_view'] = 'pergunta/iniciarLicao';
             $this->load->view('layouts/main', $data);
-        }
-        else{
-            //redirecionar para ranking final
-            redirect('resposta/index/' . null.'/'. null);
+        } //redirecionar para ranking final
+        else {
+            redirect('resposta/index/' . null . '/' . null);
         }
 
     }
 
+    function recomecar($idLicao)
+    {
+        $idUsuario = $this->session->userdata['usuario_logado'];
+        $ultimaPerguntaRespondida = $this->Ultimapergunta_model->get_ultimapergunta($idUsuario, $idLicao);
+
+        $ultimaPerguntaRespondida ? $ordem = $ultimaPerguntaRespondida['ordem'] : $ordem = 0;
+
+        $this->selectPergunta($idLicao, $ordem);
+    }
 
 }

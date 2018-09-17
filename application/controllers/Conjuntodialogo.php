@@ -44,9 +44,10 @@ class Conjuntodialogo extends CI_Controller
                 $extensaoImagem = explode('.', $imagem['name']);
                 $extensaoImagem = end($extensaoImagem);
 
-                $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoImagem;
+                $caminhoImagem = base_url('application/midias/imagens/perguntas/') . str_replace(array(' ', '?', '!', '.', ':'),
+                        array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem;
                 $configuracaoImagem = array(
-                    'upload_path' => './application/midias/imagens/licoes/',
+                        'upload_path' => './application/midias/imagens/perguntas/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
                             array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
@@ -99,7 +100,7 @@ class Conjuntodialogo extends CI_Controller
                 $i++;
             }
 
-            redirect('conjuntodialogo/index');
+            redirect('licao/index');
         } else {
             $data['_view'] = 'dialogo/add';
             $this->load->view('layouts/main', $data);

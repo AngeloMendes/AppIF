@@ -67,7 +67,7 @@ class Usuario_model extends CI_Model
      * function to get ranking
      */
     function get_ranking(){
-        $this->db->order_by('pontos', 'asc');
+        $this->db->order_by('pontos', 'desc');
         return $this->db->get('Usuario')->result_array();
     }
 }

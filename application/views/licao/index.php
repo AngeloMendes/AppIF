@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 
 
 <div style="margin: 3% 3% 3% 3%">
@@ -10,7 +10,11 @@
 
             <th>Video</th>
             <th>Descricao</th>
-            <th>Perguntas</th>
+            <?php if($this->session->userdata['tipo']!='aluno'){
+                echo "<th>Perguntas</th>";
+            }?>
+
+
         </tr>
         <?php foreach ($licao as $L) { ?>
 
@@ -28,9 +32,10 @@
                             </td>
                             <td>
 
-                                <?php if(!empty($L['video']) and $L['video']!='error') { ?>
-                                    <video id="video" class="" width="240" height="160" controls>
-                                        <source src="<?= $L['video'] ?>" type='video/<?= explode('.', $L['video'])[1]; ?>'>
+                                <?php if(!empty($L['video']) and $L['video']!='error') {
+                                    $extensao=explode('.', $L['video']);?>
+                                    <video id="video" class="" width="340" height="160" controls>
+                                        <source src="<?= $L['video'] ?>" type='video/<?= $extensao[count($extensao)-1]; ?>'>
                                     </video>
                                 <?php } ?>
                             </td>
@@ -38,16 +43,25 @@
                             <td>
                                 <?php echo $L['descricao']; ?>
                             </td>
-                            <td>
-                                <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">pergunta</a>
-                                <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">múltipla escolha</a>
-                                <a href="<?php echo site_url('truefalse/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">verdadeiro ou falso</a>
-                                <a href="<?php echo site_url('dialogo/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">diálogo</a>
-                                <a href="<?php echo site_url('imagemfrase/add/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">relacionar frases a imagem</a>
+
+                            <?php if($this->session->userdata['tipo']=='aluno'){
+                                echo "<!--";
+                            }?>
+                            
+                           <td align="center" >
+                                <a href="<?php echo site_url('pergunta/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Múltipla escolha</a>
+                                <a href="<?php echo site_url('truefalse/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Verdadeiro ou falso</a>
+                                <a href="<?php echo site_url('dialogo/add/'.$L['idLicao']); ?>" class="btn  btn-default btn-xs">Diálogo</a>
+                                <a href="<?php echo site_url('imagemfrase/add/'.$L['idLicao']); ?>" class="btn btn-default btn-xs">Relacionar frases a imagem</a>
+                                                             
+
 
                             </td>
+                            <?php if($this->session->userdata['tipo']=='aluno'){
+                                echo "-->";
+                            }?>
                             <td>
-                                <a href="<?php echo site_url('licao/preLicao/'.$L['idLicao']); ?>" class="btn btn-info btn-xs">Iniciar lição</a>
+                                <a href="<?php echo site_url('licao/preLicao/'.$L['idLicao']); ?>" class="btn btn-success btn-xs">Iniciar lição</a>
 
                             </td>
                         </div>

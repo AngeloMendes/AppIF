@@ -1,5 +1,5 @@
-<?php echo form_open('licao/add', array("class" => "form-horizontal")); ?>
-<link rel="stylesheet" type="text/css" href="   ../application/views/css/style.css">
+<?php echo form_open_multipart('licao/add', array("class" => "form-horizontal")); ?>
+<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
 <h1 align="center">Adicionar Lição </h1>
 <div class="form-add">
     <div class="form-group">
@@ -9,39 +9,23 @@
                    id="titulo"/>
         </div>
     </div>
-    <!--<div class="row">
-    <div class="form-group">
-        <div class="col-md-3 col-md-offset-3 form-inputs">
-            <div class="form-group files">
-                <label for="imagem">Adicione uma imagem </label>
-                <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
-                       class="form-control"
-                       id="imagem" multiple="">
-            </div>
-        </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-3 col-md-offset-3 form-inputs">
-            <div class="form-group files">
-                <label for="video">Adicione um video </label>
-                <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
-                       class="form-control"
-                       id="video" multiple="">
-            </div>
-        </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-1">
+
+
+
     </div>
-    </div>-->
     <div class="row">
         <div class="col-md-4 col-md-offset-1">
-            <label for="video">Adicione uma imagem </label>
             <div class="form-group files">
-
+                <label for="imagem">Adicione uma imagem </label></div>
                 <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
                        class="form-control"
                        id="imagem" multiple=""></div>
         </div>
         <div class="col-md-4 col-md-offset-2">
+
             <label for="video">Adicione um video </label>
             <div class="form-group files">
                 <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
