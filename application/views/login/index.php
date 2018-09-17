@@ -32,7 +32,7 @@
 
 </div>
 <?php echo form_close(); ?>
-
+</div>
 <style>
     .login {
         background: #00CC00;

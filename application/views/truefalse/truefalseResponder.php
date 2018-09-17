@@ -19,18 +19,18 @@
 
 
     <div class="form-group">
-        <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+        <div style="margin-top:2%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <h1 align="center"><?php echo $truefalse->titulo; ?></h1>
         </div>
     </div>
     <div class="form-group">
-        <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+        <div style="margin-top:2%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <h2 align="center">  <?php echo $truefalse->descricao; ?>
             </h2>
         </div>
     </div>
     <div class="form-group">
-        <div align="center" style="margin-top:5%"
+        <div align="center" style="margin-top:2%"
              class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <?php if ($truefalse->imagem != "" and $truefalse->imagem != 'error') { ?>
                 <img src="<?php echo $truefalse->imagem; ?>" height="240px">
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="form-group">
-        <div align="center" style="margin-top:5%"
+        <div align="center" style="margin-top:2%"
              class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <?php if(!empty($truefalse->video) and $truefalse->video!='error') {
                 $extensao = explode('.', $truefalse->video); ?>
@@ -58,7 +58,7 @@
         <?php while (isset($truefalse['frase' . $i])) { ?>
         <div class="btn-group-toggle" data-toggle="buttons" align="center">
             <div class="form-group">
-                <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+                <div style="margin-top:2%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                     <h3 align="center"><?php echo $truefalse['frase' . $i][$j]['frase']; ?></h3>
                 </div>
             </div>
