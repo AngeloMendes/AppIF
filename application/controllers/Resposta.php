@@ -13,6 +13,7 @@ class Resposta extends CI_Controller
         $this->load->model('Resposta_model');
         $this->load->model('Usuario_model');
         $this->load->model('Progresso_model');
+        $this->load->model('Ultimapergunta_model');
 
     }
 
@@ -25,6 +26,7 @@ class Resposta extends CI_Controller
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
         $data['ranking'] = $this->Usuario_model->get_ranking();
         $data['pergunta']=isset($pergunta)? $pergunta: null;
+        $data['msgFim']=isset($pergunta)? "": "The End!";
         $data['respostas'] = isset($respostas)? $respostas: null;
         $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
@@ -74,7 +76,7 @@ class Resposta extends CI_Controller
 
             $resposta_id = $this->Resposta_model->add_resposta($params);
 
-
+            $this->Ultimapergunta_model->update_ultimapergunta($idUsuario,$pergunta->idLicao,$pergunta->ordem);
             $this->index($arrayRespostas,$pergunta);//mostrar ranking
 
         } else {
@@ -173,7 +175,7 @@ class Resposta extends CI_Controller
 
             $this->salvarProgresso($idUsuario, $dialogo->idLicao, $pontuacao, $tempo, $dia, $dialogo->idDialogo, null, null, null);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
-
+            $this->Ultimapergunta_model->update_ultimapergunta($idUsuario,$dialogo->idLicao,$dialogo->ordem);
             $this->index($arrayRespostas,$dialogo);//mostrar ranking
 
         } else {
@@ -216,7 +218,7 @@ class Resposta extends CI_Controller
 
             $this->salvarProgresso($idUsuario, $trueFalse->idLicao, $pontuacao, $tempo, $dia, null, null, null, $trueFalse->idTrueFalse);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
-
+            $this->Ultimapergunta_model->update_ultimapergunta($idUsuario,$trueFalse->idLicao,$trueFalse->ordem);
             $this->index($arrayRespostas,$trueFalse);//mostrar ranking
 
         } else {
@@ -254,6 +256,7 @@ class Resposta extends CI_Controller
 
             $this->salvarProgresso($idUsuario, $imagemFrase->idLicao, $pontuacao, $tempo, $dia, null, $imagemFrase->idImagemFrase, null, null);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
+            $this->Ultimapergunta_model->update_ultimapergunta($idUsuario,$imagemFrase->idLicao,$imagemFrase->ordem);
             $this->index($arrayRespostas,$imagemFrase);//mostrar ranking
 
         } else {

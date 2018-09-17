@@ -19,6 +19,7 @@
     </div>
     <?php } ?>
 <?php } ?>
+    <h2><?php echo $msgFim;?></h2>
     <table class="table table-striped table-bordered">
         <tr>
             <th>Nome</th>

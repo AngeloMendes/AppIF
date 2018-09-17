@@ -73,7 +73,8 @@ class Usuario extends CI_Controller
                 $params = array(
                     'nome' => $nome,
                     'pontos' => 0,
-                    'tipo'=>'aluno'
+                    'tipo'=>'aluno',
+                    'turma'=>$this->input->post('turma')
                 );
                 $idUsuario = $this->Usuario_model->add_usuario($params);
                 $dadosSessao = array("usuario_logado"=>$idUsuario, "tipo"=>"aluno");

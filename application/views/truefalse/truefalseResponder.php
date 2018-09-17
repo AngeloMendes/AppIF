@@ -40,9 +40,10 @@
     <div class="form-group">
         <div align="center" style="margin-top:5%"
              class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
-            <?php if(!empty($truefalse->video) and $truefalse->video!='error') { ?>
+            <?php if(!empty($truefalse->video) and $truefalse->video!='error') {
+                $extensao = explode('.', $truefalse->video); ?>
                 <video id="video" class="" width="540"  controls>
-                    <source src="<?= $truefalse->video ?>" type='video/<?= explode('.', $truefalse->video)[1]; ?>'>
+                    <source src="<?= $truefalse->video ?>" type='video/<?= $extensao[count($extensao) - 1]; ?>'>
                 </video>
             <?php } ?>
         </div>
@@ -63,14 +64,14 @@
             </div>
 
             <label style="margin: 1% 1% 1% 1%" class="btn btn-success "
-                   for=<?php echo "resposta2[" . $i . "]"; ?>><?= $i / 2 == 0 ? $truefalse['frase' . $i][$j]['opcaoFalse'] : $truefalse['frase' . $i][$j]['opcaoTrue']; ?>
+                   for=<?php echo "resposta2[" . $i . "]"; ?>><?= $truefalse['frase' . $i][$j]['opcaoTrue']; ?>
                 <input type="radio" name=<?php echo "resposta" . $i; ?> id=<?php echo "resposta2[" . $i . "]"; ?>
-                       value="<?= $i / 2 == 0 ? $truefalse['frase' . $i][$j]['opcaoTrue'] : $truefalse['frase' . $i][$j]['opcaoFalse']; ?>">
+                       value="<?= $truefalse['frase' . $i][$j]['opcaoTrue']; ?>">
             </label>
             <label style="margin: 1% 1% 1% 1%" class="btn  btn-danger"
-                   for=<?php echo "resposta1[" . $i . "]"; ?>><?= $i / 2 == 0 ? $truefalse['frase' . $i][$j]['opcaoTrue'] : $truefalse['frase' . $i][$j]['opcaoFalse']; ?>
+                   for=<?php echo "resposta1[" . $i . "]"; ?>><?= $truefalse['frase' . $i][$j]['opcaoFalse']; ?>
                 <input type="radio" name=<?php echo "resposta" . $i; ?> id=<?php echo "resposta1[" . $i . "]"; ?>
-                       value="<?= $i / 2 == 0 ? $truefalse['frase' . $i][$j]['opcaoFalse'] : $truefalse['frase' . $i][$j]['opcaoTrue']; ?>">
+                       value="<?= $truefalse['frase' . $i][$j]['opcaoFalse']; ?>">
             </label>
             <br>
             <input type="hidden" name=<?php echo "respostaCorreta" . $i; ?>

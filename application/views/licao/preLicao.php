@@ -37,7 +37,7 @@
 
     <div class="form-group ">
         <div style="margin-top:5%" align="center"  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2">
-            <a href="<?php echo site_url('pergunta/selectPergunta/' . $licao['idLicao']. '/'.'0')?>"
+            <a href="<?php echo site_url('pergunta/recomecar/' . $licao['idLicao'])?>"
                class="btn btn-primary btn-lg active" role="button">Iniciar</a>        </div>
     </div>
 </div>

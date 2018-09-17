@@ -16,6 +16,8 @@
                 <div>
                     <input type="text" id="nome" name="nome" value="<?php echo $this->input->post('nome'); ?>"
                            class="form-control" placeholder="Nome">
+                    <input type="text" id="turma" name="turma" value="<?php echo $this->input->post('turma'); ?>"
+                           class="form-control" placeholder="turma">
                 </div>
                 <div style="margin-top:5%">
                     <?php echo $msg; ?>
