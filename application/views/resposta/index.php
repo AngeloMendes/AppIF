@@ -3,7 +3,7 @@
 <div class="pull-right">
 	<a href="<?php echo site_url('resposta/add'); ?>" class="btn btn-success">Add</a>
 </div>
-
+<div class="form-add">
 <table class="table table-striped table-bordered">
     <tr>
 		<th>IdResposta</th>
@@ -25,3 +25,4 @@
     </tr>
 	<?php } ?>
 </table>
+</div>

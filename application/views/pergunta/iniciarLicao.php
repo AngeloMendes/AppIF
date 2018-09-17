@@ -20,18 +20,18 @@
     ?>
     <!--TRAZER as informações das perguntas e ENVIAR o id do usuario, a resposta escolhida, a resposta correta e o tempo-->
         <div class="form-group">
-            <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <div style="margin-top:3%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h1 align="center"><?php echo $pergunta->titulo; ?></h1>
             </div>
         </div>
         <div class="form-group">
-            <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <div style="margin-top:3%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h2 align="center">  <?php echo $pergunta->descricao; ?>
                 </h2>
             </div>
         </div>
         <div class="form-group">
-            <div align="center" style="margin-top:5%"
+            <div align="center"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($pergunta->imagem != "" and $pergunta->imagem != 'error') { ?>
                     <img src="<?php echo $pergunta->imagem; ?>" height="240px">

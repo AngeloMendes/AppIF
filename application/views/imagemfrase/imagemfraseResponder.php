@@ -17,19 +17,19 @@
 
 
         <div class="form-group">
-            <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <div style="margin-top:2%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h1 align="center"><?php echo $imagemfrase->titulo; ?></h1>
             </div>
         </div>
         <div class="form-group">
-            <div style="margin-top:5%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
+            <div style="margin-top:2%" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <h2 align="center">  <?php echo $imagemfrase->descricao; ?>
                 </h2>
             </div>
         </div>
 
         <div class="form-group">
-            <div align="center" style="margin-top:5%"
+            <div align="center"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($imagemfrase->imagem != "" and $imagemfrase->imagem != 'error') { ?>
                     <img src="<?php echo $imagemfrase->imagem; ?>" height="240px">
@@ -84,7 +84,7 @@
         <input type="hidden" name="data" value="<?= $data_inicio; ?>">
         <div>
             <div class="col-sm-offset-2 col-sm-8 ">
-                <button style="margin: 3% 1% 1% 1%" type="submit" class="btn btn-primary btn-lg btn-block">Próxima
+                <button style="margin: 2% 1% 1% 1%" type="submit" class="btn btn-primary btn-lg btn-block">Próxima
                 </button>
             </div>
         </div>
