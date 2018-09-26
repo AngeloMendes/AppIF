@@ -50,7 +50,7 @@ class Conjuntodialogo extends CI_Controller
                         'upload_path' => './application/midias/imagens/perguntas/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
+                            array('', '', '', '', ''), $titulo) .(rand(1,1000)).'.' . $extensaoImagem,
                     'max_size' => '500000',
                     'max_width' => '4096',
                     'max_height' => '4096'

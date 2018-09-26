@@ -55,7 +55,7 @@ class Conjuntotruefalse extends CI_Controller{
                     'upload_path' => './application/midias/imagens/perguntas/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
+                            array('', '', '', '', ''), $titulo) .(rand(1,1000)).'.' . $extensaoImagem,
                     'max_size' => '50000'
                 );
 
@@ -84,7 +84,7 @@ class Conjuntotruefalse extends CI_Controller{
                     'upload_path' => './application/midias/videos/perguntas/',
                     'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|MP4',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
+                            array('', '', '', '', ''), $titulo) .(rand(1,1000)). '.' . $extensaoVideo,
                     'max_size' => '50000000'
                 );
                 $this->upload->initialize($configuracaoVideo);
