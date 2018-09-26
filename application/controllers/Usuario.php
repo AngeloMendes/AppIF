@@ -70,14 +70,21 @@ class Usuario extends CI_Controller
         $usuario = $this->Usuario_model->get_usuario_nome($nome);
         if (!isset($usuario['idUsuario'])) {
             if (isset($_POST) && count($_POST) > 0) {
+                $turma=$this->input->post('turma');
+                if(empty($turma)){
+                    $data['_view'] = 'login/index';
+                    $data['msg'] = "Sua TURMA deve ser informada!";
+                    $this->load->view('layouts/main', $data);
+                }
+
                 $params = array(
                     'nome' => $nome,
                     'pontos' => 0,
                     'tipo'=>'aluno',
-                    'turma'=>$this->input->post('turma')
+                    'turma'=>$turma
                 );
                 $idUsuario = $this->Usuario_model->add_usuario($params);
-                $dadosSessao = array("usuario_logado"=>$idUsuario, "tipo"=>"aluno");
+                $dadosSessao = array("usuario_logado"=>$idUsuario, "tipo"=>"aluno", 'turma'=>$turma);
                 $this->session->set_userdata($dadosSessao);
                 redirect('licao/index');
             } else {
