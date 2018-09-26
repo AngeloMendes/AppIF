@@ -14,9 +14,9 @@ class Usuario_model extends CI_Model
     /*
      * Get usuario by nome
      */
-    function get_usuario_nome($nome)
+    function get_usuario_nome($nome,$turma)
     {
-        return $this->db->get_where('Usuario',array('nome'=>$nome))->row_array();
+        return $this->db->get_where('Usuario',array('nome'=>$nome, 'turma'=>$turma))->row_array();
     }
 
 

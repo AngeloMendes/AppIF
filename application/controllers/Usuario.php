@@ -31,11 +31,20 @@ class Usuario extends CI_Controller
         if(isset($_POST['cadastrar'])){
             $this->add();
         }
+        $turma=$this->input->post('turma');
+
+        if(empty($turma)){
+
+            $data['_view'] = 'login/index';
+            $data['msg'] = "Sua TURMA deve ser informada!";
+            $this->load->view('layouts/main', $data);
+            return;
+        }
         $nome=$this->input->post('nome');
         if(!empty($nome)){
-            $usuario = $this->Usuario_model->get_usuario_nome($nome);
+            $usuario = $this->Usuario_model->get_usuario_nome($nome,$turma);
             if(isset($usuario['idUsuario'])){
-                $dadosSessao = array("usuario_logado"=>$usuario['idUsuario'], "tipo"=>$usuario['tipo']);
+                $dadosSessao = array("usuario_logado"=>$usuario['idUsuario'], "tipo"=>$usuario['tipo'],"turma"=>$turma);
                 $this->session->set_userdata($dadosSessao);
                 redirect('licao/index');
 
@@ -67,15 +76,15 @@ class Usuario extends CI_Controller
             $this->load->view('layouts/main', $data);
             return;
         }
-        $usuario = $this->Usuario_model->get_usuario_nome($nome);
+        $turma=$this->input->post('turma');
+        if(empty($turma)){
+            $data['_view'] = 'login/index';
+            $data['msg'] = "Sua TURMA deve ser informada!";
+            $this->load->view('layouts/main', $data);
+        }
+        $usuario = $this->Usuario_model->get_usuario_nome($nome,$turma);
         if (!isset($usuario['idUsuario'])) {
             if (isset($_POST) && count($_POST) > 0) {
-                $turma=$this->input->post('turma');
-                if(empty($turma)){
-                    $data['_view'] = 'login/index';
-                    $data['msg'] = "Sua TURMA deve ser informada!";
-                    $this->load->view('layouts/main', $data);
-                }
 
                 $params = array(
                     'nome' => $nome,
