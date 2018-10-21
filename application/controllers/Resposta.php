@@ -26,7 +26,7 @@ class Resposta extends CI_Controller
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
         $data['ranking'] = $this->Usuario_model->get_ranking($idLicao);
         $data['pergunta']=isset($pergunta)? $pergunta: null;
-        $data['msgFim']=isset($pergunta)? "": "The End!";
+        $data['msgFim']=isset($pergunta)? "": "That´s all folks!";
         $data['respostas'] = isset($respostas)? $respostas: null;
         $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
@@ -60,7 +60,7 @@ class Resposta extends CI_Controller
             $pontuacao = 0;
             $dia = date("Y-m-d");
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
-                $pontuacao = round(100 / $tempo);
+                $pontuacao = 100 ;
 
             }
             #SALVAR PROGRESSO
@@ -171,7 +171,7 @@ class Resposta extends CI_Controller
                 $resposta_id = $this->Resposta_model->add_resposta($params);
                 $i++;
             }
-            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+            $pontuacao = $quantidadeAcertos * 100 ;
 
             $this->salvarProgresso($idUsuario, $dialogo->idLicao, $pontuacao, $tempo, $dia, $dialogo->idDialogo, null, null, null);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
@@ -214,7 +214,7 @@ class Resposta extends CI_Controller
                 $resposta_id = $this->Resposta_model->add_resposta($params);
                 $i++;
             }
-            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+            $pontuacao = $quantidadeAcertos * 100 ;
 
             $this->salvarProgresso($idUsuario, $trueFalse->idLicao, $pontuacao, $tempo, $dia, null, null, null, $trueFalse->idTrueFalse);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
@@ -252,7 +252,7 @@ class Resposta extends CI_Controller
             );
             $resposta_id = $this->Resposta_model->add_resposta($params);
 
-            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+            $pontuacao = $quantidadeAcertos * 100 ;
 
             $this->salvarProgresso($idUsuario, $imagemFrase->idLicao, $pontuacao, $tempo, $dia, null, $imagemFrase->idImagemFrase, null, null);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario

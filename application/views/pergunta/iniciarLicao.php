@@ -37,7 +37,7 @@
                     <img src="<?php echo $pergunta->imagem; ?>" height="240px">
                 <?php } ?>
                 <?php if (!empty($pergunta->video) and $pergunta->video != 'error') {
-                    $extensao = explode('.', $pergunta['video']); ?>
+                    $extensao = explode('.', $pergunta->video); ?>
                     <video id="video" class="" width="240" height="160" controls>
                         <source src="<?= $pergunta->video ?>" type='video/<?= $extensao[count($extensao) - 1]; ?>'>
                     </video>

@@ -29,6 +29,7 @@ class Licao extends CI_Controller
      */
     function add()
     {
+
         if (isset($_POST) && count($_POST) > 0) {
             $titulo = $this->input->post('titulo');
 
@@ -65,7 +66,7 @@ class Licao extends CI_Controller
                 $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(" ", "", $titulo).'.' . $extensaoVideo;
                 $configuracaoVideo = array(
                     'upload_path' => './application/midias/videos/licoes/',
-                    'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG',
+                    'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG|mkv',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
                             array('', '', '', '', ''), $titulo) . '.' . $extensaoVideo,
                     'max_size' => '500000000'
@@ -73,6 +74,7 @@ class Licao extends CI_Controller
                 $this->upload->initialize($configuracaoVideo);
                 if(!$this->upload->do_upload('video')){
                     //$caminhoVideo=$this->upload->display_errors();
+                    //die(var_dump($caminhoVideo));
                     $caminhoVideo='error';
                 }
             }else{
