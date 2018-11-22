@@ -14,26 +14,26 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4 col-md-offset-1">
-
-
-        <div class="form-group files">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-1">
             <label for="video">Adicione imagem </label>
-            <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
-                   class="form-control"
-                   id="imagem" multiple=""></div>
-    </div>
-    <div class="col-md-4 col-md-offset-2">
 
+            <div class="form-group files">
 
-        <div class="form-group files">
+                <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
+                       class="form-control"
+                       id="imagem" multiple=""></div>
+        </div>
+        <div class="col-md-4 col-md-offset-2">
+
             <label for="video">Adicione video </label>
-            <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
-                   class="form-control"
-                   id="video" multiple=""></div>
+
+            <div class="form-group files">
+                <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
+                       class="form-control"
+                       id="video" multiple=""></div>
+        </div>
     </div>
-</div>
 <div class="form-group">
     <div class="col-md-8 form-inputs">
         <label for="descricao">Descrição</label>
