@@ -33,7 +33,7 @@
         <div align="center" style="margin-top:2%"
              class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <?php if ($truefalse->imagem != "" and $truefalse->imagem != 'error') { ?>
-                <img src="<?php echo $truefalse->imagem; ?>" height="240px">
+                <img src="<?php echo $truefalse->imagem; ?>">
             <?php } ?>
         </div>
     </div>
@@ -42,7 +42,7 @@
              class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <?php if(!empty($truefalse->video) and $truefalse->video!='error') {
                 $extensao = explode('.', $truefalse->video); ?>
-                <video id="video" class="" width="540"  controls>
+                <video id="video" controls>
                     <source src="<?= $truefalse->video ?>" type='video/<?= $extensao[count($extensao) - 1]; ?>'>
                 </video>
             <?php } ?>

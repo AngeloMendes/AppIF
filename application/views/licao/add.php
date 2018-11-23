@@ -6,7 +6,7 @@
 
     <div>
         <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
-            <h1 align="center" for="titulo">Múltipla escolha</h1>
+            <h1 align="center" for="titulo">Adicionar nova lição</h1>
         </div>
     </div>
     <div class="form-group">
