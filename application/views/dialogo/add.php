@@ -16,8 +16,7 @@
     <div class="form-group">
         <div class="row">
             <div class="col-md-4 col-md-offset-1">
-                <label for="video">Adicione imagem </label>
-
+                <label for="imagem">Adicione imagem </label>
                 <div class="form-group files">
 
                     <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
