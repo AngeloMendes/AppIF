@@ -3,15 +3,26 @@
 
 <div align="center" class="form-add">
 
-    <div style="height: auto; width: 35%; margin-top: 10%;  "
-         class="panel panel-default container-fluid  hidden-xs hidden-sm">
-        <div class="panel-body  ">
+    <div style="height: auto; width: 75%; margin-top: 5%;  "
+         class="panel panel-default container-fluid ">
+        <div class="panel-body">
 
             <div>
-                <div>
-                    <img class="img-responsive" src="<?php echo base_url(); ?>application/midias/ifetlogo.png" height=""
-                         alt="">
-                </div>
+                <div class="row">
+                    <div class="col-md-4">
+
+
+                        <img class="img-responsive" src="<?php echo base_url(); ?>application/midias/logo.png" height=""
+                             alt="">
+                    </div>
+                    <div class="col-md-8">
+
+
+                        <img class="img-responsive" src="<?php echo base_url(); ?>application/midias/ifetlogo.png" height=""
+                             alt="">
+                    </div>
+                    </div>
+
                 <h2 class="form-signin-heading">Digite seu nome</h2>
                 <div>
                     <input type="text" id="nome" name="nome" value="<?php echo $this->input->post('nome'); ?>"

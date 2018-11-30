@@ -32,11 +32,11 @@
             <div align="center"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($imagemfrase->imagem != "" and $imagemfrase->imagem != 'error') { ?>
-                    <img src="<?php echo $imagemfrase->imagem; ?>" height="240px">
+                    <img src="<?php echo $imagemfrase->imagem; ?>">
                 <?php } ?>
                 <?php if (!empty($imagemfrase->video) and $imagemfrase->video != 'error') {
                     $extensao = explode('.', $imagemfrase['video']); ?>
-                    <video id="video" class="" width="240" height="160" controls>
+                    <video id="video" controls>
                         <source src="<?= $imagemfrase->video ?>" type='video/<?= $extensao[count($extensao) - 1]; ?>'>
                     </video>
                 <?php } ?>

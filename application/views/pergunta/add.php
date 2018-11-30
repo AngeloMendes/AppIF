@@ -29,31 +29,22 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-4 col-md-offset-1">
+            <label for="imagem">Adicione imagem </label>
+            <div class="form-group files">
 
-        <div class="col-md-6 col-md-offset-1">
-            <label for="video">Adicione um video </label>
-            <div class="col-md-4 col-md-offset-2">
-                <div class="form-group files">
-                    <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
-                           class="form-control"
-                           id="video" multiple="">
-
-
-                </div>
-            </div>
+                <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
+                       class="form-control"
+                       id="imagem" multiple=""></div>
         </div>
+        <div class="col-md-4 col-md-offset-2">
 
-        <div>
-            <label for="imagem">Adicione uma imagem </label>
-            <div class="col-md-4 col-md-offset-1">
-                <div class="form-group files">
-                    <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
-                           class="form-control"
-                           id="imagem" multiple="">
-                </div>
-            </div>
+            <label for="video">Adicione video </label>
 
-
+            <div class="form-group files">
+                <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
+                       class="form-control"
+                       id="video" multiple=""></div>
         </div>
     </div>
 
