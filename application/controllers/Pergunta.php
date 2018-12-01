@@ -204,9 +204,6 @@ class Pergunta extends CI_Controller
 
     function iniciarLicao($idLicao)
     {
-        //buscar todas as perguntas de uma licao
-        //chamar a view passar o 0 como primeiro indice do vetor de perguntas
-        //passar o tamanho do vetor
         $data['perguntas'] = $this->Pergunta_model->get_perguntas_licao($idLicao);
         $data['pergunta'] = (object)$data['perguntas'][0];
         $data['cont'] = 0;
@@ -249,9 +246,7 @@ class Pergunta extends CI_Controller
     {
         $idUsuario = $this->session->userdata['usuario_logado'];
         $ultimaPerguntaRespondida = $this->Ultimapergunta_model->get_ultimapergunta($idUsuario, $idLicao);
-
         $ultimaPerguntaRespondida ? $ordem = $ultimaPerguntaRespondida['ordem'] : $ordem = 0;
-
         $this->selectPergunta($idLicao, $ordem);
     }
 

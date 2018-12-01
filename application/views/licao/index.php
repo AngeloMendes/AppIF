@@ -16,6 +16,7 @@
 
 
         </tr>
+        <?php $i = 0; ?>
         <?php foreach ($licao as $L) { ?>
 
             <tr>
@@ -66,7 +67,15 @@
                             } ?>
                             <td>
                                 <a href="<?php echo site_url('licao/preLicao/' . $L['idLicao']); ?>"
-                                   class="btn btn-success btn-xs">Iniciar lição</a>
+                                   class="btn btn-success btn-xs">Iniciar lição</a><br><br>
+
+                                <?php if (isset($licoes_feitas[$i]) && in_array($L['idLicao'], $licoes_feitas[$i])) { ?>
+                                    <a href="<?php echo site_url('licao/refazerLicao/' . $L['idLicao']); ?>"
+                                       class="btn btn-success btn-xs">Refazer lição</a><br><br>
+                                    <a href="<?php echo site_url('licao/ranking/' . $L['idLicao']); ?>"
+                                       class="btn btn-success btn-xs">Ranking</a>
+                                <?php } ?>
+                                <?php $i++; ?>
 
                             </td>
                         </div>

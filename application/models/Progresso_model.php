@@ -49,8 +49,8 @@ class Progresso_model extends CI_Model
     /*
      * function to delete progresso
      */
-    function delete_progresso($idProgresso)
+    function delete_progresso($idProgresso, $idUsuario)
     {
-        return $this->db->delete('Progresso',array('idProgresso'=>$idProgresso));
+        return $this->db->delete('Progresso',array('idProgresso'=>$idProgresso, 'idUsuario' => $idUsuario));
     }
 }

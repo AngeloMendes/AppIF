@@ -10,6 +10,8 @@ class Licao extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Licao_model');
+        $this->load->model('Ultimapergunta_model');
+        $this->load->model('Progresso_model');
         $this->load->library('upload');
     }
 
@@ -18,8 +20,9 @@ class Licao extends CI_Controller
      */
     function index()
     {
+        $idUsuario = $this->session->userdata['usuario_logado'];
         $data['licao'] = $this->Licao_model->get_all_licao();
-
+        $data['licoes_feitas'] = $this->Ultimapergunta_model->get_licoes_feitas($idUsuario);
         $data['_view'] = 'licao/index';
         $this->load->view('layouts/main', $data);
     }
@@ -138,12 +141,30 @@ class Licao extends CI_Controller
             show_error('The licao you are trying to delete does not exist.');
     }
 
-    function preLicao($idLicao){
+    function preLicao($idLicao, $msg=''){
         $data['licao'] = $this->Licao_model->get_licao($idLicao);
         $data['cont'] = 0;
+        $data['msg_refazer']=$msg;
         $data['_view'] = 'licao/preLicao';
         $this->load->view('layouts/main', $data);
 
     }
+
+    function refazerLicao($idLicao){
+        #chamar preLicao com mensagem confirmando q o usuário quer refazer a lição
+        $this->preLicao($idLicao,'Ao refazer a lição, sua pontuação anterior será apagada.');
+        #apagar ultima resposta da tabela ultima resposta e o progresso passando idLicao e idUsuario
+
+        #retornar para metodo que inicia licao (pergunta->$this->selectPergunta($idLicao, 0);)
+    }
+     function limparProgresso($idLicao){
+        #apagar ultima resposta da tabela ultima resposta e o progresso passando idLicao e idUsuario
+         $idUsuario = $this->session->userdata['usuario_logado'];
+         $this->Ultimapergunta_model->delete_ultima_pergunta($idLicao, $idUsuario);
+         $this->Progresso_model->delete_progresso($idLicao, $idUsuario);
+         #retornar para metodo que inicia licao (pergunta->$this->selectPergunta($idLicao, 0);)
+         $ordem = 0;
+         redirect('pergunta/selectPergunta/'.$idLicao.'/'.$ordem);
+     }
 
 }
