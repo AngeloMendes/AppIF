@@ -22,7 +22,7 @@ class Licao extends CI_Controller
     {
         $idUsuario = $this->session->userdata['usuario_logado'];
         $data['licao'] = $this->Licao_model->get_all_licao();
-        $data['licoes_feitas'] = $this->Ultimapergunta_model->get_licoes_feitas($idUsuario);
+        $data['licoes_feitas'] =  $this->Ultimapergunta_model->get_licoes_feitas($idUsuario);
         $data['_view'] = 'licao/index';
         $this->load->view('layouts/main', $data);
     }
@@ -36,37 +36,37 @@ class Licao extends CI_Controller
         if (isset($_POST) && count($_POST) > 0) {
             $titulo = $this->input->post('titulo');
 
-            if(!empty($_FILES['imagem']['name'])){
+            if (!empty($_FILES['imagem']['name'])) {
                 $imagem = $_FILES['imagem'];
 
                 $extensaoImagem = explode('.', $imagem['name']);
                 $extensaoImagem = end($extensaoImagem);
 
-                $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) .'.'.$extensaoImagem;
+                $caminhoImagem = base_url('application/midias/imagens/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoImagem;
                 $configuracaoImagem = array(
                     'upload_path' => './application/midias/imagens/licoes/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
                             array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
                     'max_size' => '500000',
-                    'max_width'=> '4096',
+                    'max_width' => '4096',
                     'max_height' => '4096'
                 );
 
                 $this->upload->initialize($configuracaoImagem);
-                if(!$this->upload->do_upload('imagem')){
+                if (!$this->upload->do_upload('imagem')) {
                     ///$caminhoImagem=$this->upload->display_errors();
-                    $caminhoImagem='error';
+                    $caminhoImagem = 'error';
                 }
-            }else{
-                $caminhoImagem="";
+            } else {
+                $caminhoImagem = "";
             }
 
-            if(!empty($_FILES['video']['name'])){
+            if (!empty($_FILES['video']['name'])) {
                 $video = $_FILES['video'];
                 $extensaoVideo = explode('.', $video['name']);
                 $extensaoVideo = end($extensaoVideo);
-                $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(" ", "", $titulo).'.' . $extensaoVideo;
+                $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(" ", "", $titulo) . '.' . $extensaoVideo;
                 $configuracaoVideo = array(
                     'upload_path' => './application/midias/videos/licoes/',
                     'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG|mkv',
@@ -75,13 +75,13 @@ class Licao extends CI_Controller
                     'max_size' => '500000000'
                 );
                 $this->upload->initialize($configuracaoVideo);
-                if(!$this->upload->do_upload('video')){
+                if (!$this->upload->do_upload('video')) {
                     //$caminhoVideo=$this->upload->display_errors();
                     //die(var_dump($caminhoVideo));
-                    $caminhoVideo='error';
+                    $caminhoVideo = 'error';
                 }
-            }else{
-                $caminhoVideo="";
+            } else {
+                $caminhoVideo = "";
             }
 
             $params = array(
@@ -141,30 +141,28 @@ class Licao extends CI_Controller
             show_error('The licao you are trying to delete does not exist.');
     }
 
-    function preLicao($idLicao, $msg=''){
+    function preLicao($idLicao, $msg = '')
+    {
         $data['licao'] = $this->Licao_model->get_licao($idLicao);
         $data['cont'] = 0;
-        $data['msg_refazer']=$msg;
+        $data['msg_refazer'] = $msg;
         $data['_view'] = 'licao/preLicao';
         $this->load->view('layouts/main', $data);
 
     }
 
-    function refazerLicao($idLicao){
-        #chamar preLicao com mensagem confirmando q o usuário quer refazer a lição
-        $this->preLicao($idLicao,'Ao refazer a lição, sua pontuação anterior será apagada.');
-        #apagar ultima resposta da tabela ultima resposta e o progresso passando idLicao e idUsuario
-
-        #retornar para metodo que inicia licao (pergunta->$this->selectPergunta($idLicao, 0);)
+    function refazerLicao($idLicao)
+    {
+        $this->preLicao($idLicao, 'Ao refazer a lição, sua pontuação anterior será apagada.');
     }
-     function limparProgresso($idLicao){
-        #apagar ultima resposta da tabela ultima resposta e o progresso passando idLicao e idUsuario
-         $idUsuario = $this->session->userdata['usuario_logado'];
-         $this->Ultimapergunta_model->delete_ultima_pergunta($idLicao, $idUsuario);
-         $this->Progresso_model->delete_progresso($idLicao, $idUsuario);
-         #retornar para metodo que inicia licao (pergunta->$this->selectPergunta($idLicao, 0);)
-         $ordem = 0;
-         redirect('pergunta/selectPergunta/'.$idLicao.'/'.$ordem);
-     }
+
+    function limparProgresso($idLicao)
+    {
+        $idUsuario = $this->session->userdata['usuario_logado'];
+        $this->Ultimapergunta_model->delete_ultima_pergunta($idLicao, $idUsuario);
+        $this->Progresso_model->delete_progresso($idLicao, $idUsuario);
+        $ordem = 0;
+        redirect('pergunta/selectPergunta/' . $idLicao . '/' . $ordem);
+    }
 
 }

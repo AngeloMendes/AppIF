@@ -33,6 +33,8 @@ class Resposta extends CI_Controller
     }
     function rankingFinal()
     {
+        #ranking ao final da licao
+        #ranking na grid de lição filtar por turma  e data
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
         $data['ranking'] = $this->Usuario_model->get_ranking();
         $data['_view'] = 'licao/ranking';

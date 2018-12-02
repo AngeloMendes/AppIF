@@ -41,7 +41,14 @@ class Ultimapergunta_model extends CI_Model
     function get_licoes_feitas($idUsuario)
     {
         $this->db->select('idLicao');
-        return $this->db->get_where('UltimaResposta', array('idUsuario' => $idUsuario))->result_array();
+        $licoes_feitas = $this->db->get_where('UltimaResposta', array('idUsuario' => $idUsuario))->result_array();
+        $result = array();
+        foreach ($licoes_feitas as $key) {
+            foreach ($key as $value) {
+                array_push($result, $value);
+            }
+        }
+        return $result;
     }
 
     function delete_ultima_pergunta($idLicao, $idUsuario)
