@@ -1,5 +1,5 @@
-<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
-<?php echo form_open('conjuntodialogo/add/'.$idLicao, array("class" => "form-horizontal")); ?>
+<link rel="stylesheet" href="<?php echo base_url(); ?>application/views/css/style.css" type="text/css"/>
+<?php echo form_open('conjuntodialogo/add/' . $idLicao, array("class" => "form-horizontal")); ?>
 <div class="form-add">
     <div>
         <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
@@ -15,15 +15,22 @@
     </div>
     <div class="form-group">
         <div class="row">
-            <div class="col-md-6">
-                <label for="video">Adicione uma imagem </label>
-            </div>
-            <div class="col-md-12 ">
+            <div class="col-md-4 col-md-offset-1">
+                <label for="imagem">Adicione imagem </label>
                 <div class="form-group files">
 
                     <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
                            class="form-control"
                            id="imagem" multiple=""></div>
+            </div>
+            <div class="col-md-4 col-md-offset-2">
+
+                <label for="video">Adicione video </label>
+
+                <div class="form-group files">
+                    <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
+                           class="form-control"
+                           id="video" multiple=""></div>
             </div>
         </div>
         <div class="form-group">

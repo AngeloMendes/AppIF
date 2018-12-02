@@ -21,18 +21,20 @@ class Resposta extends CI_Controller
      * Listing of ranking
      * params $respostas é o array composto por respostaUsuario e respostaCorreta
      */
-    function index($respostas,$pergunta)
+    function index($idLicao,$respostas,$pergunta)
     {
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
-        $data['ranking'] = $this->Usuario_model->get_ranking();
+        $data['ranking'] = $this->Usuario_model->get_ranking($idLicao);
         $data['pergunta']=isset($pergunta)? $pergunta: null;
-        $data['msgFim']=isset($pergunta)? "": "The End!";
+        $data['msgFim']=isset($pergunta)? "": "That´s all folks!";
         $data['respostas'] = isset($respostas)? $respostas: null;
         $data['_view'] = 'licao/ranking';
         $this->load->view('layouts/main', $data);
     }
     function rankingFinal()
     {
+        #ranking ao final da licao
+        #ranking na grid de lição filtar por turma  e data
         //$data['resposta'] = $this->Resposta_model->get_all_resposta();
         $data['ranking'] = $this->Usuario_model->get_ranking();
         $data['_view'] = 'licao/ranking';
@@ -60,7 +62,7 @@ class Resposta extends CI_Controller
             $pontuacao = 0;
             $dia = date("Y-m-d");
             if (strcmp($respostaUsuario, $respostaCorreta) == 0) {
-                $pontuacao = round(100 / $tempo);
+                $pontuacao = 100 ;
 
             }
             #SALVAR PROGRESSO
@@ -77,7 +79,7 @@ class Resposta extends CI_Controller
             $resposta_id = $this->Resposta_model->add_resposta($params);
 
             $this->Ultimapergunta_model->update_ultimapergunta($idUsuario,$pergunta->idLicao,$pergunta->ordem);
-            $this->index($arrayRespostas,$pergunta);//mostrar ranking
+            $this->index($pergunta->idLicao,$arrayRespostas,$pergunta);//mostrar ranking
 
         } else {
             //$data['_view'] = 'resposta/add';
@@ -171,12 +173,12 @@ class Resposta extends CI_Controller
                 $resposta_id = $this->Resposta_model->add_resposta($params);
                 $i++;
             }
-            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+            $pontuacao = $quantidadeAcertos * 100 ;
 
             $this->salvarProgresso($idUsuario, $dialogo->idLicao, $pontuacao, $tempo, $dia, $dialogo->idDialogo, null, null, null);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
             $this->Ultimapergunta_model->update_ultimapergunta($idUsuario,$dialogo->idLicao,$dialogo->ordem);
-            $this->index($arrayRespostas,$dialogo);//mostrar ranking
+            $this->index($dialogo->idLicao,$arrayRespostas,$dialogo);//mostrar ranking
 
         } else {
             //$data['_view'] = 'resposta/add';
@@ -214,12 +216,12 @@ class Resposta extends CI_Controller
                 $resposta_id = $this->Resposta_model->add_resposta($params);
                 $i++;
             }
-            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+            $pontuacao = $quantidadeAcertos * 100 ;
 
             $this->salvarProgresso($idUsuario, $trueFalse->idLicao, $pontuacao, $tempo, $dia, null, null, null, $trueFalse->idTrueFalse);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
             $this->Ultimapergunta_model->update_ultimapergunta($idUsuario,$trueFalse->idLicao,$trueFalse->ordem);
-            $this->index($arrayRespostas,$trueFalse);//mostrar ranking
+            $this->index($trueFalse->idLicao,$arrayRespostas,$trueFalse);//mostrar ranking
 
         } else {
             //$data['_view'] = 'resposta/add';
@@ -252,12 +254,12 @@ class Resposta extends CI_Controller
             );
             $resposta_id = $this->Resposta_model->add_resposta($params);
 
-            $pontuacao = $quantidadeAcertos * round(100 / $tempo);
+            $pontuacao = $quantidadeAcertos * 100 ;
 
             $this->salvarProgresso($idUsuario, $imagemFrase->idLicao, $pontuacao, $tempo, $dia, null, $imagemFrase->idImagemFrase, null, null);
             $this->editUsuario($idUsuario, $pontuacao);//atualiza pontuação do usuario
             $this->Ultimapergunta_model->update_ultimapergunta($idUsuario,$imagemFrase->idLicao,$imagemFrase->ordem);
-            $this->index($arrayRespostas,$imagemFrase);//mostrar ranking
+            $this->index($imagemFrase->idLicao,$arrayRespostas,$imagemFrase);//mostrar ranking
 
         } else {
             //$data['_view'] = 'resposta/add';

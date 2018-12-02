@@ -38,6 +38,29 @@ class Conjuntodialogo extends CI_Controller
 
             $titulo = $this->input->post('titulo');
 
+            if(!empty($_FILES['video']['name'])){
+                $video = $_FILES['video'];
+                $extensaoVideo = explode('.', $video['name']);
+                $extensaoVideo = end($extensaoVideo);
+                $caminhoVideo = base_url('application/midias/videos/licoes/') . str_replace(array(' ', '?', '!', '.', ':', 'ç'),
+                        array('', '', '', '', '', 'c'), $titulo) . '.' . $extensaoVideo;
+                $configuracaoVideo = array(
+                    'upload_path' => './application/midias/videos/licoes/',
+                    'allowed_types' => 'FLV|AVI|WMV|MOV|RMVB|MPEG|MKV|mp4|3gp|MPEG|mkv',
+                    'file_name' => str_replace(array(' ', '?', '!', '.', ':', 'ç'),
+                            array('', '', '', '', '', 'c'), $titulo) . '.' . $extensaoVideo,
+                    'max_size' => '500000000'
+                );
+                $this->upload->initialize($configuracaoVideo);
+                if(!$this->upload->do_upload('video')){
+                    //$caminhoVideo=$this->upload->display_errors();
+                    //die(var_dump($caminhoVideo));
+                    $caminhoVideo='error';
+                }
+            }else{
+                $caminhoVideo="";
+            }
+
             if (!empty($_FILES['imagem']['name'])) {
                 $imagem = $_FILES['imagem'];
 
@@ -50,7 +73,7 @@ class Conjuntodialogo extends CI_Controller
                         'upload_path' => './application/midias/imagens/perguntas/',
                     'allowed_types' => 'jpg|png|jpeg|gif',
                     'file_name' => str_replace(array(' ', '?', '!', '.', ':'),
-                            array('', '', '', '', ''), $titulo) . '.' . $extensaoImagem,
+                            array('', '', '', '', ''), $titulo) .(rand(1,1000)).'.' . $extensaoImagem,
                     'max_size' => '500000',
                     'max_width' => '4096',
                     'max_height' => '4096'
@@ -67,6 +90,7 @@ class Conjuntodialogo extends CI_Controller
             $params = array(
                 'titulo' => $titulo,
                 'imagem' => $caminhoImagem,
+                'video'=>$caminhoVideo,
                 'descricao' => $this->input->post('descricao'),
                 'ordem' => $this->Licao_model->setOrdem($idLicao),
                 'idLicao' => $idLicao,

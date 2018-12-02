@@ -14,9 +14,9 @@ class Usuario_model extends CI_Model
     /*
      * Get usuario by nome
      */
-    function get_usuario_nome($nome)
+    function get_usuario_nome($nome,$turma)
     {
-        return $this->db->get_where('Usuario',array('nome'=>$nome))->row_array();
+        return $this->db->get_where('Usuario',array('nome'=>$nome, 'turma'=>$turma))->row_array();
     }
 
 
@@ -66,8 +66,9 @@ class Usuario_model extends CI_Model
     /*
      * function to get ranking
      */
-    function get_ranking(){
-        $this->db->order_by('pontos', 'desc');
-        return $this->db->get('Usuario')->result_array();
+    function get_ranking($idLicao){
+
+        $sql="SELECT Usuario.nome,Usuario.pontos FROM UltimaResposta join Usuario on Usuario.idUsuario = UltimaResposta.idUsuario WHERE idLicao=".$idLicao." and Usuario.turma='".$this->session->userdata['turma']. "' ORDER by Usuario.pontos DESC";
+        return $this->db->query($sql)->result_array();
     }
 }

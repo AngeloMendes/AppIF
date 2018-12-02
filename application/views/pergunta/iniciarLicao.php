@@ -34,11 +34,11 @@
             <div align="center"
                  class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
                 <?php if ($pergunta->imagem != "" and $pergunta->imagem != 'error') { ?>
-                    <img src="<?php echo $pergunta->imagem; ?>" height="240px">
+                    <img src="<?php echo $pergunta->imagem; ?>">
                 <?php } ?>
                 <?php if (!empty($pergunta->video) and $pergunta->video != 'error') {
-                    $extensao = explode('.', $pergunta['video']); ?>
-                    <video id="video" class="" width="240" height="160" controls>
+                    $extensao = explode('.', $pergunta->video); ?>
+                    <video id="video" controls>
                         <source src="<?= $pergunta->video ?>" type='video/<?= $extensao[count($extensao) - 1]; ?>'>
                     </video>
                 <?php } ?>
