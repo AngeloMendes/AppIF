@@ -10,13 +10,14 @@ class Ultimapergunta_model extends CI_Model
     {
         parent::__construct();
     }
+
     /*
      * get ultima pergunta respondida
      */
 
-    function get_ultimapergunta($idUsuario,$idLicao)
+    function get_ultimapergunta($idUsuario, $idLicao)
     {
-        return $this->db->get_where('UltimaResposta',array('idUsuario'=>$idUsuario,'idLicao'=>$idLicao))->row_array();
+        return $this->db->get_where('UltimaResposta', array('idUsuario' => $idUsuario, 'idLicao' => $idLicao))->row_array();
     }
 
     /*
@@ -24,17 +25,34 @@ class Ultimapergunta_model extends CI_Model
      * params: idUsuario, idLicao, ordem
      * atualizar a cada resposta, qual a ultima pergunta respondida
      */
-    function update_ultimapergunta($idUsuario,$idLicao,$ordem)
+    function update_ultimapergunta($idUsuario, $idLicao, $ordem)
     {
-        if($this->get_ultimapergunta($idUsuario,$idLicao)) {
+        if ($this->get_ultimapergunta($idUsuario, $idLicao)) {
             $params = array('ordem' => $ordem);
             $this->db->where('idUsuario', $idUsuario, 'idLicao', $idLicao, 'ordem', $ordem);
             $this->db->update('UltimaResposta', $params);
             return true;
         }
-        $params=array('idUsuario'=>$idUsuario,'idLicao'=>$idLicao,'ordem'=>$ordem);
-        $this->db->insert('UltimaResposta',$params);
+        $params = array('idUsuario' => $idUsuario, 'idLicao' => $idLicao, 'ordem' => $ordem);
+        $this->db->insert('UltimaResposta', $params);
         return $this->db->insert_id();
     }
 
+    function get_licoes_feitas($idUsuario)
+    {
+        $this->db->select('idLicao');
+        $licoes_feitas = $this->db->get_where('UltimaResposta', array('idUsuario' => $idUsuario))->result_array();
+        $result = array();
+        foreach ($licoes_feitas as $key) {
+            foreach ($key as $value) {
+                array_push($result, $value);
+            }
+        }
+        return $result;
+    }
+
+    function delete_ultima_pergunta($idLicao, $idUsuario)
+    {
+        return $this->db->delete('UltimaResposta', array('idLicao' => $idLicao, 'idUsuario' => $idUsuario));
+    }
 }
