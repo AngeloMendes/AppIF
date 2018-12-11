@@ -44,7 +44,7 @@ class Usuario extends CI_Controller
         if(!empty($nome)){
             $usuario = $this->Usuario_model->get_usuario_nome($nome,$turma);
             if(isset($usuario['idUsuario'])){
-                $dadosSessao = array("usuario_logado"=>$usuario['idUsuario'], "tipo"=>$usuario['tipo'],"turma"=>$turma);
+                $dadosSessao = array("usuario_logado"=>$usuario['idUsuario'], "tipo"=>$usuario['tipo'],"turma"=>$turma, 'ano_cadastro'=>$usuario['ano_cadastro']);
                 $this->session->set_userdata($dadosSessao);
                 redirect('licao/index');
 
@@ -90,10 +90,11 @@ class Usuario extends CI_Controller
                     'nome' => $nome,
                     'pontos' => 0,
                     'tipo'=>'aluno',
-                    'turma'=>$turma
+                    'turma'=>$turma,
+                    'data_cadastrado'=> date("Y")
                 );
                 $idUsuario = $this->Usuario_model->add_usuario($params);
-                $dadosSessao = array("usuario_logado"=>$idUsuario, "tipo"=>"aluno", 'turma'=>$turma);
+                $dadosSessao = array("usuario_logado"=>$idUsuario, "tipo"=>"aluno", 'turma'=>$turma, 'ano_cadastro'=>date("Y"));
                 $this->session->set_userdata($dadosSessao);
                 redirect('licao/index');
             } else {

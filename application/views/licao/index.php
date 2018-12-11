@@ -63,16 +63,15 @@
                                 echo "-->";
                             } ?>
                             <td>
-                                <a href="<?php echo site_url('licao/preLicao/' . $L['idLicao']); ?>"
-                                   class="btn btn-success btn-xs">Iniciar lição</a><br><br>
-
                                 <?php if (isset($licoes_feitas) && in_array($L['idLicao'], $licoes_feitas)) { ?>
                                     <a href="<?php echo site_url('licao/refazerLicao/' . $L['idLicao']); ?>"
                                        class="btn btn-success btn-xs">Refazer lição</a><br><br>
                                     <a href="<?php echo site_url('resposta/index/' . $L['idLicao'] . '/' . null . '/' . null); ?>"
                                        class="btn btn-success btn-xs">Ranking</a>
+                                <?php } else { ?>
+                                    <a href="<?php echo site_url('licao/preLicao/' . $L['idLicao']); ?>"
+                                       class="btn btn-success btn-xs">Iniciar lição</a><br><br>
                                 <?php } ?>
-
 
                             </td>
                         </div>
