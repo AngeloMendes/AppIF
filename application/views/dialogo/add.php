@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="<?php echo base_url(); ?>application/views/css/style.css" type="text/css"/>
-<?php echo form_open('conjuntodialogo/add/' . $idLicao, array("class" => "form-horizontal")); ?>
+<?php echo form_open_multipart('conjuntodialogo/add/' . $idLicao, array("class" => "form-horizontal")); ?>
 <div class="form-add">
     <div>
         <div class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">

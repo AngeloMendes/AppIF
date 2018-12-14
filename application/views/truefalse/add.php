@@ -1,5 +1,5 @@
-<?php echo form_open('conjuntotruefalse/add/' . $idLicao, array("class" => "form-horizontal")); ?>
-<link rel="stylesheet" href="<?php echo base_url();?>application/views/css/style.css" type="text/css" />
+<?php echo form_open_multipart('conjuntotruefalse/add/' . $idLicao, array("class" => "form-horizontal")); ?>
+<link rel="stylesheet" href="<?php echo base_url(); ?>application/views/css/style.css" type="text/css"/>
 
 <div class="form-add">
     <div>
@@ -9,7 +9,7 @@
     </div>
     <div class="form-group">
         <div class="col-md-8  form-inputs">
-            <label for="titulo" >Titulo</label>
+            <label for="titulo">Titulo</label>
             <input type="text" name="titulo" value="<?php echo $this->input->post('titulo'); ?>"
                    class="form-control" id="titulo"/>
         </div>
@@ -23,7 +23,8 @@
 
                 <input type="file" name="imagem" value="<?php echo $this->input->post('imagem'); ?>"
                        class="form-control"
-                       id="imagem" multiple=""></div>
+                       id="imagem" multiple="">
+            </div>
         </div>
         <div class="col-md-4 col-md-offset-2">
 
@@ -32,7 +33,8 @@
             <div class="form-group files">
                 <input type="file" name="video" value="<?php echo $this->input->post('video'); ?>"
                        class="form-control"
-                       id="video" multiple=""></div>
+                       id="video" multiple="">
+            </div>
         </div>
     </div>
 

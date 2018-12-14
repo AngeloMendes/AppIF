@@ -36,13 +36,14 @@ class Pergunta extends CI_Controller
         if (isset($_POST) && count($_POST) > 0) {
             $titulo = $this->input->post('titulo');
             $opcaoCorreta = $this->input->post('opcaoCorreta');
+
             if (!empty($_FILES['imagem']['name'])) {
                 $imagem = $_FILES['imagem'];
 
                 $extensaoImagem = explode('.', $imagem['name']);
                 $extensaoImagem = end($extensaoImagem);
 
-                $caminhoVideo = base_url('application/midias/imagens/perguntas/') . str_replace(array(' ', '?', '!', '.', ':', 'ç'),
+                $caminhoImagem = base_url('application/midias/imagens/perguntas/') . str_replace(array(' ', '?', '!', '.', ':', 'ç'),
                         array('', '', '', '', '', 'c'), $titulo) . str_replace(array(' ', '?', '!', '.', ':', 'ç'),
                         array('', '', '', '', '', 'c'), $opcaoCorreta) . '.' . $extensaoImagem;
                 /*$configuracaoImagem = array(
