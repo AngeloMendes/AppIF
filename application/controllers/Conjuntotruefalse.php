@@ -36,6 +36,7 @@ class Conjuntotruefalse extends CI_Controller{
             //adicionar true ou false
 
             $titulo = $this->input->post('titulo');
+            die(var_dump($_FILES));
             if (!empty($_FILES['imagem']['name'])) {
                 $imagem = $_FILES['imagem'];
 
