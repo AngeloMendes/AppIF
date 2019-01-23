@@ -91,7 +91,7 @@ class Usuario extends CI_Controller
                     'pontos' => 0,
                     'tipo'=>'aluno',
                     'turma'=>$turma,
-                    'data_cadastrado'=> date("Y")
+                    'ano_cadastro'=> date("Y")
                 );
                 $idUsuario = $this->Usuario_model->add_usuario($params);
                 $dadosSessao = array("usuario_logado"=>$idUsuario, "tipo"=>"aluno", 'turma'=>$turma, 'ano_cadastro'=>date("Y"));
