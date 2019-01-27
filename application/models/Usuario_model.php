@@ -68,7 +68,7 @@ class Usuario_model extends CI_Model
      */
     function get_ranking($idLicao){
 
-        $sql="SELECT Usuario.nome,Usuario.pontos FROM UltimaResposta join Usuario on Usuario.idUsuario = UltimaResposta.idUsuario WHERE idLicao=".$idLicao." and Usuario.turma='".$this->session->userdata['turma']. "' and Usuario.ano_cadastro like ".$this->session->userdata['ano_cadastro']."  ORDER by Usuario.pontos DESC";
+        $sql="SELECT Usuario.nome as nome, sum(Progresso.pontuacaoAtual) as pontos FROM Progresso join Usuario on Usuario.idUsuario = Progresso.idUsuario WHERE Progresso.idLicao=".$idLicao." and Usuario.turma='".$this->session->userdata['turma']."' and Usuario.ano_cadastro like '".$this->session->userdata['ano_cadastro']."' GROUP by Progresso.idUsuario ORDER by pontos DESC";
         return $this->db->query($sql)->result_array();
     }
 }
