@@ -6,7 +6,8 @@
  * Time: 16:44
  */
 
-class Login extends CI_Controller{
+class Login extends CI_Controller
+{
 
     function __construct()
     {
@@ -14,9 +15,9 @@ class Login extends CI_Controller{
 
     }
 
-    function index(){
-        //direcionar para o inicio de tudo
-        $data['msg']='Bem-vindo';
+    function index()
+    {
+        $data['msg'] = 'Bem-vindo';
         $data['_view'] = 'login/index';
         $this->load->view('layouts/main', $data);
     }

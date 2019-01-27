@@ -24,11 +24,11 @@
     <div class="form-group">
         <div align="center" class="col-xs-12 col-sm-10 col-md-8 col-md-offset-2 col-sm-offset-1">
             <?php if ($dialogo->imagem != "" and $dialogo->imagem != 'error') { ?>
-                <img src="<?php echo $dialogo->imagem; ?>">
+                <img src="<?php echo $dialogo->imagem; ?>" height="240px">
             <?php } ?>
             <?php if (!empty($dialogo->video) and $dialogo->video != 'error') {
                 $extensao = explode('.', $dialogo->video); ?>
-                <video id="video" class="" controls>
+                <video id="video" class="" width="240" height="160" controls>
                     <source src="<?= $dialogo->video ?>" type='video/<?= $extensao[count($extensao) - 1]; ?>'>
                 </video>
             <?php } ?>
