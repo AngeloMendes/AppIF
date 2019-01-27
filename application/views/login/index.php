@@ -10,18 +10,15 @@
             <div>
                 <div class="row">
                     <div class="col-md-4">
-
-
                         <img class="img-responsive" src="<?php echo base_url(); ?>application/midias/logo.png" height=""
                              alt="">
                     </div>
                     <div class="col-md-8">
-
-
-                        <img class="img-responsive" src="<?php echo base_url(); ?>application/midias/ifetlogo.png" height=""
+                        <img class="img-responsive" src="<?php echo base_url(); ?>application/midias/ifetlogo.png"
+                             height=""
                              alt="">
                     </div>
-                    </div>
+                </div>
 
                 <h2 class="form-signin-heading">Digite seu nome</h2>
                 <div>
